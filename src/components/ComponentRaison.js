@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import './ComponentRaison.css';
+import AOS from 'aos'; // Importation AOS
 
 const points = [
   {
@@ -29,12 +30,15 @@ const points = [
 ];
 
 const PourquoiChoisirDigilia = () => {
+    useEffect(() => {
+        AOS.init();
+      }, []);
   return (
     <div className="choisir-container">
       <h2 className="choisir-title">Pourquoi Choisir Digilia ?</h2>
       <div className="choisir-list">
         {points.map((point, index) => (
-          <div className="choisir-item" key={index}>
+          <div className="choisir-item" key={index} data-aos="fade-up" data-aos-duration="550">
             <h3 className="choisir-name">{point.title}</h3>
             <p className="choisir-description">{point.description}</p>
           </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef  } from 'react';
 import './App.css';
+import AOS from 'aos'; // Importation AOS
 import TypeWriterComponent from './components/TypeWriterComponent';
 import ComponentService from './components/ComponentService';
 import ComponentRaison from './components/ComponentRaison';
@@ -95,6 +96,9 @@ function App() {
       console.error('Failed to copy email: ', err);
     });
   };
+  useEffect(() => {
+    AOS.init();
+  }, []);
   
   return (
     <div className="App">
@@ -120,11 +124,11 @@ function App() {
       <main>
         <div className="hero">
           <div className="heroText">
-            <h1 className="heroText1">
+            <h1 className="heroText1" data-aos="fade-up" data-aos-duration="1000">
             Etendez votre business <br/>
             <span className="heroChange">boostez votre <span className="heroTextChange"><TypeWriterComponent words={words} period={2000} /></span></span>
             </h1>
-            <p>
+            <p data-aos="fade-up" data-aos-duration="2000">
               Avec Digilia, augmenter l'impact et la notoriété de votre entreprise grâce à nos
               outils innovants de création de sites web, de solutions 3D et de digitalisation. 
               {/* <br/>Lancez vous librement dans l'universde Digilia. */}
@@ -195,12 +199,12 @@ function App() {
       <div className="foot">
         <div className="footLeft"></div>
         <footer>
-          <div className='footerRappel'>
+          <div className='footerRappel' data-aos="fade-up" data-aos-duration="600">
             <h2>Prêt à Transformer Votre Présence en Ligne ?</h2>
             <p>
               Contactez-nous aujourd'hui pour démarrer votre projet avec Digilia.
             </p>
-            <div className="footerButton">
+            <div className="footerButton" data-aos="fade-up" data-aos-duration="2000">
               <div className="footerButton1">Start Project</div>
               <div className="footerButton2">Log in</div>
             </div>

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import './ComponentTemoignage.css';
+import AOS from 'aos'; // Importation AOS
 
 const reviews = [
   { name: "Jack", username: "@jack", body: "I've never seen anything like this before. It's amazing. I love it.", img: "https://avatar.vercel.sh/jack" },
@@ -11,8 +12,11 @@ const reviews = [
 ];
 
 const ReviewCard = ({ img, name, username, body }) => {
+    useEffect(() => {
+        AOS.init();
+      }, []);
   return (
-    <div className="review-card">
+    <div className="review-card" data-aos="fade-up" data-aos-duration="1000">
       <img src={img} alt={`${name}'s avatar`} className="review-avatar" />
       <h3 className="review-name">{name}</h3>
       <p className="review-username">{username}</p>

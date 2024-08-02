@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import './ComponentFooter.css';
+import AOS from 'aos'; // Importation AOS
 
 const Footer = () => {
+    useEffect(() => {
+        AOS.init();
+      }, []);
   return (
     <footer className="footer">
       <div className="footer-container" id='contact'>
-        <div className="footer-section">
+        <div className="footer-section" data-aos="fade-up" data-aos-duration="500">
           <h3>À propos de Digilia</h3>
           <p>Digilia offre des solutions innovantes pour la création de sites web et la digitalisation des entreprises.</p>
         </div>
-        <div className="footer-section">
+        <div className="footer-section" data-aos="fade-up" data-aos-duration="500">
           <h3>Liens rapides</h3>
           <ul>
             <li><a href="#hero">Accueil</a></li>
@@ -18,13 +22,13 @@ const Footer = () => {
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
-        <div className="footer-section">
+        <div className="footer-section" data-aos="fade-up" data-aos-duration="500">
           <h3>Contactez-nous</h3>
           <p>Email: christiantukundastocklin@gmail.com</p>
           <p>Téléphone: +212 63 46 99 940</p>
           <p>Adresse: L020 Rue Gauthier, Casablanca</p>
         </div>
-        <div className="footer-section">
+        <div className="footer-section" data-aos="fade-up" data-aos-duration="500">
           <h3>Suivez-nous</h3>
           <div className="social-links">
             <a href="https://www.tiktok.com/@christian_tukunda" target="_blank" rel="noopener noreferrer">Tiktok</a>

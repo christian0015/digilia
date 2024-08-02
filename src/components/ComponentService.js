@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import './ComponentService.css';
+import AOS from 'aos'; // Importation AOS
 
 const services = [
   {
@@ -35,12 +36,15 @@ const services = [
 ];
 
 const ComponentService = () => {
+    useEffect(() => {
+        AOS.init();
+      }, []);
   return (
     <div className="service-container">
       <h2 className="service-title">Nos Services</h2>
       <div className="service-list">
         {services.map((service, index) => (
-          <div className="service-item" key={index}>
+          <div className="service-item" key={index} data-aos="fade-up" data-aos-duration="800">
             <div className="service-icon">{service.icon}</div>
             <h3 className="service-name">{service.title}</h3>
             <p className="service-description">{service.description}</p>
