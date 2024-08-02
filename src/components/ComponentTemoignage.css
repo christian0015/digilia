@@ -27,6 +27,11 @@
   padding: 1rem;
   width: 250px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+.review-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
 }
 
 .review-avatar {
@@ -49,4 +54,21 @@
 .review-body {
   font-size: 1rem;
   color: #333;
+}
+
+@media only screen and (max-width:768px) {
+.testimonials {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    text-align: center;
+    width: 85%;
+  }
+.testimonials h2{
+    font-size: 20px;
+}.review-card {
+    padding: 1rem;
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
 }

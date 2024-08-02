@@ -3,6 +3,7 @@
   background-color: #f9f9f9;
   /* background: linear-gradient(#A6DBFC, #E8ABF2); */
   background: linear-gradient(#8D5544, #E8ABF2  , #A6DBFC);
+  background: linear-gradient(to right, #17181A, #7C5AA9, #4C629F, #8296A1, #17181A);
   border-radius: 8px;
   text-align: center;
   margin: 2rem 0;
@@ -36,6 +37,7 @@
 }
 
 .choisir-name {
+  color: #555;
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
@@ -43,4 +45,17 @@
 .choisir-description {
   font-size: 1rem;
   color: #666;
+}
+
+@media only screen and (max-width:768px) {
+.choisir-container {
+  padding: 1rem;
+  margin: 1rem 0;
+  width: 85%;
+}
+.choisir-title {
+  font-size: 20px;
+  margin-bottom: 1.5rem;
+}
+
 }

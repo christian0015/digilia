@@ -4,6 +4,7 @@
     background-color: #050518;
     background: linear-gradient(#A6DBFC, #E8ABF2);
     background: radial-gradient(#A6DBFC,#8D5544, #E8ABF2);
+    background: linear-gradient(to right, #7C5AA9, #B67058, #4C629F, #8296A1);
     width: 90%;
     border-radius: 8px;
     text-align: center;
@@ -22,8 +23,8 @@
   }
   
   .service-item {
-    background-color: rgb(255, 255, 255);
-    border: 1px solid #c56812;
+    background-color: rgb(255, 249, 252);
+    border: 1px solid #887400;
     border-radius: 8px;
     padding: 1rem;
     width: 250px;
@@ -51,3 +52,14 @@
     color: #666;
   }
   
+  @media only screen and (max-width:768px) {
+ .service-container {
+    padding: 1rem;
+    width: 85%;
+  }
+  .service-item {
+    padding: 1rem;
+    width: 300px;
+  }
+
+  }

@@ -43,7 +43,7 @@ function Marquee() {
   };
 
   useEffect(() => {
-    const interval = setInterval(updateItems, 50); // Vérifier régulièrement
+    const interval = setInterval(updateItems, 50); // Vérifier la chaine marquee
     return () => clearInterval(interval);
   }, []);
 
@@ -148,11 +148,11 @@ function App() {
         </div>
 
 
-        <section>
+        <section id='services'>
           <ComponentService/>
         </section>
         
-        <section>
+        <section id='about'>
 
           <ComponentRaison/>
           {/* <div>
@@ -195,18 +195,16 @@ function App() {
       <div className="foot">
         <div className="footLeft"></div>
         <footer>
-        <section>
-          <div>
-          <h2>Prêt à Transformer Votre Présence en Ligne ?</h2>
-          <p>
-            Contactez-nous aujourd'hui pour démarrer votre projet avec Digilia.
-          </p>
-          <div className="heroButton">
-            <div className="heroButton1">Start Project</div>
-            <div className="heroButton2">Log in</div>
+          <div className='footerRappel'>
+            <h2>Prêt à Transformer Votre Présence en Ligne ?</h2>
+            <p>
+              Contactez-nous aujourd'hui pour démarrer votre projet avec Digilia.
+            </p>
+            <div className="footerButton">
+              <div className="footerButton1">Start Project</div>
+              <div className="footerButton2">Log in</div>
+            </div>
           </div>
-          </div>
-        </section>
           <ComponentFooter/>
         </footer>
         <div className='footRight'></div>
