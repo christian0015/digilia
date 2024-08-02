@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="footer-section" data-aos="fade-up" data-aos-duration="500">
           <h3>Liens rapides</h3>
           <ul>
-            <li><a href="#hero">Accueil</a></li>
+            <li><a href="#head">Accueil</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#about">À propos</a></li>
             <li><a href="#contact">Contact</a></li>

@@ -102,7 +102,7 @@ function App() {
   
   return (
     <div className="App">
-      <div className="head">
+      <div className="head" id='head'>
         <div className="headLeft"></div>
         <header className="header">
           <span className="logo">Digilia</span>
