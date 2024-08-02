@@ -1,0 +1,26 @@
+.typewrite > .wrap {
+    overflow: hidden; /* Empêche le texte de déborder */
+    border-right: 0.08em solid #ffffff; /* Effet de curseur clignotant */
+    white-space: nowrap; /* Garde le texte sur une seule ligne */
+    margin: 0 auto; /* Centre le texte horizontalement */
+    animation: typewriter 2s steps(30, end), blink-caret 0.5s step-end infinite;
+  }
+  
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink-caret {
+    from, to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: #caedfe1f;
+    }
+  }
+  

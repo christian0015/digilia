@@ -1,0 +1,52 @@
+.testimonials {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  text-align: center;
+  width: 90%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonials h2{
+    color: #555;
+    margin: 10px 10px 50px;
+}
+
+.testimonials-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.review-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 250px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-avatar {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1rem;
+}
+
+.review-name {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.review-username {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.review-body {
+  font-size: 1rem;
+  color: #333;
+}
