@@ -1,0 +1,321 @@
+*{margin: 0; padding: 0;}
+
+html, body {
+  font-family: Arial, sans-serif;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/**************************************** App ********************************/
+.app{display: flex; justify-content: stretch; background-color: rgb(37, 37, 37);
+}
+aside{
+  position: relative;
+  margin: 0 0px;
+  padding: 15px 10px;
+  width: 320px;
+  height: calc(100vh - 30px);
+  background-color: #eeebeb;
+  display: flex;
+  flex-direction: column;
+}
+.userProfil{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  max-width: 250px;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 20px;
+}
+.userProfilImg{
+  width: 40px;
+  border-radius: 100px;
+}
+.userProfilInfo{
+  display: flex;
+  flex-direction: column;
+}
+.userProfilInfo .span2{
+  color: #969696;
+  font-size: 15px;
+}
+
+.asideLink{
+  display: flex; 
+  flex-direction: column;
+  gap: 10px;
+  background-color: #ffffff;
+  margin: 10px 0;
+  padding: 10px 30px 10px;
+  border-radius: 20px;
+}
+.asideLink a{
+  color: rgb(150, 150, 150);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.asideLink a.active{
+  color: #1f1f1f;
+  /* background-color: #5c0ab9; */
+} 
+
+
+/* Style du lien actif */
+nav a.active-link svg {
+  fill: #1d4ba5; /* Couleur du SVG lorsque le lien est actif */
+}/* Style par défaut du lien */
+nav a svg {
+  fill: #5f6368; /* Couleur par défaut du SVG */
+}
+
+.logout{
+  position: absolute;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #ffffff;
+  width: 90%;
+  padding: 15px;
+  border-radius: 20px;
+  border: none;
+}
+
+.spaceTop{
+  margin-top: 100px;
+}
+
+.sousApp{
+  width: 100%;
+  height: calc(100vh - 30px);
+  margin: 15px 5px;
+}
+header{
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  width: 100%;
+  border-radius: 20px;
+  /* border: #5c0ab9 solid 1px; */
+}
+header .textLogo{
+  color: #2B2B2B;
+  padding: 8px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 20px;
+  width: 30%;
+}
+header h1{
+  font-size: 20px;
+  font-weight: 700;
+}header h3{
+  font-size: 16px;
+  font-weight: 500;
+  align-items: flex-end;
+}
+.headLeSecret{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 250px;
+  padding: 0px;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+.headLeSecretImg{
+  width: 40px;
+  border-radius: 100px;
+}
+.headLeSecretInfo{
+  display: flex;
+  flex-direction: column;
+}
+.headLeSecretInfo .span2{
+  color: #969696;
+  font-size: 15px;
+}
+
+.content{
+  margin-top: 20px;
+}
+
+label{
+  font-size: 20px;
+}
+input{
+  font-size: 20px;
+  width: 200px;
+}
+option, select{
+  font-size: 18px;
+  width: 180px;
+}
+
+article{
+  position: relative;
+  margin: 0 0px;
+  padding: 15px 10px;
+  width: 300px;
+  height: calc(100vh - 30px);
+  background-color: #eeebeb;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pages  */
+
+.dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 82vh;
+  background: linear-gradient(135deg, #797c816e, #7462147a);
+  color: #fff;
+  border-radius: 20px;
+}
+
+.welcome-card {
+  z-index: 10000;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  max-width: 400px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.welcome-card h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.welcome-card p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.get-started-btn {
+  background-color: #ff914d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.get-started-btn:hover {
+  background-color: #ff6600;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.BackImgDashboard{
+  position: relative;
+}
+.imgCardDashboard{
+  position: absolute;
+  top: -60%;
+  left: -30%;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+.imgCardDashboard img:nth-child(1){
+  transform: scale(0.6);
+  transform: rotate(-15deg);
+}.imgCardDashboard img:nth-child(3){
+  transform: scale(0.6);
+  transform: rotate(15deg);
+}
+.imgBouteilleDashboard{
+  width: 300px;
+  margin-right: -100px;
+}
+
+
+
+.buttonMenu{display: none;}
+
+
+
+@media only screen and (max-width: 768px){
+  aside{
+    /* display: none; */
+    position: absolute;
+    z-index: 1000;
+    left: -300px;
+    transition: left 1s ease;
+  }
+  .content{position: relative;}
+  aside.show{
+    /* display: none; */
+    left: -10px;
+    transition: left .8s ease;
+  }
+  .buttonMenu {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 200px;
+    background-color: #9E6316;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 1.3s ease;
+  }
+  
+  /* Bouton actif (allumé) */
+  .buttonMenu.active {
+    background-color: #4CAF50; /* Vert ou autre couleur pour indiquer l'activation */
+    background-color: #0f6612; /* Vert ou autre couleur pour indiquer l'activation */
+    transition: background-color 1.3s ease;
+    color: #fff;
+    animation: colorChange 5s infinite linear;
+  }
+  @keyframes colorChange {
+    0% {
+      background-color: #0f6612;
+    }
+    45% {
+      background-color: #671be0;
+    }
+    90% {
+      background-color: #9E6316;
+    }
+  }
+
+  .imgCardDashboard{
+    position: absolute;
+    top: -30%;
+    left: -10%;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    gap: -20px;
+  }
+  .imgBouteilleDashboard{
+    width: 250px;
+    margin-right: -150px;
+}
+
+}

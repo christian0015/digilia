@@ -1,0 +1,71 @@
+*{}
+
+.login-form{
+    width: 450px;
+    min-height: 500px;
+    background-color: #2B2B2B;  
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.login-form-enonce{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin: 35px 0 2px; */
+}
+.login-form-enonce h5{
+    color: #a1a1a1;
+}
+.login-form-champs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 20px;
+}
+.login-form-champs label{color: #a1a1a1;}
+.login-form-champs input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 15px;
+    border-color: #a5a2a2;
+    background-color: #383838;
+    color: #e0e0e0;
+    margin: 5px 0 15px;
+}
+.login-form-champs button{
+    background-color: #ffffff;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid white;
+    width: 70%;
+    margin: 20px 0 0;
+}
+.switch-form p{
+    font-size: 15px;
+    color: #bebdbd;
+    text-align: center;
+}
+
+@media screen and (max-width: 786px){
+    .login-form{
+        width: 350px;
+        font-size: 20px;
+    }
+    .login-form-champs label, .login-form-champs input, .login-form-champs button{
+        font-size: 18px;
+        padding: 10px;
+    }
+    .switch-form p{
+        font-size: 18px;
+    }
+}
