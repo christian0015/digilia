@@ -10,7 +10,8 @@ import ComponentFooter from './components/ComponentFooter';
 
 
 import LoginPage from './pages/LoginPage';
-import ProjetPage from './pages/Dashboard';
+import Dashboard from './pages/Dashboard';
+import ProjetPage from './pages/ProjetMaker';
 
 
 function Marquee() {
@@ -94,8 +95,8 @@ function App() {
   const handleLoginClick = () => {
     navigate('/login');
   };
-  const handleStartProjectClick = () => {
-    navigate('/project');
+  const handleStartProjetClick = () => {
+    navigate('/projet');
   };
 
 
@@ -133,7 +134,7 @@ function App() {
             </div>
             <div className="headerButton">
               <div className="headerButton1" onClick={handleLoginClick}>Log in</div>
-              <div className="headerButton2" onClick={handleStartProjectClick}>Start Projet</div>
+              <div className="headerButton2" onClick={handleStartProjetClick}>Start Projet</div>
             </div>
           </div>
         </header>
@@ -153,7 +154,7 @@ function App() {
               {/* <br/>Lancez vous librement dans l'universde Digilia. */}
             </p>
             <div className="heroButton">
-                <div className="heroButton1" onClick={handleStartProjectClick}>Start Projet</div>
+                <div className="heroButton1" onClick={handleStartProjetClick}>Start Projet</div>
                 <div className="heroButton2" onClick={handleCopyEmail}>
                   <svg xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="14px" fill="#63636A">
                   <path d="M320-80q-33 0-56.5-23.5T240-160v-80h-80q-33 0-56.5-23.5T80-320v-80h80v80h80v-320q0-33 23.5-56.5T320-720h320v-80h-80v-80h80q33 0 56.5 23.5T720-800v80h80q33 0 56.5 23.5T880-640v480q0 33-23.5 56.5T800-80H320Zm0-80h480v-480H320v480ZM80-480v-160h80v160H80Zm0-240v-80q0-33 23.5-56.5T160-880h80v80h-80v80H80Zm240-80v-80h160v80H320Zm0 640v-480 480Z"/>
@@ -224,7 +225,7 @@ function App() {
               Contactez-nous aujourd'hui pour démarrer votre projet avec Digilia.
             </p>
             <div className="footerButton" data-aos="fade-up" data-aos-duration="2000">
-              <div className="footerButton1" onClick={handleStartProjectClick}>Start Project</div>
+              <div className="footerButton1" onClick={handleStartProjetClick}>Start Projet</div>
               <div className="footerButton2" onClick={handleLoginClick}>Log in</div>
             </div>
           </div>
@@ -243,7 +244,8 @@ function Router() {
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/projet" element={<ProjetPage />} />
+      <Route path="/projet" element={<Dashboard />} />
+      <Route path="/projet-maker" element={<ProjetPage />} />
       {/* Ajoutez d'autres routes ici */}
     </Routes>
   );

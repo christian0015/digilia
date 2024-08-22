@@ -15,7 +15,7 @@ const LoginAndRegisterForm = () => {
     try {
       if (isLogin) {
         // Logique de connexion
-        const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+        const response = await axios.post('https://digilia-server.vercel.app/api/auth/login', { email, password });
         const { token, user } = response.data;
 
         localStorage.setItem('digiliaToken', token);
@@ -23,7 +23,7 @@ const LoginAndRegisterForm = () => {
         window.location.href = 'projet'; // Redirection après connexion
       } else {
         // Logique d'inscription
-        const response = await axios.post('http://localhost:5000/api/auth/register', { email, password, username });
+        const response = await axios.post('https://digilia-server.vercel.app/api/auth/register', { email, password, username });
         alert('Inscription réussie, vous pouvez maintenant vous connecter');
         setIsLogin(true); // Bascule vers la connexion après l'inscription
       }

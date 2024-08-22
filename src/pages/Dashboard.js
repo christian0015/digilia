@@ -1,205 +1,182 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Routes, Route } from 'react-router-dom';
+import axios from 'axios';
+import ProjetMaker from './ProjetMaker';
+import './Dashboard.css';
 
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Dashboard from './LoginPage';
-import Products from './LoginPage';
-import ProductForm from './LoginPage';
-import Sales from './LoginPage';
-import Historique from './LoginPage';
-import Statistique from './LoginPage';
-import Register from './LoginPage';
-import Navbar from './LoginPage';
-import Sidebar from './LoginPage';
-import './App.css';
-import { Link, NavLink  } from 'react-router-dom';
+const Dashboard = () => {
+  const [user, setUser] = useState(null);
+  const [projets, setProjets] = useState([]);
+  const [newProjet, setNewProjet] = useState({ name: '', description: '', code: '' });
+  const [editingProjet, setEditingProjet] = useState(null);
+  const [message, setMessage] = useState({ type: '', text: '' });
+  const navigate = useNavigate();
 
-const userString = localStorage.getItem('digiliaUser');
-const userProfil = JSON.parse(userString);
+  useEffect(() => {
+    const userString = localStorage.getItem('digiliaUser');
+    const userProfil = JSON.parse(userString);
+    setUser(userProfil);
 
-const App = () => {
+    fetchProjets();
+  }, []);
 
-  const [isShown, setIsShown] = useState(false);
-  const toggleAside = () => {
-    setIsShown(!isShown);
-    };
+  const fetchProjets = async () => {
+    try {
+      const response = await axios.get('https://digilia-server.vercel.app/api/projets/getUserProjets', {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      setProjets(response.data);
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Erreur lors de la récupération des projets.' });
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('digiliaUser');
+    navigate('/');
+  };
+
+  const handleUpdateUser = async () => {
+    try {
+      const response = await axios.put('https://digilia-server.vercel.app/api/auth/update', user, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      setUser(response.data.user);
+      setMessage({ type: 'success', text: 'Profil mis à jour avec succès.' });
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Erreur lors de la mise à jour du profil.' });
+    }
+  };
+
+  const handleDeleteUser = async () => {
+    try {
+      await axios.delete('https://digilia-server.vercel.app/api/auth/delete', {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      handleLogout();
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Erreur lors de la suppression du compte.' });
+    }
+  };
+
+  const handleLastProjet = async () => {
+      navigate('/projet-maker');
+      
+  };
+
+  const handleCreateProjet = async () => {
+    try {
+      const response = await axios.post('https://digilia-server.vercel.app/api/projets/createProjet', newProjet, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      setProjets([...projets, response.data.projet]);
+      setNewProjet({ name: '', description: '', code: '' });
+      navigate('/projet-maker');
+      setMessage({ type: 'success', text: 'Projet créé avec succès.' });
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Erreur lors de la création du projet.' });
+    }
+  };
+
+  const handleUpdateProjet = async (projetId, updatedName) => {
+    try {
+      const response = await axios.put(`https://digilia-server.vercel.app/api/projets/updateProjetName/${projetId}`, { newName: updatedName }, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      setProjets(projets.map(projet => projet._id === projetId ? response.data.projet : projet));
+      setEditingProjet(null);
+      setMessage({ type: 'success', text: 'Nom du projet mis à jour avec succès.' });
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Erreur lors de la mise à jour du projet.' });
+    }
+  };
+
+  const handleDeleteProjet = async (projetId) => {
+    try {
+      await axios.delete(`https://digilia-server.vercel.app/api/projets/deleteProjet/${projetId}`, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      setProjets(projets.filter(projet => projet._id !== projetId));
+      setMessage({ type: 'success', text: 'Projet supprimé avec succès.' });
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Erreur lors de la suppression du projet.' });
+    }
+  };
+
   return (
-    <div>
-      <div className="app">
-        <aside className={isShown ? 'show' : ''}>
-          <div className="userProfil">
-            <span className="userProfilImgs">
-              {userProfil.role=="admin" ?
-                <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Boss"/> :
-                 <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Gerant"/>
-              }
-            </span>
-            <span className="userProfilInfo">
-              <span>{userProfil.username}</span>
-              <span className='span2'>{userProfil.role}</span>
-            </span>
-          </div>
+    <div className="dashboard">
+      <h1>Tableau de Bord</h1>
+      {message.text && <div className={`message ${message.type}`}>{message.text}</div>}
+      {user && (
+        <div className="user-info">
+          <h2>Bienvenue, {user.username}</h2>
+          <p>Email : {user.email}</p>
+          <button onClick={handleLastProjet}>Dernier Projet</button>
 
-          <div className="asideLink">
-
-            <NavLink  to="/dashboard">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
-              <span>Acceuil</span>
-            </NavLink >
-
-            <NavLink  to="/products">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
-              <span>Mes Projects</span>
-            </NavLink >
-
-            <NavLink  to="/sales">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
-              <span>Mon abonnement</span>
-            </NavLink >
-
-            <NavLink  to="/productform">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
-              <span>Gestion de Projet</span>
-            </NavLink >
-
-            <NavLink  to="/historique">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
-              <span>Tutoriels</span>
-            </NavLink >
-
-            <NavLink  to="/statistique" activeClassName="active-link">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
-              <span>Deployement</span>
-            </NavLink >
-
-          </div>
-          <div className="asideLink spaceTop">
-            <NavLink  to="/" className="registerPage">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
-              <span>Mes coordonnées</span>
-            </NavLink >
-          </div>
-          
-          
-        </aside>
-        <div className="sousApp">
-          <header>
-            <div className="textLogo">
-              <h1>Digilia Dashboard</h1>
-              <h3>NetKin</h3>  
-            </div>   
-            <div className="headLeSecret">
-              <span className="headLeSecretImgs">
-                  <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="headLeSecretImg" alt="logo"/> 
-              </span>
-              <span className="headLeSecretInfo">
-                <span className='span2'>Projet 3</span>
-                {/* <span>{userProfil.role}</span> */}
-              </span>
-          </div>
-          </header>       
-          {/* <Navbar/> */}
-
-          <div className="content">
-          <button onClick={toggleAside} className={isShown ? 'buttonMenu active' : 'buttonMenu'}>
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M666-440 440-666l226-226 226 226-226 226Zm-546-80v-320h320v320H120Zm400 400v-320h320v320H520Zm-400 0v-320h320v320H120Zm80-480h160v-160H200v160Zm467 48 113-113-113-113-113 113 113 113Zm-67 352h160v-160H600v160Zm-400 0h160v-160H200v160Zm160-400Zm194-65ZM360-360Zm240 0Z"/></svg>
-          </button>
-
-            <Routes>
-              {/* <Route path="/" element={<Dashboard />} /> */}
-              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-              <Route path="/products" element={<s />} />
-              <Route path="/productform" element={<s />} />
-              <Route path="/sales" element={<s />} />
-              <Route path="/historique" element={<s />} />
-              <Route path="/statistique" element={<s />} />
-              <Route path="/register" element={<s />} />
-
-              {/* Route par défaut qui redirige vers le Dashboard */}
-              {/* <Route path="*" element={<Navigate to="/dashboard" />} /> */}
-            </Routes>
-          </div>
+          <br></br>
+          <button onClick={handleUpdateUser}>Modifier Profil</button>
+          <button onClick={handleDeleteUser}>Supprimer Compte</button>
+          <button onClick={handleLogout}>Déconnexion</button>
         </div>
-        
-        <br/>
-        <article className={isShown ? 'show' : ''}>
-          <div className="userProfil">
-            <span className="userProfilImgs">
-              {userProfil.role=="admin" ?
-                <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Boss"/> :
-                 <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Gerant"/>
-              }
-            </span>
-            <span className="userProfilInfo">
-              <span>{userProfil.username}</span>
-              <span className='span2'>Page</span>
-            </span>
-          </div>
+      )}
 
-          <br/>
-          <div className="userProfil">
-            <span className="userProfilImgs">
-              {userProfil.role=="admin" ?
-                <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Boss"/> :
-                 <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Gerant"/>
-              }
-            </span>
-            <span className="userProfilInfo">
-              <span>{userProfil.username}</span>
-              <span className='span2'>Session</span>
-            </span>
-          </div>
-          
-          <br/>
-          <div className="userProfil">
-            <span className="userProfilImgs">
-              {userProfil.role=="admin" ?
-                <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Boss"/> :
-                 <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Gerant"/>
-              }
-            </span>
-            <span className="userProfilInfo">
-              <span>{userProfil.username}</span>
-              <span className='span2'>Block</span>
-            </span>
-          </div>
+      <div className="projets-section">
+        <h2>Vos Projets</h2>
+        <div className="projet-form">
+          <input
+            type="text"
+            placeholder="Nom du projet"
+            value={newProjet.name}
+            onChange={(e) => setNewProjet({ ...newProjet, name: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Description"
+            value={newProjet.description}
+            onChange={(e) => setNewProjet({ ...newProjet, description: e.target.value })}
+          />
+          <textarea
+            placeholder="Code"
+            value={newProjet.code}
+            onChange={(e) => setNewProjet({ ...newProjet, code: e.target.value })}
+          />
+          <button onClick={handleCreateProjet}>Créer Projet</button>
+        </div>
 
-          <br/>
-          <div className="userProfil">
-            <span className="userProfilInfo">
-              <span>{userProfil.username}</span>
-              <span className='span2'>Contenaire</span>
-            </span>
-          </div>
-
-          <br/>
-          <div className="userProfil">
-            <span className="userProfilInfo">
-              <span>{userProfil.username}</span>
-              <span className='span2'>Span</span>
-            </span>
-          </div>
-
-          <br/>
-          <div className="userProfil">
-            <span className="userProfilInfo">
-              <span>{userProfil.username}</span>
-              <span className='span2'>Label</span>
-            </span>
-          </div>
-
-          <br/>
-          <div className="userProfil">
-            <span className="userProfilInfo">
-              <span>{userProfil.username}</span>
-              <span className='span2'>Button</span>
-            </span>
-          </div>
-          
-          
-        </article>
+        <ul className="projets-list">
+          {projets.map(projet => (
+            <li key={projet._id}>
+              {editingProjet === projet._id ? (
+                <input
+                  type="text"
+                  value={projet.name}
+                  onChange={(e) => handleUpdateProjet(projet._id, e.target.value)}
+                />
+              ) : (
+                <>
+                  <h3>{projet.name}</h3>
+                  <p>{projet.description}</p>
+                  <button onClick={() => setEditingProjet(projet._id)}>Modifier</button>
+                  <button onClick={() => handleDeleteProjet(projet._id)}>Supprimer</button>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
 };
 
-export default App;
+// export default Dashboard;
+function Router() {
+  return (
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/projet-maker" element={<ProjetMaker/>} />
+      {/* Ajoutez d'autres routes ici */}
+    </Routes>
+  );
+}
+
+export default Router;
