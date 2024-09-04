@@ -9,7 +9,7 @@ import Label from './Dashboard';
 import ZoneText from './LoginPage';
 import Button from './LoginPage';
 import Formulaire from './LoginPage';
-import './App.css';
+import './ProjetMaker.css';
 import { Link, NavLink  } from 'react-router-dom';
 
 const userString = localStorage.getItem('digiliaUser');
@@ -19,27 +19,29 @@ console.log(userProfil);
 const ProjetPage = () => {
 
   const [isShown, setIsShown] = useState(false);
-  const toggleAside = () => {
+  const toggleContainerRigthProjetMaker = () => {
     setIsShown(!isShown);
     };
   return (
     <div>
-      <div className="app">
-        <aside className={isShown ? 'show' : ''}>
-          <div className="userProfil">
-            <span className="userProfilImgs">
+      <div className="projet-maker">
+
+        {/* /**************************************** projet-maker right ******************************* */}
+        <div className={isShown ? 'show container-rigth-projet-maker' : 'container-rigth-projet-maker'}>
+          <div className="projet-maker-userProfil">
+            <span className="projet-maker-userProfil-imgs">
               {userProfil.role=="admin" ?
                 <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Boss"/> :
                  <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Gerant"/>
               }
             </span>
-            <span className="userProfilInfo">
+            <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='span2'>{userProfil.role}</span>
+              <span className='projet-maker-userProfil-info-text'>{userProfil.role}</span>
             </span>
           </div>
 
-          <div className="asideLink">
+          <div className="container-rigth-projet-maker-links">
 
             <NavLink  to="/FrameRendu">
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
@@ -72,37 +74,37 @@ const ProjetPage = () => {
             </NavLink >
 
           </div>
-          <div className="asideLink spaceTop">
+          <div className="container-rigth-projet-maker-links spaceTop">
             <NavLink  to="/" className="ButtonPage">
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
               <span>Mes coordonnées</span>
             </NavLink >
           </div>
-          
-          
-        </aside>
-        <div className="sousApp">
-          <header>
-            <div className="textLogo">
+                    
+        </div>
+
+        {/* /**************************************** projet-maker Center ******************************* */}
+        <div className="container-middle-projet-maker">
+          <div className='container-middle-projet-maker-header'>
+            <div className="container-middle-projet-maker-textLogo">
               <h1>Digilia FrameRendu</h1>
               <h3>NetKin</h3>  
             </div>   
-            <div className="headLeSecret">
-              <span className="headLeSecretImgs">
-                  <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="headLeSecretImg" alt="logo"/> 
+            <div className="container-middle-projet-maker-header-rigth">
+              <span className="container-middle-projet-maker-header-rigth-imgs">
+                  <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="container-middle-projet-maker-header-rigth-img" alt="logo"/> 
               </span>
-              <span className="headLeSecretInfo">
-                <span className='span2'>Projet 3</span>
-                {/* <span>{userProfil.role}</span> */}
+              <span className="container-middle-projet-maker-header-rigth-info">
+                <span className='container-middle-projet-maker-header-rigth-info-text'>Projet 3</span>
               </span>
           </div>
-          </header>       
+          </div>       
           {/* <Formulaire/> */}
 
-          <div className="content">
-          <button onClick={toggleAside} className={isShown ? 'buttonMenu active' : 'buttonMenu'}>
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M666-440 440-666l226-226 226 226-226 226Zm-546-80v-320h320v320H120Zm400 400v-320h320v320H520Zm-400 0v-320h320v320H120Zm80-480h160v-160H200v160Zm467 48 113-113-113-113-113 113 113 113Zm-67 352h160v-160H600v160Zm-400 0h160v-160H200v160Zm160-400Zm194-65ZM360-360Zm240 0Z"/></svg>
-          </button>
+          <div className="container-middle-projet-maker-content">
+            <button onClick={toggleContainerRigthProjetMaker} className={isShown ? 'container-middle-projet-maker-content-buttonMenu active' : 'container-middle-projet-maker-content-buttonMenu'}>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M666-440 440-666l226-226 226 226-226 226Zm-546-80v-320h320v320H120Zm400 400v-320h320v320H520Zm-400 0v-320h320v320H120Zm80-480h160v-160H200v160Zm467 48 113-113-113-113-113 113 113 113Zm-67 352h160v-160H600v160Zm-400 0h160v-160H200v160Zm160-400Zm194-65ZM360-360Zm240 0Z"/></svg>
+            </button>
 
             <Routes>
               {/* <Route path="/" element={<FrameRendu />} /> */}
@@ -121,82 +123,84 @@ const ProjetPage = () => {
         </div>
         
         <br/>
-        <article className={isShown ? 'show' : ''}>
-          <div className="userProfil">
-            <span className="userProfilImgs">
+
+        {/* /**************************************** projet-maker left ******************************* */}
+        <div className={isShown ? 'show container-left-projet-maker' : 'container-left-projet-maker'}>
+          <div className="projet-maker-userProfil">
+            <span className="projet-maker-userProfil-imgs">
               {userProfil.role=="admin" ?
                 <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Boss"/> :
                  <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Gerant"/>
               }
             </span>
-            <span className="userProfilInfo">
+            <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='span2'>Page</span>
+              <span className='projet-maker-userProfil-info-text'>Page</span>
             </span>
           </div>
 
           <br/>
-          <div className="userProfil">
-            <span className="userProfilImgs">
+          <div className="projet-maker-userProfil">
+            <span className="projet-maker-userProfil-imgs">
               {userProfil.role=="admin" ?
                 <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Boss"/> :
                  <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Gerant"/>
               }
             </span>
-            <span className="userProfilInfo">
+            <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='span2'>Session</span>
+              <span className='projet-maker-userProfil-info-text'>Session</span>
             </span>
           </div>
           
           <br/>
-          <div className="userProfil">
-            <span className="userProfilImgs">
+          <div className="projet-maker-userProfil">
+            <span className="projet-maker-userProfil-imgs">
               {userProfil.role=="admin" ?
                 <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Boss"/> :
                  <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="userProfilImg" alt="Gerant"/>
               }
             </span>
-            <span className="userProfilInfo">
+            <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='span2'>Block</span>
+              <span className='projet-maker-userProfil-info-text'>Block</span>
             </span>
           </div>
 
           <br/>
-          <div className="userProfil">
-            <span className="userProfilInfo">
+          <div className="projet-maker-userProfil">
+            <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='span2'>Contenaire</span>
+              <span className='projet-maker-userProfil-info-text'>Contenaire</span>
             </span>
           </div>
 
           <br/>
-          <div className="userProfil">
-            <span className="userProfilInfo">
+          <div className="projet-maker-userProfil">
+            <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='span2'>Span</span>
+              <span className='projet-maker-userProfil-info-text'>Span</span>
             </span>
           </div>
 
           <br/>
-          <div className="userProfil">
-            <span className="userProfilInfo">
+          <div className="projet-maker-userProfil">
+            <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='span2'>Label</span>
+              <span className='projet-maker-userProfil-info-text'>Label</span>
             </span>
           </div>
 
           <br/>
-          <div className="userProfil">
-            <span className="userProfilInfo">
+          <div className="projet-maker-userProfil">
+            <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='span2'>Button</span>
+              <span className='projet-maker-userProfil-info-text'>Button</span>
             </span>
           </div>
           
           
-        </article>
+        </div>
       </div>
     </div>
   );

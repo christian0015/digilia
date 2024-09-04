@@ -16,21 +16,12 @@ const Dashboard = () => {
     const userString = localStorage.getItem('digiliaUser');
     const userProfil = JSON.parse(userString);
     setUser(userProfil);
+    // console.log(user._id)
 
     fetchProjets();
   }, []);
 
-  const fetchProjets = async () => {
-    try {
-      const response = await axios.get('https://digilia-server.vercel.app/api/projets/getUserProjets', {
-        headers: { Authorization: `Bearer ${user.token}` },
-      });
-      setProjets(response.data);
-    } catch (error) {
-      setMessage({ type: 'error', text: 'Erreur lors de la récupération des projets.' });
-    }
-  };
-
+  
   const handleLogout = () => {
     localStorage.removeItem('digiliaUser');
     navigate('/');
@@ -64,10 +55,12 @@ const Dashboard = () => {
       
   };
 
+    // Create project
   const handleCreateProjet = async () => {
     try {
-      const response = await axios.post('https://digilia-server.vercel.app/api/projets/createProjet', newProjet, {
-        headers: { Authorization: `Bearer ${user.token}` },
+      const response = await axios.post('https://digilia-server.vercel.app/api/projets/createProjet', {
+        userId: user._id,
+        newProjet,
       });
       setProjets([...projets, response.data.projet]);
       setNewProjet({ name: '', description: '', code: '' });
@@ -77,6 +70,19 @@ const Dashboard = () => {
       setMessage({ type: 'error', text: 'Erreur lors de la création du projet.' });
     }
   };
+
+  const fetchProjets = async () => {
+    try {
+      const response = await axios.get('https://digilia-server.vercel.app/api/projets/getUserProjets', {
+        params: { userId: user._id }, // Envoi de userId en tant que paramètre de requête
+      });
+      setProjets(response.data);
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Erreur lors de la récupération des projets.' });
+    }
+  };
+  
+
 
   const handleUpdateProjet = async (projetId, updatedName) => {
     try {

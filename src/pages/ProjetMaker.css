@@ -6,20 +6,25 @@ html, body {
   overflow-x: hidden;
 }
 
-/**************************************** App ********************************/
-.app{display: flex; justify-content: stretch; background-color: rgb(37, 37, 37);
+/**************************************** projet-maker ********************************/
+.projet-maker{display: flex; justify-content: stretch; background-color: rgb(37, 37, 37);
 }
-aside{
+
+/* ******************* projet-maker-rith panel ******************** */
+.container-rigth-projet-maker{
   position: relative;
   margin: 0 0px;
   padding: 15px 10px;
   width: 320px;
   height: calc(100vh - 30px);
   background-color: #eeebeb;
+  color: #1f1f1f;
   display: flex;
   flex-direction: column;
 }
-.userProfil{
+
+/* Info User Actif */
+.projet-maker-userProfil{
   display: flex;
   align-items: center;
   gap: 15px;
@@ -27,21 +32,19 @@ aside{
   background-color: #ffffff;
   padding: 10px;
   border-radius: 20px;
-}
-.userProfilImg{
+}.projet-maker-userProfil-imgs img{
   width: 40px;
   border-radius: 100px;
-}
-.userProfilInfo{
+}.projet-maker-userProfil-info{
   display: flex;
   flex-direction: column;
-}
-.userProfilInfo .span2{
+}.projet-maker-userProfil-info-text{
   color: #969696;
   font-size: 15px;
 }
 
-.asideLink{
+/* Block des liens */
+.container-rigth-projet-maker-links{
   display: flex; 
   flex-direction: column;
   gap: 10px;
@@ -49,19 +52,16 @@ aside{
   margin: 10px 0;
   padding: 10px 30px 10px;
   border-radius: 20px;
-}
-.asideLink a{
+}.container-rigth-projet-maker-links a{
   color: rgb(150, 150, 150);
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 15px;
-}
-.asideLink a.active{
+}.container-rigth-projet-maker-links a.active{
   color: #1f1f1f;
   /* background-color: #5c0ab9; */
 } 
-
 
 /* Style du lien actif */
 nav a.active-link svg {
@@ -71,6 +71,12 @@ nav a svg {
   fill: #5f6368; /* Couleur par défaut du SVG */
 }
 
+/* Space entre 2 blocks definis */
+.container-rigth-projet-maker-links .spaceTop{
+  margin-top: 100px;
+}
+
+/* Block de deconnexion */
 .logout{
   position: absolute;
   bottom: 50px;
@@ -84,39 +90,37 @@ nav a svg {
   border: none;
 }
 
-.spaceTop{
-  margin-top: 100px;
-}
-
-.sousApp{
+/* ******************* projet-maker-Center panel ******************** */
+.container-middle-projet-maker{
   width: 100%;
   height: calc(100vh - 30px);
   margin: 15px 5px;
 }
-header{
+/* Head */
+.container-middle-projet-maker-header{
   display: flex;
   justify-content: space-between;
   background-color: #ffffff;
+  color: #2B2B2B;
   width: 100%;
   border-radius: 20px;
-  /* border: #5c0ab9 solid 1px; */
 }
-header .textLogo{
+.container-middle-projet-maker-textLogo{
   color: #2B2B2B;
   padding: 8px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 20px;
   width: 30%;
 }
-header h1{
+.container-middle-projet-maker-textLogo h1{
   font-size: 20px;
   font-weight: 700;
-}header h3{
+}.container-middle-projet-maker-textLogo h3{
   font-size: 16px;
   font-weight: 500;
   align-items: flex-end;
 }
-.headLeSecret{
+.container-middle-projet-maker-header-rigth{
   display: flex;
   align-items: center;
   gap: 5px;
@@ -125,36 +129,30 @@ header h1{
   border-radius: 20px;
   margin-right: 10px;
 }
-.headLeSecretImg{
+.container-middle-projet-maker-header-rigth-img{
   width: 40px;
   border-radius: 100px;
 }
-.headLeSecretInfo{
+.container-middle-projet-maker-header-rigth-info{
   display: flex;
   flex-direction: column;
 }
-.headLeSecretInfo .span2{
+.container-middle-projet-maker-header-rigth-info .span2{
   color: #969696;
   font-size: 15px;
 }
 
-.content{
+
+.container-middle-projet-maker-content-buttonMenu{display: none;}
+.container-middle-projet-maker-content{
   margin-top: 20px;
 }
+/* ******************* fin du projet-maker-center panel ******************** */
 
-label{
-  font-size: 20px;
-}
-input{
-  font-size: 20px;
-  width: 200px;
-}
-option, select{
-  font-size: 18px;
-  width: 180px;
-}
 
-article{
+
+/* ******************* projet-maker-left panel ******************** */
+.container-left-projet-maker{
   position: relative;
   margin: 0 0px;
   padding: 15px 10px;
@@ -165,28 +163,22 @@ article{
   flex-direction: column;
 }
 
-
-
-
-.buttonMenu{display: none;}
-
-
-
+/**************************************** Responsive ********************************/
 @media only screen and (max-width: 768px){
-  aside{
+  .container-rigth-projet-maker{
     /* display: none; */
     position: absolute;
     z-index: 1000;
     left: -300px;
     transition: left 1s ease;
   }
-  .content{position: relative;}
-  aside.show{
+  .container-middle-projet-maker-content{position: relative;}
+  .container-rigth-projet-maker.show{
     /* display: none; */
     left: -10px;
     transition: left .8s ease;
   }
-  .buttonMenu {
+  .container-middle-projet-maker-content-buttonMenu {
     display: block;
     position: absolute;
     right: 0;
@@ -201,7 +193,7 @@ article{
   }
   
   /* Bouton actif (allumé) */
-  .buttonMenu.active {
+  .container-middle-projet-maker-content-buttonMenu.active {
     background-color: #4CAF50; /* Vert ou autre couleur pour indiquer l'activation */
     background-color: #0f6612; /* Vert ou autre couleur pour indiquer l'activation */
     transition: background-color 1.3s ease;
