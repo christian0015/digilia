@@ -58,7 +58,7 @@ const Dashboard = () => {
     // Create project
   const handleCreateProjet = async () => {
     try {
-      const response = await axios.post('https://digilia-server.vercel.app/api/projets/createProjet', {
+      const response = await axios.post('http://localhost:5000/api/projets/createProjet', {
         userId: user._id,
         newProjet,
       });
@@ -73,12 +73,14 @@ const Dashboard = () => {
 
   const fetchProjets = async () => {
     try {
-      const response = await axios.get('https://digilia-server.vercel.app/api/projets/getUserProjets', {
-        params: { userId: user._id }, // Envoi de userId en tant que paramètre de requête
+      const userString = localStorage.getItem('digiliaUser');
+      const userProfil = JSON.parse(userString);
+      const response = await axios.get('http://localhost:5000/api/projets/getUserProjets', {
+        params: { userId: userProfil._id }, // Envoi de userId en tant que paramètre de requête
       });
       setProjets(response.data);
     } catch (error) {
-      setMessage({ type: 'error', text: 'Erreur lors de la récupération des projets.' });
+      setMessage({ type: 'error', text: JSON.stringify(user) });
     }
   };
   
