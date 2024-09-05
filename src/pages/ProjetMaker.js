@@ -17,6 +17,12 @@ const userProfil = JSON.parse(userString);
 console.log(userProfil);
 
 const ProjetPage = () => {
+  const [activeComponent, setActiveComponent] = useState(<Label />); // Par défaut, le composant Home est affiché
+
+  // Fonction pour changer le composant
+  const handleComponentChange = (component) => {
+    setActiveComponent(component);
+  };
 
   const [isShown, setIsShown] = useState(false);
   const toggleContainerRigthProjetMaker = () => {
@@ -43,24 +49,39 @@ const ProjetPage = () => {
 
           <div className="container-rigth-projet-maker-links">
 
-            <NavLink  to="/FrameRendu">
+            <NavLink onClick={() => handleComponentChange(<Label />)}>
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
-              <span>Acceuil</span>
+              <span>Run</span>
             </NavLink >
 
-            <NavLink  to="/Session">
+            <NavLink onClick={() => handleComponentChange(<Span />)}>
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
-              <span>Mes Projects</span>
+              <span>Template</span>
             </NavLink >
 
-            <NavLink  to="/Span">
+            <NavLink onClick={() => handleComponentChange(<Label />)}>
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
-              <span>Mon abonnement</span>
+              <span>Container</span>
+            </NavLink >
+
+            <NavLink onClick={() => handleComponentChange(<Span />)}>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
+              <span>Card</span>
+            </NavLink >
+
+            <NavLink onClick={() => handleComponentChange(<Label />)}>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
+              <span>Layout text</span>
+            </NavLink >
+
+            <NavLink onClick={() => handleComponentChange(<Label />)}>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
+              <span>Formulaire</span>
             </NavLink >
 
             <NavLink  to="/Div">
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
-              <span>Gestion de Projet</span>
+              <span>Design conseil</span>
             </NavLink >
 
             <NavLink  to="/Label">
@@ -77,7 +98,7 @@ const ProjetPage = () => {
           <div className="container-rigth-projet-maker-links spaceTop">
             <NavLink  to="/" className="ButtonPage">
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
-              <span>Mes coordonnées</span>
+              <span>Optimist SEO</span>
             </NavLink >
           </div>
                     
@@ -119,6 +140,9 @@ const ProjetPage = () => {
               {/* Route par défaut qui redirige vers le FrameRendu */}
               {/* <Route path="*" element={<Navigate to="/FrameRendu" />} /> */}
             </Routes>
+            <div style={{ flex: 1, padding: "20px" }}>
+              {activeComponent} {/* Rendu du composant actif */}
+            </div>
           </div>
         </div>
         
@@ -135,7 +159,7 @@ const ProjetPage = () => {
             </span>
             <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='projet-maker-userProfil-info-text'>Page</span>
+              <span className='projet-maker-userProfil-info-text'>Size</span>
             </span>
           </div>
 
@@ -149,7 +173,7 @@ const ProjetPage = () => {
             </span>
             <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='projet-maker-userProfil-info-text'>Session</span>
+              <span className='projet-maker-userProfil-info-text'>Color</span>
             </span>
           </div>
           
@@ -163,7 +187,7 @@ const ProjetPage = () => {
             </span>
             <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='projet-maker-userProfil-info-text'>Block</span>
+              <span className='projet-maker-userProfil-info-text'>Effet</span>
             </span>
           </div>
 
@@ -171,7 +195,7 @@ const ProjetPage = () => {
           <div className="projet-maker-userProfil">
             <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='projet-maker-userProfil-info-text'>Contenaire</span>
+              <span className='projet-maker-userProfil-info-text'>Animation</span>
             </span>
           </div>
 
@@ -179,7 +203,7 @@ const ProjetPage = () => {
           <div className="projet-maker-userProfil">
             <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='projet-maker-userProfil-info-text'>Span</span>
+              <span className='projet-maker-userProfil-info-text'>2D Objet</span>
             </span>
           </div>
 
@@ -187,7 +211,7 @@ const ProjetPage = () => {
           <div className="projet-maker-userProfil">
             <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='projet-maker-userProfil-info-text'>Label</span>
+              <span className='projet-maker-userProfil-info-text'>Meta donnée</span>
             </span>
           </div>
 
@@ -195,7 +219,7 @@ const ProjetPage = () => {
           <div className="projet-maker-userProfil">
             <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
-              <span className='projet-maker-userProfil-info-text'>Button</span>
+              <span className='projet-maker-userProfil-info-text'>3D Objet</span>
             </span>
           </div>
           

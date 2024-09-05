@@ -95,6 +95,11 @@ nav a svg {
   width: 100%;
   height: calc(100vh - 30px);
   margin: 15px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
 }
 /* Head */
 .container-middle-projet-maker-header{
@@ -102,15 +107,18 @@ nav a svg {
   justify-content: space-between;
   background-color: #ffffff;
   color: #2B2B2B;
-  width: 100%;
-  border-radius: 20px;
+  width: 70%;
+  height: 70px;
+  margin: 8px 0;
+  padding: 0 55px;
+  border-radius: 50px;
 }
 .container-middle-projet-maker-textLogo{
   color: #2B2B2B;
   padding: 8px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 20px;
-  width: 30%;
+  width: 30%; min-width: 200px;
 }
 .container-middle-projet-maker-textLogo h1{
   font-size: 20px;
@@ -146,6 +154,11 @@ nav a svg {
 .container-middle-projet-maker-content-buttonMenu{display: none;}
 .container-middle-projet-maker-content{
   margin-top: 20px;
+  background-color: rgb(204, 204, 204);
+  width: 95%;
+  height: 95%;
+  border-radius: 8px;
+  overflow-y: scroll;
 }
 /* ******************* fin du projet-maker-center panel ******************** */
 
@@ -169,7 +182,7 @@ nav a svg {
     /* display: none; */
     position: absolute;
     z-index: 1000;
-    left: -300px;
+    left: -350px;
     transition: left 1s ease;
   }
   .container-middle-projet-maker-content{position: relative;}

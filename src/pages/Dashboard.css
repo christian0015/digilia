@@ -87,8 +87,13 @@
 }
 
 .dashboard .projets-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
   list-style: none;
   padding: 0;
+  margin-top: 10px;
 }
 
 .dashboard .projets-list li {

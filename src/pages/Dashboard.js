@@ -119,17 +119,30 @@ const Dashboard = () => {
         <div className="user-info">
           <h2>Bienvenue, {user.username}</h2>
           <p>Email : {user.email}</p>
-          <button onClick={handleLastProjet}>Dernier Projet</button>
 
           <br></br>
-          <button onClick={handleUpdateUser}>Modifier Profil</button>
-          <button onClick={handleDeleteUser}>Supprimer Compte</button>
+          <details>
+            <summary>Modifier mon profil</summary>
+            <div>
+              <input type="text" value={user.username} onChange={(e) => setUser({ ... e.username})}></input>
+              <br/>
+              <input type="email" value={user.email} onChange={(e) => setUser({ ... e.email})}></input>
+              <br/>
+              <button onClick={handleUpdateUser}>Modifier Profil</button>
+              <br/><br/>
+
+              <p>Supprimer définitivement mon compte</p>
+              <button onClick={handleDeleteUser}>Supprimer Compte</button>
+            </div>
+          </details>
+
+          <br/><br/>
           <button onClick={handleLogout}>Déconnexion</button>
         </div>
       )}
 
       <div className="projets-section">
-        <h2>Vos Projets</h2>
+        <h2>Creation un nouveau projet</h2>
         <div className="projet-form">
           <input
             type="text"
@@ -151,6 +164,8 @@ const Dashboard = () => {
           <button onClick={handleCreateProjet}>Créer Projet</button>
         </div>
 
+        <br/>
+        <h2>Vos Projets</h2>
         <ul className="projets-list">
           {projets.map(projet => (
             <li key={projet._id}>
@@ -164,6 +179,7 @@ const Dashboard = () => {
                 <>
                   <h3>{projet.name}</h3>
                   <p>{projet.description}</p>
+                  <button onClick={() => handleLastProjet()}>Démarrer</button>
                   <button onClick={() => setEditingProjet(projet._id)}>Modifier</button>
                   <button onClick={() => handleDeleteProjet(projet._id)}>Supprimer</button>
                 </>
