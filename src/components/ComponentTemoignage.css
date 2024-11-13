@@ -30,6 +30,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 20px 20px;
+  box-shadow: 0 2px 4px rgb(178, 131, 182);
 }
 .review-card {
   background-color: #fff;
