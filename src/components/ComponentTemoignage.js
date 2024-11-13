@@ -16,12 +16,13 @@ const ReviewCard = ({ img, name, username, body }) => {
         AOS.init();
       }, []);
   return (
-    <div className="review-card" data-aos="fade-up" data-aos-duration="1000">
+    <div className='review-card-Bg' data-aos="fade-up" data-aos-duration="1000">
+    <div className="review-card" >
       <img src={img} alt={`${name}'s avatar`} className="review-avatar" />
       <h3 className="review-name">{name}</h3>
       <p className="review-username">{username}</p>
       <p className="review-body">{body}</p>
-    </div>
+    </div></div>
   );
 };
 

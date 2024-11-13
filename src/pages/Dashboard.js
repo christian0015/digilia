@@ -6,6 +6,8 @@ import './Dashboard.css';
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
+  const [userUpdate, setUserUpdate] = useState("");
+
   const [projets, setProjets] = useState([]);
   const [newProjet, setNewProjet] = useState({ name: '', description: '', code: '' });
   const [editingProjet, setEditingProjet] = useState(null);
@@ -16,7 +18,8 @@ const Dashboard = () => {
     const userString = localStorage.getItem('digiliaUser');
     const userProfil = JSON.parse(userString);
     setUser(userProfil);
-    // console.log(user._id)
+    setUserUpdate(userProfil);
+    console.log(userUpdate)
 
     fetchProjets();
   }, []);
@@ -27,21 +30,56 @@ const Dashboard = () => {
     navigate('/');
   };
 
+  // API **************************************
+  // const handleUpdateUser = async (userUpdate) => {
+  //   try {
+  //     const username= userUpdate.username;
+  //     const email= userUpdate.email;
+  //     const password= userUpdate.password;
+      
+  //     const res = await fetch(` http://localhost:5000/api/auth/update/${user._id}`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: {userUpdate, username, email,password},
+  //     })
+  
+  //     if (res.ok) {
+  //       const updatedUserData = await res.json()
+  //       return { success: true, message: 'User updated successfully' }
+  //     } else {
+  //       console.error('Error updating user:', res.status, res.statusText)
+  //       return { success: false, message: 'Error updating user' }
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error)
+  //     return { success: false, message: 'Error updating user' }
+  //   }
+  // }
+  
+  
   const handleUpdateUser = async () => {
+    console.log(userUpdate)
+    if (!userUpdate._id || !userUpdate.username || !userUpdate.email) {
+      return setMessage({ type: 'error', text: 'Tous les champs sont obligatoires' });
+    }
     try {
-      const response = await axios.put('https://digilia-server.vercel.app/api/auth/update', user, {
-        headers: { Authorization: `Bearer ${user.token}` },
-      });
+      
+    const response = await axios.put(
+      'http://localhost:5000/api/auth/update',
+      userUpdate // Envoi des données de l'utilisateur
+    );
       setUser(response.data.user);
-      setMessage({ type: 'success', text: 'Profil mis à jour avec succès.' });
+      setMessage({ type: 'success', text: response.data.message });
     } catch (error) {
-      setMessage({ type: 'error', text: 'Erreur lors de la mise à jour du profil.' });
+      setMessage({ type: 'error', text: 'Erreur lors de la mises à jour du profil.' });
     }
   };
 
   const handleDeleteUser = async () => {
     try {
-      await axios.delete('https://digilia-server.vercel.app/api/auth/delete', {
+      await axios.delete(`http://localhost:5000/api/auth/delete/${user._id}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       handleLogout();
@@ -86,7 +124,20 @@ const Dashboard = () => {
   
 
 
-  const handleUpdateProjet = async (projetId, updatedName) => {
+  const handleUpdateProjetCode = async (projetId, userId, newCode, ) => {
+    try {
+      const response = await axios.put(`https://digilia-server.vercel.app/api/projets/updateProjetName/${projetId}`, userId, newCode, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      setProjets(response.data.projet._id === projetId ? response.data.projet : "");
+      setEditingProjet(null);
+      setMessage({ type: 'success', text: 'Nom du projet mis à jour avec succès.' });
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Erreur lors de la mise à jour du projet.' });
+    }
+  };
+
+  const handleUpdateProjetName = async (projetId, updatedName) => {
     try {
       const response = await axios.put(`https://digilia-server.vercel.app/api/projets/updateProjetName/${projetId}`, { newName: updatedName }, {
         headers: { Authorization: `Bearer ${user.token}` },
@@ -101,7 +152,7 @@ const Dashboard = () => {
 
   const handleDeleteProjet = async (projetId) => {
     try {
-      await axios.delete(`https://digilia-server.vercel.app/api/projets/deleteProjet/${projetId}`, {
+      await axios.delete(`http://localhost:5000/api/projets/deleteProjet/${projetId}`, user._Id, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       setProjets(projets.filter(projet => projet._id !== projetId));
@@ -110,6 +161,7 @@ const Dashboard = () => {
       setMessage({ type: 'error', text: 'Erreur lors de la suppression du projet.' });
     }
   };
+
 
   return (
     <div className="dashboard">
@@ -124,9 +176,9 @@ const Dashboard = () => {
           <details>
             <summary>Modifier mon profil</summary>
             <div>
-              <input type="text" value={user.username} onChange={(e) => setUser({ ... e.username})}></input>
+              <input type="text" value={userUpdate.username} onChange={(e) => setUserUpdate({ ...userUpdate, username: e.target.value})}></input>
               <br/>
-              <input type="email" value={user.email} onChange={(e) => setUser({ ... e.email})}></input>
+              <input type="email" value={userUpdate.email} onChange={(e) => setUserUpdate({ ...userUpdate, email: e.target.value})}></input>
               <br/>
               <button onClick={handleUpdateUser}>Modifier Profil</button>
               <br/><br/>
@@ -173,7 +225,7 @@ const Dashboard = () => {
                 <input
                   type="text"
                   value={projet.name}
-                  onChange={(e) => handleUpdateProjet(projet._id, e.target.value)}
+                  onChange={(e) => handleUpdateProjetName(projet._id, e.target.value)}
                 />
               ) : (
                 <>

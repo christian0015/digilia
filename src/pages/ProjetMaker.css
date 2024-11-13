@@ -158,7 +158,11 @@ nav a svg {
   width: 95%;
   height: 95%;
   border-radius: 8px;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+.activeComponent{
+ /* opacity: 0; */
 }
 /* ******************* fin du projet-maker-center panel ******************** */
 

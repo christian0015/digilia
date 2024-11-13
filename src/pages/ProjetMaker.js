@@ -17,11 +17,12 @@ const userProfil = JSON.parse(userString);
 console.log(userProfil);
 
 const ProjetPage = () => {
-  const [activeComponent, setActiveComponent] = useState(<Label />); // Par défaut, le composant Home est affiché
+  const [activeComponent, setActiveComponent] = useState(""); // Par défaut, le composant Home est affiché
 
   // Fonction pour changer le composant
   const handleComponentChange = (component) => {
     setActiveComponent(component);
+    
   };
 
   const [isShown, setIsShown] = useState(false);
@@ -49,7 +50,7 @@ const ProjetPage = () => {
 
           <div className="container-rigth-projet-maker-links">
 
-            <NavLink onClick={() => handleComponentChange(<Label />)}>
+            <NavLink onClick={() => handleComponentChange()}>
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
               <span>Run</span>
             </NavLink >
@@ -118,31 +119,18 @@ const ProjetPage = () => {
               <span className="container-middle-projet-maker-header-rigth-info">
                 <span className='container-middle-projet-maker-header-rigth-info-text'>Projet 3</span>
               </span>
+            </div>
           </div>
-          </div>       
-          {/* <Formulaire/> */}
+          
+          <button onClick={toggleContainerRigthProjetMaker} className={isShown ? 'container-middle-projet-maker-content-buttonMenu active' : 'container-middle-projet-maker-content-buttonMenu'}>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M666-440 440-666l226-226 226 226-226 226Zm-546-80v-320h320v320H120Zm400 400v-320h320v320H520Zm-400 0v-320h320v320H120Zm80-480h160v-160H200v160Zm467 48 113-113-113-113-113 113 113 113Zm-67 352h160v-160H600v160Zm-400 0h160v-160H200v160Zm160-400Zm194-65ZM360-360Zm240 0Z"/></svg>
+          </button>
+
+          <div className='activeComponent' style={{ flex: 1, padding: "20px" }}>
+            {activeComponent} {/* Rendu du composant actif */}
+          </div>     
 
           <div className="container-middle-projet-maker-content">
-            <button onClick={toggleContainerRigthProjetMaker} className={isShown ? 'container-middle-projet-maker-content-buttonMenu active' : 'container-middle-projet-maker-content-buttonMenu'}>
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M666-440 440-666l226-226 226 226-226 226Zm-546-80v-320h320v320H120Zm400 400v-320h320v320H520Zm-400 0v-320h320v320H120Zm80-480h160v-160H200v160Zm467 48 113-113-113-113-113 113 113 113Zm-67 352h160v-160H600v160Zm-400 0h160v-160H200v160Zm160-400Zm194-65ZM360-360Zm240 0Z"/></svg>
-            </button>
-
-            <Routes>
-              {/* <Route path="/" element={<FrameRendu />} /> */}
-              {/* <Route path="/FrameRendu" element={<FrameRendu />} /> */}
-              <Route path="/Session" element={<Label/>} />
-              <Route path="/Div" element={<Label/>} />
-              <Route path="/Span" element={<Label/>} />
-              <Route path="/Label" element={<Label/>} />
-              <Route path="/ZoneText" element={<Label/>} />
-              <Route path="/Button" element={<Label/>} />
-
-              {/* Route par défaut qui redirige vers le FrameRendu */}
-              {/* <Route path="*" element={<Navigate to="/FrameRendu" />} /> */}
-            </Routes>
-            <div style={{ flex: 1, padding: "20px" }}>
-              {activeComponent} {/* Rendu du composant actif */}
-            </div>
           </div>
         </div>
         
