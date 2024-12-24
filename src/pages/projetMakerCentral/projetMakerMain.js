@@ -1,47 +1,113 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 
- export default function ProjetMakerMain(){
-  return(
-  <div className="container-middle-projet-maker">
-          <div className='container-middle-projet-maker-header'>
-            <div className="container-middle-projet-maker-textLogo">
-              <h1>Digilia FrameRendu</h1>
-              <h3>NetKin</h3>  
-            </div>   
-            <div className="container-middle-projet-maker-header-rigth">
-              <span className="container-middle-projet-maker-header-rigth-imgs">
-                  <img src="https://i.pinimg.com/originals/ce/e6/75/cee675d2ceba4f3470a219c88a69aef6.jpg" width={50} className="container-middle-projet-maker-header-rigth-img" alt="logo"/> 
-              </span>
-              <span className="container-middle-projet-maker-header-rigth-info">
-                <span className='container-middle-projet-maker-header-rigth-info-text'>Projet 3</span>
-              </span>
-          </div>
-          </div>       
+const App = () => {
+  const [components, setComponents] = useState([]);
+  const [selectedComponent, setSelectedComponent] = useState(null);
 
-          <div className="container-middle-projet-maker-content">
-            <button onClick={toggleContainerRigthProjetMaker} className={isShown ? 'container-middle-projet-maker-content-buttonMenu active' : 'container-middle-projet-maker-content-buttonMenu'}>
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M666-440 440-666l226-226 226 226-226 226Zm-546-80v-320h320v320H120Zm400 400v-320h320v320H520Zm-400 0v-320h320v320H120Zm80-480h160v-160H200v160Zm467 48 113-113-113-113-113 113 113 113Zm-67 352h160v-160H600v160Zm-400 0h160v-160H200v160Zm160-400Zm194-65ZM360-360Zm240 0Z"/></svg>
-            </button>
+  useEffect(() => {
+    // Charger les composants depuis le localStorage
+    const storedComponents = JSON.parse(localStorage.getItem('components'));
+    if (storedComponents) {
+      setComponents(storedComponents);
+    }
+  }, [setInterval(() => {}, 1000)]);
 
-            <Routes>
-              {/* <Route path="/" element={<FrameRendu />} /> */}
-              {/* <Route path="/FrameRendu" element={<FrameRendu />} /> */}
-              <Route path="/Session" element={<Label/>} />
-              <Route path="/Div" element={<Label/>} />
-              <Route path="/Span" element={<Label/>} />
-              <Route path="/Label" element={<Label/>} />
-              <Route path="/ZoneText" element={<Label/>} />
-              <Route path="/Button" element={<Label/>} />
+  useEffect(() => {
+    // Sauvegarder dans localStorage
+    localStorage.setItem('selectedComponent', JSON.stringify(selectedComponent));
+    // console.log("Main Send selected:",selectComponent);
+  }, [selectedComponent]);
 
-              {/* Route par défaut qui redirige vers le FrameRendu */}
-              {/* <Route path="*" element={<Navigate to="/FrameRendu" />} /> */}
-            </Routes>
 
-            <div className='activeComponent' style={{ flex: 1, padding: "20px" }}>
-              {activeComponent} {/* Rendu du composant actif */}
-            </div>
+  // Sélectionner un composant pour l'édition
+  const selectComponent = (id) => {
+    const component = components.find((comp) => comp.id === id);
+    setSelectedComponent(component);
+  };
+  
+  const renderComponent = (component) => {
+    // Si le composant est un conteneur (vide ou parent)
+    if (component.type === "container" ) {
+      return (
+        <div
+          key={component.id}
+          style={{
+            ...component.props.style,
+            border: "1px dashed #adb5bd",
+            marginBottom: "10px",
+            cursor: "pointer",
+          }}
+          // Empêche la propagation si on clique sur un parent
+          onClick={(e) => {
+            setSelectedComponent(component); // Sélectionner ce conteneur
+            e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
+            console.log("Initié comme :",component.id);
 
-          </div>
+          }}
+        >
+          {component.children.length > 0 ? (
+            component.children.map((child) => renderComponent(child)) // Rendu récursif des enfants
+          ) : (
+            <p style={{ textAlign: "center", color: "#868e96" }}>Empty</p>
+          )}
         </div>
-  )
-}
+      );
+    }
+    if (component.type === "header" ) {
+      return (
+        <div
+          key={component.id}
+          style={{
+            ...component.props.style,
+            marginBottom: "10px",
+            padding: "10px",
+            border: "1px solid #ced4da",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+          // Empêche la propagation si on clique sur un parent
+          onClick={(e) => {
+            setSelectedComponent(component); // Sélectionner ce conteneur
+            e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
+            console.log("Initié comme :",component.id);
+
+          }}
+          
+        >
+          {component.props.text}
+          
+        </div>
+        
+          
+      );
+    } else {
+      // Si c'est un composant enfant
+      return (
+        <div
+          key={component.id}
+          style={component.props.style}
+          onClick={(e) => {
+            setSelectedComponent(component); // Sélectionner ce conteneur
+            e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
+            console.log("Texte initié comme :",component.id);
+          }}
+        >
+          {component.props.text || "Child"}
+        </div>
+      );
+    }
+  };
+  
+        
+  return (
+    <div style={{ display: "flex", gap: "20px"}}>
+      <div style={{ flex: 1 }}>
+        <div>
+          {components.map((component) => renderComponent(component))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;

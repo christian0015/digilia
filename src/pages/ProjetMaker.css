@@ -158,10 +158,22 @@ nav a svg {
   width: 95%;
   height: 95%;
   border-radius: 8px;
-  overflow-y: auto;
+  overflow-y: auto;  
+  z-index: 1;
+}
+
+.frameRendu{
+  z-index: 10;
 }
 
 .activeComponent{
+  position: fixed;
+  width: 80%;
+  height: 70vh;
+  top: 10%;
+  overflow: auto;  
+  z-index: 0;
+
  /* opacity: 0; */
 }
 /* ******************* fin du projet-maker-center panel ******************** */
