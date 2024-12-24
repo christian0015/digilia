@@ -37,7 +37,7 @@ const Dashboard = () => {
   //     const email= userUpdate.email;
   //     const password= userUpdate.password;
       
-  //     const res = await fetch(` http://localhost:5000/api/auth/update/${user._id}`, {
+  //     const res = await fetch(` https://digilia-server.vercel.app/api/auth/update/${user._id}`, {
   //       method: 'POST',
   //       headers: {
   //         'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ const Dashboard = () => {
     try {
       
     const response = await axios.put(
-      'http://localhost:5000/api/auth/update',
+      'https://digilia-server.vercel.app/api/auth/update',
       userUpdate // Envoi des données de l'utilisateur
     );
       setUser(response.data.user);
@@ -79,7 +79,7 @@ const Dashboard = () => {
 
   const handleDeleteUser = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/auth/delete/${user._id}`, {
+      await axios.delete(`https://digilia-server.vercel.app/api/auth/delete/${user._id}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       handleLogout();
@@ -152,7 +152,7 @@ const Dashboard = () => {
 
   const handleDeleteProjet = async (projetId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/projets/deleteProjet/${projetId}`, user._Id, {
+      await axios.delete(`https://digilia-server.vercel.app/api/projets/deleteProjet/${projetId}`, user._Id, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       setProjets(projets.filter(projet => projet._id !== projetId));
