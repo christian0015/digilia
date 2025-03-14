@@ -1,0 +1,20 @@
+.container {
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.title {
+  color: #007bff;
+  font-size: 24px;
+}
+
+.description {
+  color: #6c757d;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 18px;
+  }
+}

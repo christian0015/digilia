@@ -53,34 +53,27 @@ const App = () => {
         </div>
       );
     }
-    if (component.type === "header" ) {
+    if (component.type === "header") {
       return (
-        <div
-          key={component.id}
-          style={{
-            ...component.props.style,
-            marginBottom: "10px",
-            padding: "10px",
-            border: "1px solid #ced4da",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-          // Empêche la propagation si on clique sur un parent
-          onClick={(e) => {
-            setSelectedComponent(component); // Sélectionner ce conteneur
-            e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
-            console.log("Initié comme :",component.id);
-
-          }}
-          
-        >
-          {component.props.text}
-          
+        <div>
+          {components.map((header) => (
+            <div key={header.id} style={header.props.style}>
+              <nav style={header.children[0].props.style}>
+                {header.children[0].children.map((link) => (
+                  <span
+                    key={link.id}
+                    style={{ color: "#007bff", margin: "0 10px" }}
+                  >
+                    {link.props.text}
+                  </span>
+                ))}
+              </nav>
+            </div>
+          ))}
         </div>
-        
-          
       );
-    } else {
+    }
+     else {
       // Si c'est un composant enfant
       return (
         <div

@@ -5,8 +5,8 @@ import { nanoid } from "nanoid";
 const Header = ({ onAddHeader }) => {
   const headerTemplates = [
     {
-      id: `container-${nanoid()}`, // Changer "header" à "container"
-      type: "container", // Changer "header" à "container"
+      id: `header-${nanoid()}`,
+      type: "header",
       props: {
         style: {
           display: "flex",
@@ -38,8 +38,8 @@ const Header = ({ onAddHeader }) => {
       ],
     },
     {
-      id: `container-${nanoid()}`, // Changer "header" à "container"
-      type: "container", // Changer "header" à "container"
+      id: `header-${nanoid()}`,
+      type: "header",
       props: {
         style: {
           display: "flex",

@@ -11,7 +11,8 @@ import ComponentFooter from './components/ComponentFooter';
 
 import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
-import ProjetPage from './pages/ProjetMaker';
+// import ProjetPage from './pages/ProjetMaker';
+import ProjetPage from './pages/Main';
 
 
 function Marquee() {

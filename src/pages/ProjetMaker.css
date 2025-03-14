@@ -159,20 +159,22 @@ nav a svg {
   height: 95%;
   border-radius: 8px;
   overflow-y: auto;  
-  z-index: 1;
+  /* z-index: 1; */
 }
 
-.frameRendu{
-  z-index: 10;
-}
+/* .frameRendu{
+  z-index: -1;
+} */
 
 .activeComponent{
+  background-color: #1f1f1f;
   position: fixed;
   width: 80%;
   height: 70vh;
   top: 10%;
-  overflow: auto;  
-  z-index: 0;
+  overflow: auto; 
+  border-radius: 1rem;
+  z-index: 100000;
 
  /* opacity: 0; */
 }

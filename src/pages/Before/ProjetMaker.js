@@ -1,16 +1,18 @@
 
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import FrameRendu from './projetMakerCentral/projetMakerMain';
-import AddContainer from './projetMakerCentral/AddContainer';
-import AddHeader from './projetMakerCentral/AddHeader';
-import PropertyEditor from './projetMakerCentral/PropertyEdit';
-import Label from './Dashboard';
-import Session from './LoginPage';
-import Div from './LoginPage';
-import ZoneText from './LoginPage';
-import Button from './LoginPage';
-import Formulaire from './LoginPage';
+// import FrameRendu from './projetMakerCentral/projetMakerMain';
+import FrameRendu from '../projetMakerCentral/Before/Main';
+// import FrameRendu from './projetMakerCentral/projetMakerMain';
+import AddContainer from '../projetMakerCentral/AddContainer';
+import AddHeader from '../projetMakerCentral/AddHeader';
+import PropertyEditor from '../projetMakerCentral/PropertyEdit';
+import Label from '../Dashboard';
+import Session from '../LoginPage';
+import Div from '../LoginPage';
+import ZoneText from '../LoginPage';
+import Button from '../LoginPage';
+import Formulaire from '../LoginPage';
 import './ProjetMaker.css';
 import { Link, NavLink  } from 'react-router-dom';
 
@@ -24,7 +26,11 @@ const ProjetPage = () => {
   // Fonction pour changer le composant
   const handleComponentChange = (component) => {
     setActiveComponent(component);
-    
+    setIsShownActiveComponent("block")
+  };
+  const [isShownActiveComponent, setIsShownActiveComponent] = useState("none");
+  const toggleActiveComponent = () => {
+    setIsShownActiveComponent("none");
   };
 
   const [isShown, setIsShown] = useState(false);
@@ -125,8 +131,9 @@ const ProjetPage = () => {
           <div className="container-middle-projet-maker-content">
             <FrameRendu className="framerendu"/>
           </div>
-          <div className='activeComponent' style={{ flex: 1, padding: "20px" }}>
-            {activeComponent} {/* Rendu du composant actif */}
+          <div className='activeComponent' style={{ flex: 1, padding: "20px", display:isShownActiveComponent }}>
+            <button onClick={toggleActiveComponent}>Close frame</button>
+            {activeComponent}
           </div>     
 
           
@@ -153,14 +160,6 @@ const ProjetPage = () => {
             <span className="projet-maker-userProfil-info">
               <span>{userProfil.username}</span>
               <span className='projet-maker-userProfil-info-text'>Effet</span>
-            </span>
-          </div>
-
-          <br/>
-          <div className="projet-maker-userProfil">
-            <span className="projet-maker-userProfil-info">
-              <span>{userProfil.username}</span>
-              <span className='projet-maker-userProfil-info-text'>Animation</span>
             </span>
           </div>
 
