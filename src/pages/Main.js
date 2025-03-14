@@ -49,13 +49,8 @@ const ProjetPage = () => {
 
   // Propertie
   const [localProps, setLocalProps] = useState(selectedComponent?.props || {});
-
-  useEffect(() => {
-    setLocalProps(selectedComponent?.props);
-    console.log("localProps:",localProps);
-    
-  }, [selectedComponent]);
-  // 
+  // États locaux pour les champs de saisie
+   const [inputValues, setInputValues] = useState({});
 
   // Ajouter un conteneur  
   // ********************
@@ -106,19 +101,75 @@ const ProjetPage = () => {
     }
   };
 
+  const findComponentById = (components, id) => {
+    for (let component of components) {
+      if (component.id === id) {
+        return component;
+      }
+      if (component.children) {
+        const foundChild = findComponentById(component.children, id);
+        if (foundChild) {
+          return foundChild;
+        }
+      }
+    }
+    return null;
+  };
   // Mettre à jour les propriétés d'un composant
   // *******************************************
   const updateComponentProps = (id, updatedProps) => {
+    console.log("Update Coponent...");
+    console.log("Props", updatedProps);
+    const componentChanger = components.map((component) =>component.id === id)
+    const componentChangerB = findComponentById(components, id);
+    console.log("Component à changer param_ID: ", id);
+    console.log("Component à changer selected: ", selectedComponent);
+    console.log("Component à changer if comp==id: ", componentChanger);
+    console.log("Fn Component à changer if comp==id: ", componentChangerB);
+
+    if (!componentChanger) {
+      console.error(`Component with id ${id} not found.`);
+      return;
+    }
+    
+    // setComponents((prev) => {
+    //   const updatedComponents = prev.map((component) =>
+    //     component.id === id
+    //       ? { ...component, props: { ...component.props, ...updatedProps } }
+    //       : component
+    //   );
+
+    const updateComponentAndChildren = (component, id, updatedProps) => {
+      if (component.id === id) {
+        return { ...component, props: { ...component.props, ...updatedProps } };
+      }
+    
+      if (component.children) {
+        return {
+          ...component,
+          children: component.children.map((child) =>
+            updateComponentAndChildren(child, id, updatedProps)
+          ),
+        };
+      }
+      return component;
+    };
+
     setComponents((prev) => {
       const updatedComponents = prev.map((component) =>
-        component.id === id
-          ? { ...component, props: { ...component.props, ...updatedProps } }
-          : component
+        updateComponentAndChildren(component, id, updatedProps)
       );
   
-      console.log("Avant retour de setComponents:", updatedComponents);
-      return [...updatedComponents]; // Nouvelle référence pour forcer le re-render
+      // Assurez-vous que l'état des composants est mis à jour correctement
+      return updatedComponents; // Nouvelle référence pour forcer le re-render
     });
+  
+    //   // console.log("Avant retour de setComponents:", updatedComponents);
+    //   return [...updatedComponents]; // Nouvelle référence pour forcer le re-render
+    // });
+
+    const componentChangé = components.map((component) =>component.id === id)
+    console.log("Component changé: ", componentChangé);
   };
   
 
@@ -184,6 +235,13 @@ const ProjetPage = () => {
       "background-color: cyan; padding: 3px; color: black",components
     );
   }, [components]);
+  // ********************************
+  useEffect(() => {
+    setLocalProps(selectedComponent?.props);
+    console.log("%clocalProps sont:", 
+      "background-color: yellow; padding: 3px; color: black",localProps);
+  }, [selectedComponent]);
+  // 
   // ****************
 
   // useEffect(() => {
@@ -214,9 +272,10 @@ const ProjetPage = () => {
             cursor: "pointer",
           }}
           onClick={(e) => {
+            setLocalProps({})
             setSelectedComponent(component); // Sélectionner ce conteneur
             e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
-            console.log("Initié comme :", component.id);
+            console.log("On click sur id:", component.id);
           }}
         >
           {component.children.length > 0 ? (
@@ -303,7 +362,7 @@ const ProjetPage = () => {
       return (
         <div
           key={component.id}
-          style={component.props.style}
+          style={component?.props?.style}
           onClick={(e) => {
             setSelectedComponent(component); // Sélectionner ce conteneur
             e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
@@ -331,6 +390,7 @@ const ProjetPage = () => {
     // New Structure 
     // Gestion des modifications locales
     const handleLocalChange = (property, value) => {
+      console.log("Fn de handleLocalChange Props en local");
       setLocalProps((prev) => ({
         ...prev,
         [property]: value,
@@ -338,6 +398,7 @@ const ProjetPage = () => {
     };
     // Appele à la Mise à jour de Props d'un component via la localProps
     const handleBlur = (property) => {
+      console.log("Fn de handleBlur Props in Comps");
       if (selectedComponent) {
         updateComponentProps(selectedComponent.id, { [property]: localProps[property] });
       }
@@ -345,6 +406,7 @@ const ProjetPage = () => {
 
     // Gestion des styles à jour dans localProps
     const handleStyleChange = (property, value) => {
+      console.log("Fn de handleStyleChange StyleLocal");
       setLocalProps((prev) => ({
         ...prev,
         style: {
@@ -355,10 +417,31 @@ const ProjetPage = () => {
     };
     // Application de changement des styles CSS imbriqué
     const handleStyleBlur = (property) => {
+      console.log("Fn de handleStyleBlur Style in Comps");
       updateComponentProps(selectedComponent.id, {
         style: localProps.style,
       });
     };
+
+    // Ajout des styles
+    const handleAddStyle = (key, value) => {
+      if (key && value !== undefined) {
+        setLocalProps((prev) => ({
+          ...prev,
+          style: {
+            ...prev.style,
+            [key]: value,
+          },
+        }));
+        updateComponentProps(selectedComponent.id, {
+          style: {
+            ...localProps.style,
+            [key]: value,
+          },
+        });
+      }
+    };
+    
     // Fin fonction new structure
 
 
@@ -452,8 +535,9 @@ const ProjetPage = () => {
                   type="text"
                   value={localProps.style[styleKey] || ""}
                   onChange={(e) => handleStyleChange(styleKey, e.target.value)}
-                  onBlur={() => handleStyleBlur(styleKey)}
+                  // onBlur={() => handleStyleBlur(styleKey)}
                 />
+                <button onClick={() => handleStyleBlur(styleKey)}>Apply</button>
               </div>
             ))}
           </div>
@@ -485,6 +569,33 @@ const ProjetPage = () => {
             Ajouter
           </button>
         </div>
+
+        {/* Ajouter un nouveau style */}
+        <div>
+          <label>Ajouter un nouveau style :</label>
+          <input
+            type="text"
+            placeholder="Nom du style (ex: background-color)"
+            id="style-name"
+          />
+          <input
+            type="text"
+            placeholder="Valeur du style (ex: #fff)"
+            id="style-value"
+          />
+          <button
+            onClick={() => {
+              const name = document.getElementById("style-name").value;
+              const value = document.getElementById("style-value").value;
+              handleAddStyle(name, value);
+              document.getElementById("style-name").value = "";
+              document.getElementById("style-value").value = "";
+            }}
+          >
+            Ajouter style
+          </button>
+        </div>
+
 
         {/* Modifications de texte (taille, police, etc.) */}
         {selectedComponent.type === "text" && (
