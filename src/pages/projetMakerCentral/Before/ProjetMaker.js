@@ -2,17 +2,17 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 // import FrameRendu from './projetMakerCentral/projetMakerMain';
-import FrameRendu from '../projetMakerCentral/Before/Main';
+import FrameRendu from './Main';
 // import FrameRendu from './projetMakerCentral/projetMakerMain';
-import AddContainer from '../projetMakerCentral/AddContainer';
-import AddHeader from '../projetMakerCentral/AddHeader';
-import PropertyEditor from '../projetMakerCentral/PropertyEdit';
-import Label from '../Dashboard';
-import Session from '../LoginPage';
-import Div from '../LoginPage';
-import ZoneText from '../LoginPage';
-import Button from '../LoginPage';
-import Formulaire from '../LoginPage';
+import AddContainer from '../AddContainer';
+import AddHeader from '../AddHeader';
+import PropertyEditor from './PropertyEdit';
+import Label from '../../Dashboard';
+import Session from '../../LoginPage';
+import Div from '../../LoginPage';
+import ZoneText from '../../LoginPage';
+import Button from '../../LoginPage';
+import Formulaire from '../../LoginPage';
 import './ProjetMaker.css';
 import { Link, NavLink  } from 'react-router-dom';
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-import ProjetMaker from './Before/ProjetMaker';
+// import ProjetMaker from './projetMakerCentral/Before/ProjetMaker';
+import Main from './Main';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -249,7 +250,7 @@ function Router() {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
-      <Route path="/projet-maker" element={<ProjetMaker/>} />
+      <Route path="/projet-maker" element={<Main/>} />
       {/* Ajoutez d'autres routes ici */}
     </Routes>
   );
