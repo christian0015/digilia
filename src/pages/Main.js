@@ -267,9 +267,9 @@ const ProjetPage = () => {
           key={component.id}
           style={{
             ...component.props.style,
-            border: "1px dashed #adb5bd",
-            marginBottom: "10px",
-            cursor: "pointer",
+            // border: "1px dashed #adb5bd",
+            // marginBottom: "10px",
+            // cursor: "pointer",
           }}
           onClick={(e) => {
             setLocalProps({})

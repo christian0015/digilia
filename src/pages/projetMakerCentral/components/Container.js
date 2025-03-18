@@ -163,7 +163,7 @@ const Container = ({ onAddContainer }) => {
                   id: `logo-image-${nanoid()}`,
                   type: "image",
                   props: { 
-                    src: "https://cdn-icons-png.flaticon.com/512/3595/3595455.png", 
+                    src: "https://www.pngall.com/wp-content/uploads/7/Golden-Bracelet-PNG-Clipart.png", 
                     alt: "Logo Bracelet Doré", 
                     style: { 
                       width: "50px", 
@@ -200,229 +200,87 @@ const Container = ({ onAddContainer }) => {
                   id: `nav-link-1-${nanoid()}`,
                   type: "link",
                   props: { 
-                    href: "#produits", 
-                    style: {
-                      color: "#333",
-                      textDecoration: "none",
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      transition: "all 0.3s ease"
-                    },
-                    children: "Produits" 
-                  }
+                    href: "#produits",
+                    children: {
+                        id: `text-${nanoid()}`,
+                        type: "text",
+                        props: { 
+                          style: {
+                            color: "#333",
+                            textDecoration: "none",
+                            fontSize: "16px",
+                            fontWeight: "500",
+                            transition: "all 0.3s ease"
+                          },
+                          text: "Produits" 
+                        }
+                      }
+                  },
                 },
                 {
                   id: `nav-link-2-${nanoid()}`,
                   type: "link",
                   props: { 
-                    href: "#pourquoi-nous", 
-                    style: {
-                      color: "#333",
-                      textDecoration: "none",
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      transition: "all 0.3s ease"
-                    },
-                    children: "Pourquoi Nous" 
-                  }
+                    href: "#pourquoi-nous",
+                    children: {
+                      id: `text-${nanoid()}`,
+                      type: "text",
+                      props: { 
+                        style: {
+                          color: "#333",
+                          textDecoration: "none",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          transition: "all 0.3s ease"
+                        },
+                        text: "Pourquoi Nous" 
+                      }
+                    }
+                  },            
                 },
                 {
                   id: `nav-link-3-${nanoid()}`,
                   type: "link",
                   props: { 
-                    href: "#temoignages", 
-                    style: {
-                      color: "#333",
-                      textDecoration: "none",
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      transition: "all 0.3s ease"
-                    },
-                    children: "Témoignages" 
-                  }
+                    href: "#temoignages",
+                    children: {
+                      id: `text-${nanoid()}`,
+                      type: "text",
+                      props: { 
+                        href: "#temoignages", 
+                        style: {
+                          color: "#333",
+                          textDecoration: "none",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          transition: "all 0.3s ease"
+                        },
+                        text: "Témoignages" 
+                      }
+                    }                    
+                  }                  
                 },
                 {
                   id: `nav-link-4-${nanoid()}`,
                   type: "link",
                   props: { 
-                    href: "#faq", 
-                    style: {
-                      color: "#333",
-                      textDecoration: "none",
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      transition: "all 0.3s ease"
-                    },
-                    children: "FAQ" 
-                  }
-                },
-                {
-                  id: `nav-button-${nanoid()}`,
-                  type: "link",
-                  props: { 
-                    href: "#produits", 
+                    href: "#faq",
                     children: {
-                      type: "button",
-                      props: {
+                      id: `text-${nanoid()}`,
+                      type: "text",
+                      props: { 
+                        href: "#faq", 
                         style: {
-                          padding: "10px 20px",
-                          backgroundColor: "#D4AF37",
-                          color: "#ffffff",
-                          border: "none",
-                          borderRadius: "30px",
-                          cursor: "pointer",
-                          fontWeight: "600",
-                          boxShadow: "0 4px 15px rgba(212, 175, 55, 0.3)",
+                          color: "#333",
+                          textDecoration: "none",
+                          fontSize: "16px",
+                          fontWeight: "500",
                           transition: "all 0.3s ease"
                         },
-                        children: "Acheter"
+                        text: "FAQ" 
                       }
                     }
                   }
-                }
-              ]
-            }
-          ]
-        },
-      ]
-    },
-    {
-      id: `page-container-${nanoid()}`,
-      type: "container",
-      props: { 
-        style: { 
-          fontFamily: "Poppins, sans-serif",
-          margin: "0",
-          padding: "0",
-          backgroundColor: "#f5f5f7"
-        } 
-      },
-      children: [
-        {
-          id: `header-section-${nanoid()}`,
-          type: "container",
-          props: { 
-            style: { 
-              display: "flex", 
-              justifyContent: "space-between", 
-              alignItems: "center",
-              padding: "20px 40px",
-              backgroundColor: "rgba(255, 255, 255, 0.9)",
-              backdropFilter: "blur(10px)",
-              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-              position: "sticky",
-              top: "0",
-              zIndex: "100"
-            } 
-          },
-          children: [
-            {
-              id: `logo-container-${nanoid()}`,
-              type: "container",
-              props: { 
-                style: { 
-                  display: "flex", 
-                  alignItems: "center",
-                  gap: "15px"
-                } 
-              },
-              children: [
-                {
-                  id: `logo-image-${nanoid()}`,
-                  type: "image",
-                  props: { 
-                    src: "https://cdn-icons-png.flaticon.com/512/3595/3595455.png", 
-                    alt: "Logo Bracelet Doré", 
-                    style: { 
-                      width: "50px", 
-                      height: "auto" 
-                    } 
-                  }
-                },
-                {
-                  id: `logo-text-${nanoid()}`,
-                  type: "text",
-                  props: { 
-                    style: { 
-                      color: "#D4AF37", 
-                      fontSize: "24px",
-                      fontWeight: "700",
-                      letterSpacing: "1px"
-                    }, 
-                    text: "GoldenLink" 
-                  }
-                }
-              ]
-            },
-            {
-              id: `navigation-${nanoid()}`,
-              type: "container",
-              props: { 
-                style: { 
-                  display: "flex", 
-                  gap: "30px"
-                } 
-              },
-              children: [
-                {
-                  id: `nav-link-1-${nanoid()}`,
-                  type: "link",
-                  props: { 
-                    href: "#produits", 
-                    style: {
-                      color: "#333",
-                      textDecoration: "none",
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      transition: "all 0.3s ease"
-                    },
-                    children: "Produits" 
-                  }
-                },
-                {
-                  id: `nav-link-2-${nanoid()}`,
-                  type: "link",
-                  props: { 
-                    href: "#pourquoi-nous", 
-                    style: {
-                      color: "#333",
-                      textDecoration: "none",
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      transition: "all 0.3s ease"
-                    },
-                    children: "Pourquoi Nous" 
-                  }
-                },
-                {
-                  id: `nav-link-3-${nanoid()}`,
-                  type: "link",
-                  props: { 
-                    href: "#temoignages", 
-                    style: {
-                      color: "#333",
-                      textDecoration: "none",
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      transition: "all 0.3s ease"
-                    },
-                    children: "Témoignages" 
-                  }
-                },
-                {
-                  id: `nav-link-4-${nanoid()}`,
-                  type: "link",
-                  props: { 
-                    href: "#faq", 
-                    style: {
-                      color: "#333",
-                      textDecoration: "none",
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      transition: "all 0.3s ease"
-                    },
-                    children: "FAQ" 
-                  }
                 },
                 {
                   id: `nav-button-${nanoid()}`,
@@ -443,7 +301,7 @@ const Container = ({ onAddContainer }) => {
                           boxShadow: "0 4px 15px rgba(212, 175, 55, 0.3)",
                           transition: "all 0.3s ease"
                         },
-                        children: "Acheter"
+                        children: ["Acheter"]
                       }
                     }
                   }
@@ -547,7 +405,7 @@ const Container = ({ onAddContainer }) => {
                   id: `hero-image-${nanoid()}`,
                   type: "image",
                   props: { 
-                    src: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", 
+                    src: "https://aimybijouxfantaisie.com/wp-content/uploads/2019/09/Set-de-bracelets-jonc.jpeg", 
                     alt: "Bracelet doré de luxe", 
                     style: { 
                       width: "100%", 
