@@ -7,34 +7,9 @@ import Label from './Dashboard';
 import './ProjetMaker.css';
 import { Link, NavLink  } from 'react-router-dom';import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
-import isEqual from "lodash.isequal"; // pour comparaison profonde
 
 const userString = localStorage.getItem('digiliaUser');
 const userProfil = JSON.parse(userString);
-
-const cssFields = [
-  "padding",
-  "margin",
-  "backgroundColor",
-  "color",
-  "fontSize",
-  "display",
-  "flex",
-  "flexDirection",
-  "flexWrap",
-  "wrap",
-  "justifyContent",
-  "alignItems",
-  "gap",
-  "textAlign",
-  "border",
-  "borderRadius",
-  "boxShadow",
-  "width",
-  "maxWidth",
-  "height",
-  "maxHeight",
-];
 
 const ProjetPage = () => {
   
@@ -68,10 +43,6 @@ const ProjetPage = () => {
   // Charger les composants depuis le localStorage
   const storedComponents = JSON.parse(localStorage.getItem('components'))|| [];
   const [components, setComponents] = useState(storedComponents);
-  
-  const [history, setHistory] = useState([storedComponents]);
-  const [historyIndex, setHistoryIndex] = useState(0);
-
   const [selectedComponent, setSelectedComponent] = useState({});
   useEffect(() => {
       localStorage.setItem("components", JSON.stringify(components));
@@ -80,12 +51,7 @@ const ProjetPage = () => {
   // Propertie
   const [localProps, setLocalProps] = useState(selectedComponent?.props || {});
   // États locaux pour les champs de saisie
-  const [inputValues, setInputValues] = useState({});
-
-  const [localStyle, setLocalStyle] = useState({});
-
-  const [hoveredContainerId, setHoveredContainerId] = useState(null);
-  const [mode, setMode] = useState(null); // 'duplicate' | 'move'
+   const [inputValues, setInputValues] = useState({});
 
   // Ajouter un conteneur  
   // ********************
@@ -155,8 +121,14 @@ const ProjetPage = () => {
   };
   // Mise à jours proprement dite
   const updateComponentProps = (id, updatedProps) => {
+    // console.log("Update Coponent...");
+    // console.log("Props", updatedProps);
     const componentChanger = components.map((component) =>component.id === id)
     const componentChangerB = findComponentById(components, id);
+    // console.log("Component à changer param_ID: ", id);
+    // console.log("Component à changer selected: ", selectedComponent);
+    // console.log("Component à changer if comp==id: ", componentChanger);
+    // console.log("Fn Component à changer if comp==id: ", componentChangerB);
 
     if (!componentChanger) {
       console.error(`Component with id ${id} not found.`);
@@ -167,6 +139,7 @@ const ProjetPage = () => {
       if (component.id === id) {
         return { ...component, props: { ...component.props, ...updatedProps } };
       }
+    
       if (component.children) {
         return {
           ...component,
@@ -227,6 +200,7 @@ const ProjetPage = () => {
   // Supprimer un parent
   // *******************
   const removeParent = (parentId) => {
+    // console.log("existe:", parentId);
     setComponents((prevComponents) => {
       // Fonction récursive pour supprimer un composant
       const removeComponentRecursively = (components) => {
@@ -239,143 +213,11 @@ const ProjetPage = () => {
               : [], // Sinon, retourne un tableau vide
           }));
       };
+  
       return removeComponentRecursively(prevComponents);
     });
     setSelectedComponent(null); // Réinitialise la sélection
   };
-
-
-  // Duplication récursive avec génération de nouveaux IDs
-  
-  // Duplication récursive avec génération de nouveaux IDs
-  const cloneComponentWithNewIds = (component) => {
-    const newId = `${component.type}-${nanoid()}`;
-
-    const cloned = {
-      ...component,
-      id: newId,
-    };
-
-    if (component.children) {
-      cloned.children = component.children.map((child) => cloneComponentWithNewIds(child));
-    }
-
-    return cloned;
-  };
-
-  // Dupliquer le composant sélectionné
-  const handleDuplicate = () => {
-
-    if (!selectedComponent) return;
-  
-    const duplicate = cloneComponentWithNewIds(selectedComponent);
-  
-    setComponents((prev) => insertAfter(prev, selectedComponent.id, duplicate));
-    setSelectedComponent(null);
-    
-  };
-
-  // Insérer un composant juste après l'original dans l'arbre
-  const insertAfter = (list, targetId, newItem) => {
-    const recursiveInsert = (arr) => {
-      return arr.flatMap((item) => {
-        if (item.id === targetId) {
-          return [item, newItem];
-        } else if (item.children) {
-          return [
-            {
-              ...item,
-              children: recursiveInsert(item.children),
-            },
-          ];
-        }
-        return [item];
-      });
-    };
-    return recursiveInsert(list);
-  };
-
-  // Activer le mode déplacement
-  const handleMoveMode = () => {
-    if (!selectedComponent) return;
-    setMode("move");
-  };
-
-  // Coller le composant dans le conteneur ciblé
-  const handleMove = (targetContainerId) => {
-    if (!selectedComponent) return;
-
-    const movedComponent = cloneComponentWithNewIds(selectedComponent); // Nouveau clone avec nouvel ID
-
-    const removeComponent = (list, targetId) => {
-      return list.flatMap((item) => {
-        if (item.id === targetId) return [];
-        if (item.children) {
-          return [
-            {
-              ...item,
-              children: removeComponent(item.children, targetId),
-            },
-          ];
-        }
-        return [item];
-      });
-    };
-
-    const addToTargetContainer = (list) => {
-      return list.map((item) => {
-        if (item.id === targetContainerId) {
-          return {
-            ...item,
-            children: [...item.children, movedComponent],
-          };
-        } else if (item.children) {
-          return {
-            ...item,
-            children: addToTargetContainer(item.children),
-          };
-        }
-        return item;
-      });
-    };
-
-    const without = removeComponent(components, selectedComponent.id);
-    const updated = addToTargetContainer(without);
-    setComponents(updated);
-    setSelectedComponent(null);
-    setMode(null);
-  };
-  
-  // Duplication récursive avec génération de nouveaux IDs
-  // Fin *************************************************
-  // Duplication récursive avec génération de nouveaux IDs
-
-
-
-  // Gestion de mise à jours *****************************
-  const undo = () => {
-    if (historyIndex <= 0) return;
-    setHistoryIndex(i => i - 1);
-    setComponents(history[historyIndex - 1]);
-  };
-  
-  const redo = () => {
-    if (historyIndex >= history.length - 1) return;
-    setHistoryIndex(i => i + 1);
-    setComponents(history[historyIndex + 1]);
-  };
-  
-  useEffect(() => {
-    if (!isEqual(components, history[historyIndex])) {
-      const newHistory = [...history.slice(0, historyIndex + 1), components];
-      const limited = newHistory.slice(-20);
-      setHistory(limited);
-      setHistoryIndex(limited.length - 1);
-      console.log("📦 Nouvelle version sauvegardée");
-    }
-  }, [components]);
-  
-
   
   // Test Affichage
   useEffect(() => {
@@ -386,12 +228,15 @@ const ProjetPage = () => {
   }, [components]);
   // ********************************
   useEffect(() => {
+    // setLocalProps(selectedComponent?.props);
     if (selectedComponent) {
     setLocalProps(selectedComponent.props || {}); 
   }
     console.log("%cChangement selected, localProps sont:", 
       "background-color: yellow; padding: 3px; color: black",localProps);
   }, [selectedComponent]);
+  // 
+  // ****************
 
   // Sélectionner un composant pour l'édition
   // ****************************************
@@ -405,38 +250,26 @@ const ProjetPage = () => {
   const renderComponent = (component) => {
     // Si le composant est un conteneur (vide ou parent)
     if (component.type === "container") {
-      const isContainer = component.type === "container";
       return (
         <div
           key={component.id}
           style={{
             ...component.props.style,
-            border: hoveredContainerId === component.id && mode === "move" ? "2px dashed blue" : component.props.style?.border,
-            cursor: isContainer ? "pointer" : "default",
+            // border: "1px dashed #adb5bd",
+            // marginBottom: "10px",
+            // cursor: "pointer",
           }}
           onClick={(e) => {
             setLocalProps({})
             setSelectedComponent(component); // Sélectionner ce conteneur
             e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
-            setMode(null);
             console.log("On click sur id:", component.id);
-          }}
-          onMouseEnter={() => {
-            if (isContainer && mode === "move") setHoveredContainerId(component.id);
-          }}
-          onMouseLeave={() => {
-            if (isContainer) setHoveredContainerId(null);
           }}
         >
           {component.children.length > 0 ? (
             component.children.map((child) => renderComponent(child)) // Rendu récursif des enfants
           ) : (
             <p style={{ textAlign: "center", color: "#868e96" }}>Empty</p>
-          )}
-          {mode === "move" && hoveredContainerId === component.id && (
-            <button 
-            onClick={() => handleMove(component.id)}
-            >Coller ici</button>
           )}
         </div>
       );
@@ -448,14 +281,7 @@ const ProjetPage = () => {
           onClick={(e) => {
             setSelectedComponent(component); // Sélectionner ce conteneur
             e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
-            setMode(null);
             console.log("Texte initié comme :", component.id);
-          }}
-          onMouseEnter={() => {
-            if (component.type === "container" && mode === "move") setHoveredContainerId(component.id);
-          }}
-          onMouseLeave={() => {
-            if (component.type === "container") setHoveredContainerId(null);
           }}
         >
           {component.props.text || "Child"}
@@ -471,14 +297,7 @@ const ProjetPage = () => {
           onClick={(e) => {
             setSelectedComponent(component); // Sélectionner ce conteneur
             e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
-            setMode(null);
             console.log("Image initiée comme :", component.id);
-          }}
-          onMouseEnter={() => {
-            if (component.type === "container" && mode === "move") setHoveredContainerId(component.id);
-          }}
-          onMouseLeave={() => {
-            if (component.type === "container") setHoveredContainerId(null);
           }}
         />
       );
@@ -489,19 +308,12 @@ const ProjetPage = () => {
           src={component.props.src}
           controls={true}
           autoPlay={true}
-          playsInline={true}
-          style={component.props.style}
+          // playsInline={true}
+          // style={component.props.style}
           onClick={(e) => {
             setSelectedComponent(component); // Sélectionner ce conteneur
             e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
-            setMode(null);
             console.log("Vidéo initiée comme :", component.id);
-          }}
-          onMouseEnter={() => {
-            if (component.type === "container" && mode === "move") setHoveredContainerId(component.id);
-          }}
-          onMouseLeave={() => {
-            if (component.type === "container") setHoveredContainerId(null);
           }}
         />
       );
@@ -514,14 +326,7 @@ const ProjetPage = () => {
           onClick={(e) => {
             setSelectedComponent(component); // Sélectionner ce conteneur
             e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
-            setMode(null);
             console.log("Lien initié comme :", component.id);
-          }}
-          onMouseEnter={() => {
-            if (component.type === "container" && mode === "move") setHoveredContainerId(component.id);
-          }}
-          onMouseLeave={() => {
-            if (component.type === "container") setHoveredContainerId(null);
           }}
         >
           {renderComponent(component.props.children)}
@@ -535,14 +340,7 @@ const ProjetPage = () => {
           onClick={(e) => {
             setSelectedComponent(component); // Sélectionner ce conteneur
             e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
-            setMode(null);
             console.log("Bouton initié comme :", component.id);
-          }}
-          onMouseEnter={() => {
-            if (component.type === "container" && mode === "move") setHoveredContainerId(component.id);
-          }}
-          onMouseLeave={() => {
-            if (component.type === "container") setHoveredContainerId(null);
           }}
         >
           {component.props.children}
@@ -556,14 +354,7 @@ const ProjetPage = () => {
           onClick={(e) => {
             setSelectedComponent(component); // Sélectionner ce conteneur
             e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
-            setMode(null);
             console.log("Composant initié comme :", component.id);
-          }}
-          onMouseEnter={() => {
-            if (component.type === "container" && mode === "move") setHoveredContainerId(component.id);
-          }}
-          onMouseLeave={() => {
-            if (component.type === "container") setHoveredContainerId(null);
           }}
         >
           {component.props.text || "Child"}
@@ -574,100 +365,63 @@ const ProjetPage = () => {
   // ***************** Fin Ajout des fonctionnalités ***************** //
   // **********************                    ********************** //
 
-  useEffect(() => {
-    if (selectedComponent) {
-      const style = selectedComponent.props?.style || {};
-      const filled = {};
-      cssFields.forEach((key) => {
-        filled[key] = style[key] || "";
-      });
-      setLocalStyle(filled);
-    }
-  }, [selectedComponent]);
-
-
   // ***************** Debut Edition des Properties ***************** //
   // **********************                    ********************** //
   // Editeur de propriétés
   // *******************
   const PropertyEditor = () => {
     if (!selectedComponent) return <div>Sélectionnez un composant pour modifier ses propriétés</div>;
-
-    const applyUpdatedProp = (key, value, isStyle = false) => {
-      if (!selectedComponent?.id) return;
     
-      const cleanedValue = typeof value === "string" ? value.trim() : value;
-      let updatedProps;
-
-      if (isStyle) {
-        const cleanedStyle = {
-          ...selectedComponent.props?.style,
-          [key]: cleanedValue,
-        };
-
-        // On supprime les propriétés avec une chaîne vide
-        Object.keys(cleanedStyle).forEach((k) => {
-          if (cleanedStyle[k]?.toString().trim() === "") delete cleanedStyle[k];
-        });
-
-        updatedProps = {
-          ...selectedComponent.props,
-          style: cleanedStyle,
-        };
-      } else {
-        updatedProps = {
-          ...selectedComponent.props,
-          [key]: cleanedValue,
-        };
-      }
-
-      updateComponentProps(selectedComponent.id, updatedProps);
-
-      // MAJ localProps et localStyle aussi
-      setLocalProps((prev) =>
-        isStyle
-          ? {
-              ...prev,
-              style: {
-                ...(prev?.style || {}),
-                [key]: cleanedValue,
-              },
-            }
-          : {
-              ...prev,
-              [key]: cleanedValue,
-            }
-      );
-
-      if (isStyle) {
-        setLocalStyle((prev) => ({ ...prev, [key]: cleanedValue }));
-      }
+    // New Structure 
+    // Gestion des modifications locales
+    const handleLocalChange = (property, value) => {
+      console.log("handleLocalChange Props en local");
+      console.log("%c Prop est :", 
+        "background-color: yellow; padding: 3px; color: black",[property, ':', value]);
+      console.log('av', localProps);
+      setLocalProps((prev) => ({
+        ...prev,
+        [property]: value,
+      }));
+      // setLocalProps((prev) => {
+      //   const updated = {
+      //     ...prev,
+      //     [property]: value,
+      //   };
+      //   console.log("✅ Nouvelle version à envoyer :", updated); // <-- OK ici
+      //   return updated;
+      // });
+      
+      console.log('af', localProps);
       
     };
-    
-    
-    // Gestion des modifications locales
-    
-    // Gestion des styles à jour dans localProps
-
     // Appele à la Mise à jour de Props d'un component via la localProps
     const handlePropsBlur = (property) => {
+      console.log("handlePropsBlur Props in Comps");
       if (selectedComponent) {
         updateComponentProps(selectedComponent.id, { [property]: localProps[property] });
       }
     };
-    
+
+    // Gestion des styles à jour dans localProps
+    const handleStyleChange = (property, value) => {
+      console.log("handleStyleChange StyleLocal");
+      console.log("%c Style est :", 
+        "background-color: yellow; padding: 3px; color: black",[property, ':', value]);
+
+      setLocalProps((prev) => ({
+        ...prev,
+        style: {
+          ...prev.style,
+          [property]: value,
+        },
+      }));
+    };
     // Application de changement des styles CSS imbriqué
     const handleStyleBlur = (property) => {
-      const cleanedStyle = {};
-      Object.entries(localStyle).forEach(([key, value]) => {
-        if (value.trim() !== "") {
-          cleanedStyle[key] = value;
-        }
-      });
       console.log("handleStyleBlur Style in Comps");
       updateComponentProps(selectedComponent.id, {
-        style: cleanedStyle,
+        style: localProps.style,
       });
     };
 
@@ -689,6 +443,14 @@ const ProjetPage = () => {
         });
       }
     };
+    
+    // Fin fonction new structure
+
+    // Fonction pour modifier les propriétés du composant
+    const handlePropertyChange = (property, value) => {
+      updateComponentProps(selectedComponent.id, { [property]: value });
+    };
+
     // Fonction pour ajouter une nouvelle propriété
     const handleAddProperty = (key, value) => {
       if (key && value !== undefined) {
@@ -696,50 +458,13 @@ const ProjetPage = () => {
       }
     };
 
-    const getPlaceholder = (field) => {
-      switch (field) {
-        case "padding":
-        case "margin":
-          return "20px";
-        case "backgroundColor":
-        case "color":
-          return "#f1f1f1";
-        case "fontSize":
-          return "16px";
-        case "display":
-          return "flex, block...";
-        case "justifyContent":
-          return "center, space-between...";
-        case "alignItems":
-          return "center, stretch...";
-        case "textAlign":
-          return "center, left...";
-        case "gap":
-          return "10px";
-        case "border":
-          return "1px solid #000";
-        case "borderRadius":
-          return "8px";
-        case "width":
-        case "height":
-          return "100px, 100%";
-        default:
-          return "";
-      }
-    }
-
     return (
       <div>
         <div>
-          <h3>Editeur</h3>
-          <hr></hr>
-          <h4>Contenaire</h4>
+          <h4>Actions</h4>
           <button
             onClick={() => removeParent(selectedComponent.id)}
-            style={{ marginLeft: "10px", backgroundColor: "#a0440f", color: "white",
-              width: "90%", padding: "3px 4px", fontSize: "12px",
-              border: "1px solid  #ced4da", borderRadius: "4px", marginTop: "4px",
-             }}
+            style={{ backgroundColor: "red", color: "white", margin: "5px" }}
           >
             Supprimer ce conteneur
           </button>
@@ -747,17 +472,14 @@ const ProjetPage = () => {
 
         {/* Gestion des enfants */}
         {selectedComponent.children && selectedComponent.children.length > 0 && (
-          <div style={{marginLeft: "10px"}}>
-            <h4>Sous contenaires</h4>
+          <div>
+            <h4>Gérer les enfants</h4>
             {selectedComponent.children.map((child) => (
               <div key={child.id} style={{ marginBottom: "5px" }}>
-                <span>*{child.props.text || child.type}</span>
+                <span>{child.props.text || child.type}</span>
                 <button
                   onClick={() => removeChildFromContainer(selectedComponent.id, child.id)}
-                  style={{ marginLeft: "20px", backgroundColor: "#a0440f", color: "white",
-                    width: "80%", padding: "3px 4px", fontSize: "12px",
-                    border: "1px solid #ced4da", borderRadius: "4px", marginTop: "4px",
-                  }}
+                  style={{ marginLeft: "10px", backgroundColor: "red", color: "white" }}
                 >
                   Supprimer
                 </button>
@@ -766,38 +488,10 @@ const ProjetPage = () => {
           </div>
         )}
 
-        <div>
-          <h3>Move</h3>
-          <div style={{ marginBottom: 10 }}>
-            <button 
-            onClick={handleDuplicate}
-            disabled={!selectedComponent}
-            style={{ marginLeft: "20px", backgroundColor: "#e4eb8e", color: "black",
-              width: "80%", padding: "3px 4px", fontSize: "12px",
-              border: "1px solid #ced4da", borderRadius: "4px", marginTop: "4px",
-            }}
-            >
-              Dupliquer
-            </button>
-            <button 
-            onClick={handleMoveMode} 
-            disabled={!selectedComponent}
-            style={{ marginLeft: "20px", backgroundColor: "#e4eb8e", color: "black",
-              width: "80%", padding: "3px 4px", fontSize: "12px",
-              border: "1px solid #ced4da", borderRadius: "4px", marginTop: "4px",
-            }}
-            >
-              Déplacer
-            </button>
-          </div>
-        </div>
-
-
         {/* Affichage des propriétés existantes */}
         {localProps && typeof localProps === "object" && Object.keys(localProps).length > 0 ? (
-          <div style={{ marginTop: "20px",}}>
-            <h3>Props de {selectedComponent.type}</h3>
-            <hr></hr>
+          <div>
+            <h3> 1. Modifier les propriétés de {selectedComponent.type}</h3>
             {Object.keys(localProps).map((key) =>
               key !== "style" ? (
                 <div key={key}>
@@ -805,21 +499,15 @@ const ProjetPage = () => {
                   <input
                     type="text"
                     defaultValue={localProps[key] || ""}
+                    // value={localProps[key] || ""}
+                    // onChange={(e) => handleLocalChange(key, e.target.value)}
+                    // onBlur={() => handlePropsBlur(key)}
                     onBlur={(e) => {
-                      applyUpdatedProp(key, e.target.value, false);
-                    }}
-
-                    style={{
-                      width: "80%",
-                      padding: "6px 8px",
-                      fontSize: "12px",
-                      // border: "1px solid #ced4da",
-                      borderRadius: "4px",
-                      marginTop: "4px",
-                      backgroundColor: "black",
-                      color:"white",
+                      handleLocalChange(key, e.target.value); 
+                      handlePropsBlur(key);
                     }}
                   />
+                  <button onClick={() => handlePropsBlur(key)}>Apply</button>
                 </div>
               ) : null
             )}
@@ -828,59 +516,41 @@ const ProjetPage = () => {
           <p>Aucune propriété modifiable</p>
         )}
 
-        {/* Bi-New */}
-        <div style={{ padding: "1rem", borderLeft: "1px solid #dee2e6", minWidth: "250px" }}>
-        <h3 style={{ fontSize: "16px", marginBottom: "1rem" }}>CSS</h3>
-        {cssFields.map((field) => (
-          <div key={field} style={{ marginBottom: "10px"}}>
-            <label style={{ fontSize: "12px", color: "#fff" }}>{field}</label> <br></br>
-            <input
-              type="text"
-              placeholder={`ex: ${getPlaceholder(field)}`}
-              defaultValue={localStyle[field]}
-              onBlur={(e) => {
-                applyUpdatedProp(field, e.target.value, true)
-              }}
-              style={{
-                width: "50%",
-                minWidth: "150px",
-                padding: "6px 8px",
-                fontSize: "12px",
-                // border: "1px solid #ced4da",
-                borderRadius: "4px",
-                marginTop: "4px",
-                backgroundColor: "black",
-                color:"white",
-              }}
-            />
-          </div>
-        ))}
-      </div>
-        {/* Bi-New */}
-
         {/* Modifier les styles */}
-        
+        {localProps?.style && (
+          <div>
+            <h3>2. Modifier les styles</h3>
+            {Object.keys(localProps.style).map((styleKey) => (
+              <div key={styleKey}>
+                <label>{styleKey} :</label>
+                <input
+                  type="text"
+                  defaultValue={localProps.style[styleKey] || ""}
+                  // onChange={(e) => handleStyleChange(styleKey, e.target.value)}
+                  // onBlur={() => handleStyleBlur(styleKey)}
+                  onBlur={(e) => {
+                    handleStyleChange(styleKey, e.target.value)
+                    handleStyleBlur(styleKey)
+                  }}
+                />
+                <button onClick={() => handleStyleBlur(styleKey)}>Apply</button>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Ajouter une nouvelle propriété */}
         <div>
-          <h3>Ajouter props :</h3>
+          <label>Ajouter une nouvelle propriété :</label>
           <input
             type="text"
             placeholder="Nom de la propriété (ex: background-color)"
             id="property-name"
-            style={{ marginLeft: "10px", backgroundColor: "black", color: "white",
-              width: "80%", padding: "6px 4px", fontSize: "12px",
-              border: "1px solid #ced4da", borderRadius: "4px", marginTop: "4px",
-            }}
           />
           <input
             type="text"
             placeholder="Valeur de la propriété (ex: #fff)"
             id="property-value"
-            style={{ marginLeft: "10px", backgroundColor: "black", color: "white",
-              width: "80%", padding: "6px 4px", fontSize: "12px",
-              border: "1px solid #ced4da", borderRadius: "4px", marginTop: "4px",
-            }}
           />
           <button
             onClick={() => {
@@ -890,11 +560,6 @@ const ProjetPage = () => {
               document.getElementById("property-name").value = "";
               document.getElementById("property-value").value = "";
             }}
-            style={{ marginLeft: "20px", backgroundColor: "#e4eb8e", color: "black",
-              width: "80%", padding: "3px 4px", fontSize: "12px",
-              border: "1px solid #ced4da", borderRadius: "4px", marginTop: "4px",
-            }}
-
           >
             Ajouter
           </button>
@@ -902,24 +567,16 @@ const ProjetPage = () => {
 
         {/* Ajouter un nouveau style */}
         <div>
-          <h3>Ajouter CSS :</h3>
+          <label>Ajouter un nouveau style :</label>
           <input
             type="text"
             placeholder="Nom du style (ex: background-color)"
             id="style-name"
-            style={{ marginLeft: "10px", backgroundColor: "black", color: "white",
-              width: "80%", padding: "6px 4px", fontSize: "12px",
-              border: "1px solid #ced4da", borderRadius: "4px", marginTop: "4px",
-            }}
           />
           <input
             type="text"
             placeholder="Valeur du style (ex: #fff)"
             id="style-value"
-            style={{ marginLeft: "10px", backgroundColor: "black", color: "white",
-              width: "80%", padding: "6px 4px", fontSize: "12px",
-              border: "1px solid #ced4da", borderRadius: "4px", marginTop: "4px",
-            }}
           />
           <button
             onClick={() => {
@@ -929,14 +586,35 @@ const ProjetPage = () => {
               document.getElementById("style-name").value = "";
               document.getElementById("style-value").value = "";
             }}
-            style={{ marginLeft: "20px", backgroundColor: "#e4eb8e", color: "black",
-              width: "80%", padding: "3px 4px", fontSize: "12px",
-              border: "1px solid #ced4da", borderRadius: "4px", marginTop: "4px",
-            }}
           >
             Ajouter style
           </button>
         </div>
+
+        {/* Modifications de texte (taille, police, etc.) */}
+        {selectedComponent.type === "text" && (
+          <div>
+            <h4>SpcText Modifier les propriétés de texte</h4>
+            <div>
+              <label>Taille du texte (en px) :</label>
+              <input type="number" value={localProps?.fontSize || ""} onChange={(e) => handleLocalChange("fontSize", e.target.value)} onBlur={() => handlePropsBlur("fontSize")} style={{color: 'black'}}/>
+            </div>
+            <div>
+              <label>Police :</label>
+              <input type="text" value={localProps?.fontFamily || ""} onChange={(e) => handleLocalChange("fontFamily", e.target.value)} onBlur={() => handlePropsBlur("fontFamily")} style={{color: 'black'}}/>
+              <button
+                onClick={() => {
+                  const font = prompt("Entrez le nom de la police ou choisissez une Google Font");
+                  handleLocalChange("fontFamily", font);
+                  handlePropsBlur("fontFamily");
+                  // handlePropertyChange("fontFamily", font);
+                }}
+              >
+                Ajouter Google Font
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Gestion des images */}
         {selectedComponent.type === "image" && (
@@ -944,19 +622,19 @@ const ProjetPage = () => {
             <h4>SpcImg Modifier les propriétés de l'image</h4>
             <div>
               <label>Source :</label>
-              <input type="text" placeholder="URL de l'image" value={localProps?.src || ""} onBlur={(e) => applyUpdatedProp("src", e.target.value)} />
+              <input type="text" placeholder="URL de l'image" value={localProps?.src || ""} onChange={(e) => handleLocalChange("src", e.target.value)} onBlur={() => handlePropsBlur("src")} />
             </div>
             <div>
               <label>Largeur :</label>
-              <input type="text" placeholder="100% ou 200px" value={localProps?.width || ""} onBlur={(e) => applyUpdatedProp("width", e.target.value, true)} />
+              <input type="text" placeholder="100% ou 200px" value={localProps?.width || ""} onChange={(e) => handleLocalChange("width", e.target.value)} onBlur={() => handlePropsBlur("width")} />
             </div>
             <div>
               <label>Hauteur :</label>
-              <input type="text" placeholder="auto ou 200px" value={localProps?.height || ""} onBlur={(e) => applyUpdatedProp("height", e.target.value, true)} />
+              <input type="text" placeholder="auto ou 200px" value={localProps?.height || ""} onChange={(e) => handleLocalChange("height", e.target.value)} onBlur={() => handlePropsBlur("height")} />
             </div>
             <div>
               <label>Object-fit :</label>
-              <select value={localProps?.objectFit || "cover"} onBlur={(e) => applyUpdatedProp("objectFit", e.target.value)} >
+              <select value={localProps?.objectFit || "cover"} onChange={(e) => handleLocalChange("objectFit", e.target.value)} onBlur={() => handlePropsBlur("objectFit")}>
               <option value="cover">Cover</option>
               <option value="contain">Contain</option>
               <option value="fill">Fill</option>
@@ -973,19 +651,19 @@ const ProjetPage = () => {
             <h4>SpcVideo Modifier les propriétés de la vidéo</h4>
             <div>
               <label>Source :</label>
-              <input type="text" placeholder="URL de la video" value={localProps?.src || ""} onBlur={(e) => applyUpdatedProp("src", e.target.value)} />
+              <input type="text" placeholder="URL de la video" value={localProps?.src || ""} onChange={(e) => handleLocalChange("src", e.target.value)} onBlur={() => handlePropsBlur("src")} />
             </div>
             <div>
               <label>Largeur :</label>
-              <input type="text" placeholder="100% ou 200px" value={localProps?.width || ""} onBlur={(e) => applyUpdatedProp("width", e.target.value, true)} />
+              <input type="text" placeholder="100% ou 200px" value={localProps?.width || ""} onChange={(e) => handleLocalChange("width", e.target.value)} onBlur={() => handlePropsBlur("width")} />
             </div>
             <div>
               <label>Hauteur :</label>
-              <input type="text" placeholder="auto ou 200px" value={localProps?.height || ""} onBlur={(e) => applyUpdatedProp("height", e.target.value, true)} />
+              <input type="text" placeholder="auto ou 200px" value={localProps?.height || ""} onChange={(e) => handleLocalChange("height", e.target.value)} onBlur={() => handlePropsBlur("height")} />
             </div>
             <div>
               <label>Contrôles :</label>
-              <select value={localProps?.controls ? "true" : "false"} onBlur={(e) => applyUpdatedProp("controls", e.target.value === "true")} >
+              <select value={localProps?.controls ? "true" : "false"} onChange={(e) => handleLocalChange("controls", e.target.value === "true")} onBlur={() => handlePropsBlur("controls")}>
                 <option value="true">Activé</option>
                 <option value="false">Désactivé</option>
               </select>
@@ -1181,19 +859,13 @@ const ProjetPage = () => {
         
         {/* /**************************************** projet-maker left ******************************* */}
         <div className={isShown ? 'show container-left-projet-maker' : 'container-left-projet-maker'}>
-          <div className='properties'>
-          <h3>Historique</h3>
-          <div style={{marginBottom: "10px"}}>
-            <button onClick={undo} disabled={historyIndex === 0}>⬅️</button>
-            <button onClick={redo} disabled={historyIndex === history.length - 1}>➡️</button>
-          </div>
+          <div style={{color:'black'}}>
             <PropertyEditor/>
           </div>  
         </div>
       </div>
     </div>
   );
-  
 };
 
 export default ProjetPage;

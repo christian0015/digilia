@@ -7,20 +7,42 @@ html, body {
 }
 
 /**************************************** projet-maker ********************************/
-.projet-maker{display: flex; justify-content: stretch; background-color: rgb(37, 37, 37);
+.projet-maker{display: flex; justify-content: stretch; 
+  background-color: rgb(37, 37, 37);
+  background-color: rgb(37, 37, 37);
+  animation: linearGradientBackground 10s ease infinite;
+}
+@keyframes linearGradientBackground {
+  0% {
+    background: linear-gradient(to right, #17181a56, #7c5aa94f, #4c629f59, #8296a154, #17181A);
+  } 25% {
+    background: linear-gradient(to right, #17181A,  #352b2849, #7c5aa965, #4c629f73, #8296a15b, #17181A);
+  } 50% {
+    background: linear-gradient(to right, #74664a6c, #f0e77160, #6e587c70, #4c629f80, #8296a169, #17181A);
+  } 90% {
+    background: linear-gradient(to right, #74664a8f, #b658aa62, #6e587c, #4C629F, #8296A1, #17181A);
+  } 100% {
+    background: linear-gradient(to right, #17181A, #5f5aa96e, #b658aa75, #cfc4835d, #8296a177, #6477117e);
+  }
+  100% {
+    background: linear-gradient(to right, #393c41, #b6705875, #7c5aa97e, #4c629f6e, #8296a169, #17181A);
+  }
 }
 
 /* ******************* projet-maker-rith panel ******************** */
 .container-rigth-projet-maker{
   position: relative;
-  margin: 0 0px;
+  margin: auto 0 auto 15px;
   padding: 15px 10px;
   width: 320px;
-  height: calc(100vh - 30px);
-  background-color: #eeebeb;
-  color: #1f1f1f;
+  height: calc(100vh - 100px);
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  border-radius: 14px;
+  background-color: #b1b1b144;
+  backdrop-filter: blu(10px);
+  color: #1f1f1f;
 }
 
 /* Info User Actif */
@@ -185,13 +207,20 @@ nav a svg {
 /* ******************* projet-maker-left panel ******************** */
 .container-left-projet-maker{
   position: relative;
-  margin: 0 0px;
-  padding: 15px 10px;
-  width: 300px;
-  height: calc(100vh - 30px);
-  background-color: #eeebeb;
+  margin: auto 20px auto 0;
+  width: 360px;
+  height: calc(100svh - 100px);
+  overflow-x: hidden;
+  stroke-width: 0%;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
+}
+.container-left-projet-maker .properties{
+  background-color: #b1b1b18f;
+  padding: 20px 10px;
+  backdrop-filter: blur(10px);
+  /* color: #fff; */
 }
 
 /**************************************** Responsive ********************************/
