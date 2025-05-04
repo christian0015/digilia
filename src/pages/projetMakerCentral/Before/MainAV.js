@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect} from 'react';
 import { Rnd } from "react-rnd";
-import Container from "./projetMakerCentral/components/Container";
-import Header from "./projetMakerCentral/components/Header";
-import Label from './Dashboard';
+import Container from "../components/Container";
+import Header from "../components/Header";
+import Label from '../../Dashboard';
 import './ProjetMaker.css';
 import { Link, NavLink  } from 'react-router-dom';import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';

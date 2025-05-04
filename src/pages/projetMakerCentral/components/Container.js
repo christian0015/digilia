@@ -284,28 +284,23 @@ const Container = ({ onAddContainer }) => {
                 },
                 {
                   id: `nav-button-${nanoid()}`,
-                  type: "link",
-                  props: { 
-                    href: "#produits", 
-                    children: {
-                      type: "button",
-                      props: {
-                        style: {
-                          padding: "10px 20px",
-                          backgroundColor: "#D4AF37",
-                          color: "#ffffff",
-                          border: "none",
-                          borderRadius: "30px",
-                          cursor: "pointer",
-                          fontWeight: "600",
-                          boxShadow: "0 4px 15px rgba(212, 175, 55, 0.3)",
-                          transition: "all 0.3s ease"
-                        },
-                        children: ["Acheter"]
-                      }
-                    }
+                  type: "button",
+                  props: {
+                    onClick: "navigateToProduits", // Vous pouvez gérer ça dans votre logique
+                    style: {
+                      padding: "10px 20px",
+                      backgroundColor: "#D4AF37",
+                      color: "#ffffff",
+                      border: "none",
+                      borderRadius: "30px",
+                      cursor: "pointer",
+                      fontWeight: "600",
+                      boxShadow: "0 4px 15px rgba(212, 175, 55, 0.3)",
+                      transition: "all 0.3s ease"
+                    },
+                    children: ["Acheter"]
                   }
-                }
+                }               
               ]
             }
           ]

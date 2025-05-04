@@ -1037,7 +1037,8 @@ const ProjetPage = () => {
     return (
       <div>
         <h1>Header Editor</h1>
-        <Header onAddHeader={handleAddHeader} />
+        {/* <Header onAddHeader={handleAddHeader} /> */}
+        <Header onAddContainer={handleAddContainer} />
       </div>
     );
   };
