@@ -13,6 +13,9 @@ import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
 // import ProjetPage from './pages/ProjetMaker';
 import ProjetPage from './pages/Main';
+import ProjetMesh from './pages/MainMesh';
+import ProjetMoksha from './pages/MainMoksha';
+import ProjetLens from './pages/MainLens';
 
 
 function Marquee() {
@@ -247,6 +250,9 @@ function Router() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/projet" element={<Dashboard />} />
       <Route path="/projet-maker" element={<ProjetPage />} />
+      <Route path="/projet-maker-mesh" element={<ProjetMesh />} />
+      <Route path="/projet-maker-moksha" element={<ProjetMoksha />} />
+      <Route path="/projet-maker-lens" element={<ProjetLens />} />
       {/* Ajoutez d'autres routes ici */}
     </Routes>
   );

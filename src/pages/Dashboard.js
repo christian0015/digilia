@@ -91,7 +91,15 @@ const Dashboard = () => {
 
   const handleLastProjet = async () => {
       navigate('/projet-maker');
-      
+  };
+  const handleMeshProjet = async () => {
+    navigate('/projet-maker-mesh');
+  };
+  const handleMokshaProjet = async () => {
+    navigate('/projet-maker-moksha');
+  };
+  const handleLensProjet = async () => {
+    navigate('/projet-maker-lens');
   };
 
     // Create project
@@ -217,6 +225,11 @@ const Dashboard = () => {
           <button onClick={handleCreateProjet}>Créer Projet</button>
         </div>
 
+        <br/>
+        <br/>
+        <button onClick={() => handleMeshProjet()}>Mesh</button>
+        <button onClick={() => handleMokshaProjet()}>Moksha</button>
+        <button onClick={() => handleLensProjet()}>Lens</button>
         <br/>
         <h2>Vos Projets</h2>
         <ul className="projets-list">
