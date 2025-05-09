@@ -1,0 +1,1729 @@
+{
+  "template": {
+    "id": "template-3d-jsx-hybrid",
+    "type": "template",
+    "name": "Hybrid 3D-JSX Template",
+    "metadata": {
+      "created": "2025-05-08",
+      "author": "Designer Pro",
+      "version": "1.0.0"
+    },
+    "children": [
+      {
+        "id": "landing-section",
+        "type": "jsxContainer",
+        "style": {
+          "display": "flex",
+          "flexDirection": "column",
+          "alignItems": "center",
+          "justifyContent": "center",
+          "width": "100%",
+          "height": "100vh",
+          "backgroundColor": "#121212",
+          "color": "#ffffff",
+          "overflow": "hidden",
+          "position": "relative"
+        },
+        "children": [
+          {
+            "id": "header-nav",
+            "type": "jsxElement",
+            "elementType": "nav",
+            "style": {
+              "position": "absolute",
+              "top": "0",
+              "left": "0",
+              "right": "0",
+              "padding": "20px",
+              "display": "flex",
+              "justifyContent": "space-between",
+              "alignItems": "center",
+              "zIndex": "100"
+            },
+            "children": [
+              {
+                "id": "logo",
+                "type": "jsxElement",
+                "elementType": "div",
+                "style": {
+                  "fontWeight": "bold",
+                  "fontSize": "24px",
+                  "letterSpacing": "2px"
+                },
+                "content": "NEXUS"
+              },
+              {
+                "id": "menu",
+                "type": "jsxElement",
+                "elementType": "div",
+                "style": {
+                  "display": "flex",
+                  "gap": "20px"
+                },
+                "children": [
+                  {
+                    "id": "menu-item-1",
+                    "type": "jsxElement",
+                    "elementType": "a",
+                    "style": {
+                      "cursor": "pointer",
+                      "textDecoration": "none",
+                      "color": "#ffffff"
+                    },
+                    "content": "Home"
+                  },
+                  {
+                    "id": "menu-item-2",
+                    "type": "jsxElement",
+                    "elementType": "a",
+                    "style": {
+                      "cursor": "pointer",
+                      "textDecoration": "none",
+                      "color": "#ffffff"
+                    },
+                    "content": "Products"
+                  },
+                  {
+                    "id": "menu-item-3",
+                    "type": "jsxElement",
+                    "elementType": "a",
+                    "style": {
+                      "cursor": "pointer",
+                      "textDecoration": "none",
+                      "color": "#ffffff"
+                    },
+                    "content": "Contact"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "hero-content",
+            "type": "jsxElement",
+            "elementType": "div",
+            "style": {
+              "position": "relative",
+              "width": "100%",
+              "height": "100%",
+              "display": "flex",
+              "flexDirection": "column",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "textAlign": "center",
+              "zIndex": "10"
+            },
+            "children": [
+              {
+                "id": "hero-title",
+                "type": "jsxElement",
+                "elementType": "h1",
+                "style": {
+                  "fontSize": "64px",
+                  "fontWeight": "bold",
+                  "marginBottom": "24px",
+                  "background": "linear-gradient(90deg, #D4AF37, #FFFFFF)",
+                  "WebkitBackgroundClip": "text",
+                  "WebkitTextFillColor": "transparent"
+                },
+                "content": "The Future Is Now"
+              },
+              {
+                "id": "hero-subtitle",
+                "type": "jsxElement",
+                "elementType": "p",
+                "style": {
+                  "fontSize": "24px",
+                  "maxWidth": "600px",
+                  "marginBottom": "40px",
+                  "lineHeight": "1.5"
+                },
+                "content": "Experience the perfect blend of reality and digital innovation with our cutting-edge technology."
+              },
+              {
+                "id": "hero-buttons",
+                "type": "jsxElement",
+                "elementType": "div",
+                "style": {
+                  "display": "flex",
+                  "gap": "16px"
+                },
+                "children": [
+                  {
+                    "id": "cta-button",
+                    "type": "jsxElement",
+                    "elementType": "button",
+                    "style": {
+                      "padding": "12px 24px",
+                      "backgroundColor": "#D4AF37",
+                      "color": "#000000",
+                      "border": "none",
+                      "borderRadius": "4px",
+                      "fontSize": "16px",
+                      "fontWeight": "bold",
+                      "cursor": "pointer"
+                    },
+                    "content": "Explore Now",
+                    "events": {
+                      "onClick": "exploreNow"
+                    }
+                  },
+                  {
+                    "id": "learn-more-button",
+                    "type": "jsxElement",
+                    "elementType": "button",
+                    "style": {
+                      "padding": "12px 24px",
+                      "backgroundColor": "transparent",
+                      "color": "#ffffff",
+                      "border": "1px solid #ffffff",
+                      "borderRadius": "4px",
+                      "fontSize": "16px",
+                      "fontWeight": "bold",
+                      "cursor": "pointer"
+                    },
+                    "content": "Learn More",
+                    "events": {
+                      "onClick": "learnMore"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "canvas-container",
+            "type": "jsxElement",
+            "elementType": "div",
+            "style": {
+              "position": "absolute",
+              "top": "0",
+              "left": "0",
+              "width": "100%",
+              "height": "100%",
+              "zIndex": "5"
+            },
+            "children": [
+              {
+                "id": "scene-3d",
+                "type": "container3D",
+                "transform": {
+                  "position": [0, 0, 0],
+                  "rotation": [0, 0, 0],
+                  "scale": [1, 1, 1]
+                },
+                "settings": {
+                  "camera": {
+                    "position": [0, 0, 10],
+                    "fov": 45,
+                    "near": 0.1,
+                    "far": 1000
+                  },
+                  "renderer": {
+                    "antialias": true,
+                    "alpha": true
+                  }
+                },
+                "children": [
+                  {
+                    "id": "ambient-light",
+                    "type": "light",
+                    "lightType": "ambient",
+                    "color": "#404040",
+                    "intensity": 0.5
+                  },
+                  {
+                    "id": "directional-light-1",
+                    "type": "light",
+                    "lightType": "directional",
+                    "color": "#ffffff",
+                    "intensity": 1.0,
+                    "transform": {
+                      "position": [5, 5, 5]
+                    }
+                  },
+                  {
+                    "id": "hero-model",
+                    "type": "model3D",
+                    "asset": "/models/product-showcase.glb",
+                    "transform": {
+                      "position": [0, 0, -3],
+                      "rotation": [0, 0, 0],
+                      "scale": [1, 1, 1]
+                    },
+                    "animations": [
+                      {
+                        "type": "rotation",
+                        "trigger": "time",
+                        "axis": "y",
+                        "from": 0,
+                        "to": 360,
+                        "duration": 15,
+                        "loop": true
+                      },
+                      {
+                        "type": "scale",
+                        "trigger": "hover",
+                        "from": [1, 1, 1],
+                        "to": [1.1, 1.1, 1.1],
+                        "duration": 0.3,
+                        "easing": "easeOutElastic"
+                      },
+                      {
+                        "type": "color",
+                        "trigger": "click",
+                        "from": "#D4AF37",
+                        "to": "#00FF7F",
+                        "duration": 1,
+                        "loop": "pingPong"
+                      }
+                    ],
+                    "children": [
+                      {
+                        "id": "model-hotspot-1",
+                        "type": "hotspot",
+                        "transform": {
+                          "position": [0.5, 0.3, 0]
+                        },
+                        "events": {
+                          "onClick": "showFeature1"
+                        },
+                        "children": [
+                          {
+                            "id": "hotspot-marker",
+                            "type": "mesh",
+                            "geometry": {
+                              "type": "sphere",
+                              "args": [0.05, 16, 16]
+                            },
+                            "material": {
+                              "type": "MeshBasicMaterial",
+                              "params": {
+                                "color": "#D4AF37",
+                                "transparent": true,
+                                "opacity": 0.8
+                              }
+                            },
+                            "animations": [
+                              {
+                                "type": "scale",
+                                "trigger": "time",
+                                "from": [1, 1, 1],
+                                "to": [1.2, 1.2, 1.2],
+                                "duration": 1,
+                                "loop": "pingPong"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "feature-text",
+                    "type": "text3D",
+                    "content": "Premium Model",
+                    "transform": {
+                      "position": [0, 1.5, -2],
+                      "rotation": [0, 0, 0],
+                      "scale": [0.2, 0.2, 0.2]
+                    },
+                    "font": "/fonts/3d/Roboto_Bold.json",
+                    "settings": {
+                      "size": 1,
+                      "height": 0.1,
+                      "curveSegments": 12,
+                      "bevelEnabled": true,
+                      "bevelThickness": 0.02,
+                      "bevelSize": 0.02,
+                      "material": {
+                        "type": "MeshPhysicalMaterial",
+                        "params": {
+                          "color": "#D4AF37",
+                          "metalness": 0.8,
+                          "roughness": 0.2
+                        }
+                      }
+                    },
+                    "animations": [
+                      {
+                        "type": "float",
+                        "trigger": "time",
+                        "speed": 0.5,
+                        "amplitude": 0.1
+                      }
+                    ]
+                  },
+                  {
+                    "id": "video-screen",
+                    "type": "video3D",
+                    "src": "/videos/product-demo.mp4",
+                    "transform": {
+                      "position": [2, 0, -2],
+                      "rotation": [0, -Math.PI / 4, 0],
+                      "scale": [1.5, 1, 1]
+                    },
+                    "settings": {
+                      "autoplay": true,
+                      "loop": true,
+                      "muted": true,
+                      "width": 2,
+                      "height": 1.12
+                    }
+                  },
+                  {
+                    "id": "image-panel",
+                    "type": "image3D",
+                    "src": "/images/spec-sheet.jpg",
+                    "transform": {
+                      "position": [-2, 0, -2],
+                      "rotation": [0, Math.PI / 4, 0],
+                      "scale": [1, 1, 1]
+                    },
+                    "settings": {
+                      "width": 2,
+                      "height": 1.5
+                    },
+                    "animations": [
+                      {
+                        "type": "translation",
+                        "trigger": "scroll",
+                        "axis": "y",
+                        "offset": 0.5,
+                        "damping": 0.1
+                      }
+                    ]
+                  },
+                  {
+                    "id": "particle-system",
+                    "type": "particleSystem",
+                    "transform": {
+                      "position": [0, 0, -5]
+                    },
+                    "settings": {
+                      "count": 1000,
+                      "size": 0.02,
+                      "color": "#ffffff",
+                      "spread": 10,
+                      "blur": true
+                    },
+                    "animations": [
+                      {
+                        "type": "custom",
+                        "trigger": "time",
+                        "function": "rotateParticles",
+                        "speed": 0.1
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "features-section",
+        "type": "jsxContainer",
+        "style": {
+          "display": "flex",
+          "flexDirection": "column",
+          "padding": "100px 0",
+          "backgroundColor": "#ffffff",
+          "color": "#121212"
+        },
+        "children": [
+          {
+            "id": "features-title",
+            "type": "jsxElement",
+            "elementType": "h2",
+            "style": {
+              "textAlign": "center",
+              "fontSize": "48px",
+              "marginBottom": "60px"
+            },
+            "content": "Key Features"
+          },
+          {
+            "id": "features-grid",
+            "type": "jsxElement",
+            "elementType": "div",
+            "style": {
+              "display": "grid",
+              "gridTemplateColumns": "repeat(3, 1fr)",
+              "gap": "40px",
+              "maxWidth": "1200px",
+              "margin": "0 auto",
+              "padding": "0 20px"
+            },
+            "children": [
+              {
+                "id": "feature-1",
+                "type": "jsxElement",
+                "elementType": "div",
+                "style": {
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "alignItems": "center",
+                  "textAlign": "center"
+                },
+                "children": [
+                  {
+                    "id": "feature-1-icon-container",
+                    "type": "jsxElement",
+                    "elementType": "div",
+                    "style": {
+                      "width": "300px",
+                      "height": "300px",
+                      "marginBottom": "24px",
+                      "position": "relative"
+                    },
+                    "children": [
+                      {
+                        "id": "feature-1-3d",
+                        "type": "container3D",
+                        "transform": {
+                          "position": [0, 0, 0],
+                          "rotation": [0, 0, 0],
+                          "scale": [1, 1, 1]
+                        },
+                        "children": [
+                          {
+                            "id": "feature-1-model",
+                            "type": "model3D",
+                            "asset": "/models/feature-1.glb",
+                            "transform": {
+                              "position": [0, 0, -5],
+                              "rotation": [0, 0, 0],
+                              "scale": [1, 1, 1]
+                            },
+                            "animations": [
+                              {
+                                "type": "rotation",
+                                "trigger": "time",
+                                "axis": "y",
+                                "from": 0,
+                                "to": 360,
+                                "duration": 10,
+                                "loop": true
+                              }
+                            ]
+                          },
+                          {
+                            "id": "feature-1-light",
+                            "type": "light",
+                            "lightType": "point",
+                            "color": "#ffffff",
+                            "intensity": 1.0,
+                            "transform": {
+                              "position": [3, 3, 0]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "feature-1-title",
+                    "type": "jsxElement",
+                    "elementType": "h3",
+                    "style": {
+                      "fontSize": "24px",
+                      "marginBottom": "16px"
+                    },
+                    "content": "Immersive Experience"
+                  },
+                  {
+                    "id": "feature-1-desc",
+                    "type": "jsxElement",
+                    "elementType": "p",
+                    "style": {
+                      "fontSize": "16px",
+                      "lineHeight": "1.6"
+                    },
+                    "content": "Dive into a fully immersive digital environment that responds to your every move and decision."
+                  }
+                ]
+              },
+              {
+                "id": "feature-2",
+                "type": "jsxElement",
+                "elementType": "div",
+                "style": {
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "alignItems": "center",
+                  "textAlign": "center"
+                },
+                "children": [
+                  {
+                    "id": "feature-2-icon-container",
+                    "type": "jsxElement",
+                    "elementType": "div",
+                    "style": {
+                      "width": "300px",
+                      "height": "300px",
+                      "marginBottom": "24px",
+                      "position": "relative"
+                    },
+                    "children": [
+                      {
+                        "id": "feature-2-3d",
+                        "type": "container3D",
+                        "transform": {
+                          "position": [0, 0, 0],
+                          "rotation": [0, 0, 0],
+                          "scale": [1, 1, 1]
+                        },
+                        "children": [
+                          {
+                            "id": "feature-2-mesh",
+                            "type": "mesh",
+                            "geometry": {
+                              "type": "torusKnot",
+                              "args": [1, 0.3, 128, 32, 2, 3]
+                            },
+                            "material": {
+                              "type": "MeshPhysicalMaterial",
+                              "params": {
+                                "color": "#1E90FF",
+                                "metalness": 0.8,
+                                "roughness": 0.2,
+                                "clearcoat": 1.0
+                              }
+                            },
+                            "transform": {
+                              "position": [0, 0, -5],
+                              "rotation": [0, 0, 0],
+                              "scale": [1, 1, 1]
+                            },
+                            "animations": [
+                              {
+                                "type": "rotation",
+                                "trigger": "time",
+                                "axis": "y",
+                                "from": 0,
+                                "to": 360,
+                                "duration": 8,
+                                "loop": true
+                              },
+                              {
+                                "type": "rotation",
+                                "trigger": "time",
+                                "axis": "x",
+                                "from": 0,
+                                "to": 360,
+                                "duration": 20,
+                                "loop": true
+                              }
+                            ]
+                          },
+                          {
+                            "id": "feature-2-light",
+                            "type": "light",
+                            "lightType": "spot",
+                            "color": "#ffffff",
+                            "intensity": 1.5,
+                            "transform": {
+                              "position": [3, 3, 0]
+                            },
+                            "settings": {
+                              "angle": 0.5,
+                              "penumbra": 0.5,
+                              "decay": 2
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "feature-2-title",
+                    "type": "jsxElement",
+                    "elementType": "h3",
+                    "style": {
+                      "fontSize": "24px",
+                      "marginBottom": "16px"
+                    },
+                    "content": "Advanced Analytics"
+                  },
+                  {
+                    "id": "feature-2-desc",
+                    "type": "jsxElement",
+                    "elementType": "p",
+                    "style": {
+                      "fontSize": "16px",
+                      "lineHeight": "1.6"
+                    },
+                    "content": "Gain insights from powerful data visualization and analysis tools that reveal patterns and opportunities."
+                  }
+                ]
+              },
+              {
+                "id": "feature-3",
+                "type": "jsxElement",
+                "elementType": "div",
+                "style": {
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "alignItems": "center",
+                  "textAlign": "center"
+                },
+                "children": [
+                  {
+                    "id": "feature-3-icon-container",
+                    "type": "jsxElement",
+                    "elementType": "div",
+                    "style": {
+                      "width": "300px",
+                      "height": "300px",
+                      "marginBottom": "24px",
+                      "position": "relative"
+                    },
+                    "children": [
+                      {
+                        "id": "feature-3-3d",
+                        "type": "container3D",
+                        "transform": {
+                          "position": [0, 0, 0],
+                          "rotation": [0, 0, 0],
+                          "scale": [1, 1, 1]
+                        },
+                        "children": [
+                          {
+                            "id": "feature-3-video",
+                            "type": "video3D",
+                            "src": "/videos/feature-demo.mp4",
+                            "transform": {
+                              "position": [0, 0, -5],
+                              "rotation": [0, 0, 0],
+                              "scale": [2, 1.12, 1]
+                            },
+                            "settings": {
+                              "autoplay": true,
+                              "loop": true,
+                              "muted": true
+                            }
+                          },
+                          {
+                            "id": "feature-3-light",
+                            "type": "light",
+                            "lightType": "point",
+                            "color": "#ffffff",
+                            "intensity": 0.8,
+                            "transform": {
+                              "position": [3, 3, 0]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "feature-3-title",
+                    "type": "jsxElement",
+                    "elementType": "h3",
+                    "style": {
+                      "fontSize": "24px",
+                      "marginBottom": "16px"
+                    },
+                    "content": "Seamless Integration"
+                  },
+                  {
+                    "id": "feature-3-desc",
+                    "type": "jsxElement",
+                    "elementType": "p",
+                    "style": {
+                      "fontSize": "16px",
+                      "lineHeight": "1.6"
+                    },
+                    "content": "Connect with all your existing tools and platforms without missing a beat or losing data."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "showcase-section",
+        "type": "jsxContainer",
+        "style": {
+          "padding": "100px 0",
+          "backgroundColor": "#121212",
+          "color": "#ffffff"
+        },
+        "children": [
+          {
+            "id": "showcase-title",
+            "type": "jsxElement",
+            "elementType": "h2",
+            "style": {
+              "textAlign": "center",
+              "fontSize": "48px",
+              "marginBottom": "60px"
+            },
+            "content": "Interactive Showcase"
+          },
+          {
+            "id": "showcase-container",
+            "type": "jsxElement",
+            "elementType": "div",
+            "style": {
+              "width": "100%",
+              "height": "600px",
+              "position": "relative"
+            },
+            "children": [
+              {
+                "id": "showcase-scene",
+                "type": "container3D",
+                "transform": {
+                  "position": [0, 0, 0],
+                  "rotation": [0, 0, 0],
+                  "scale": [1, 1, 1]
+                },
+                "settings": {
+                  "camera": {
+                    "position": [0, 2, 10],
+                    "fov": 45,
+                    "near": 0.1,
+                    "far": 1000
+                  },
+                  "renderer": {
+                    "antialias": true,
+                    "alpha": true
+                  },
+                  "orbit": true
+                },
+                "children": [
+                  {
+                    "id": "showcase-environment",
+                    "type": "environment",
+                    "preset": "sunset",
+                    "intensity": 1.0
+                  },
+                  {
+                    "id": "showcase-floor",
+                    "type": "mesh",
+                    "geometry": {
+                      "type": "plane",
+                      "args": [100, 100]
+                    },
+                    "material": {
+                      "type": "MeshStandardMaterial",
+                      "params": {
+                        "color": "#111111",
+                        "metalness": 0.2,
+                        "roughness": 0.8
+                      }
+                    },
+                    "transform": {
+                      "position": [0, -2, 0],
+                      "rotation": [-Math.PI / 2, 0, 0],
+                      "scale": [1, 1, 1]
+                    }
+                  },
+                  {
+                    "id": "showcase-model",
+                    "type": "model3D",
+                    "asset": "/models/product-full.glb",
+                    "transform": {
+                      "position": [0, 0, 0],
+                      "rotation": [0, 0, 0],
+                      "scale": [1, 1, 1]
+                    },
+                    "animations": [
+                      {
+                        "type": "rotation",
+                        "trigger": "time",
+                        "axis": "y",
+                        "from": 0,
+                        "to": 360,
+                        "duration": 30,
+                        "loop": true
+                      }
+                    ],
+                    "children": [
+                      {
+                        "id": "hotspot-1",
+                        "type": "hotspot",
+                        "transform": {
+                          "position": [1, 1, 0.5]
+                        },
+                        "events": {
+                          "onClick": "showFeatureDetails"
+                        },
+                        "children": [
+                          {
+                            "id": "hotspot-1-marker",
+                            "type": "mesh",
+                            "geometry": {
+                              "type": "sphere",
+                              "args": [0.1, 16, 16]
+                            },
+                            "material": {
+                              "type": "MeshBasicMaterial",
+                              "params": {
+                                "color": "#D4AF37",
+                                "transparent": true,
+                                "opacity": 0.8
+                              }
+                            },
+                            "animations": [
+                              {
+                                "type": "scale",
+                                "trigger": "time",
+                                "from": [1, 1, 1],
+                                "to": [1.3, 1.3, 1.3],
+                                "duration": 0.8,
+                                "loop": "pingPong"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "id": "hotspot-2",
+                        "type": "hotspot",
+                        "transform": {
+                          "position": [-1, 0.5, 0.8]
+                        },
+                        "events": {
+                          "onClick": "showTechnicalSpecs"
+                        },
+                        "children": [
+                          {
+                            "id": "hotspot-2-marker",
+                            "type": "mesh",
+                            "geometry": {
+                              "type": "sphere",
+                              "args": [0.1, 16, 16]
+                            },
+                            "material": {
+                              "type": "MeshBasicMaterial",
+                              "params": {
+                                "color": "#1E90FF",
+                                "transparent": true,
+                                "opacity": 0.8
+                              }
+                            },
+                            "animations": [
+                              {
+                                "type": "scale",
+                                "trigger": "time",
+                                "from": [1, 1, 1],
+                                "to": [1.3, 1.3, 1.3],
+                                "duration": 0.8,
+                                "loop": "pingPong"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "showcase-controls",
+            "type": "jsxElement",
+            "elementType": "div",
+            "style": {
+              "display": "flex",
+              "justifyContent": "center",
+              "gap": "20px",
+              "marginTop": "40px"
+            },
+            "children": [
+              {
+                "id": "view-1-button",
+                "type": "jsxElement",
+                "elementType": "button",
+                "style": {
+                  "padding": "12px 24px",
+                  "backgroundColor": "#D4AF37",
+                  "color": "#000000",
+                  "border": "none",
+                  "borderRadius": "4px",
+                  "cursor": "pointer",
+                  "fontWeight": "bold"
+                },
+                "content": "View 1",
+                "events": {
+                  "onClick": "changeView1"
+                }
+              },
+              {
+                "id": "view-2-button",
+                "type": "jsxElement",
+                "elementType": "button",
+                "style": {
+                  "padding": "12px 24px",
+                  "backgroundColor": "#1E90FF",
+                  "color": "#000000",
+                  "border": "none",
+                  "borderRadius": "4px",
+                  "cursor": "pointer",
+                  "fontWeight": "bold"
+                },
+                "content": "View 2",
+                "events": {
+                  "onClick": "changeView2"
+                }
+              },
+              {
+                "id": "view-3-button",
+                "type": "jsxElement",
+                "elementType": "button",
+                "style": {
+                  "padding": "12px 24px",
+                  "backgroundColor": "#00FF7F",
+                  "color": "#000000",
+                  "border": "none",
+                  "borderRadius": "4px",
+                  "cursor": "pointer",
+                  "fontWeight": "bold"
+                },
+                "content": "View 3",
+                "events": {
+                  "onClick": "changeView3"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "testimonials-section",
+        "type": "jsxContainer",
+        "style": {
+          "padding": "100px 0",
+          "backgroundColor": "#ffffff",
+          "color": "#121212"
+        },
+        "children": [
+          {
+            "id": "testimonials-title",
+            "type": "jsxElement",
+            "elementType": "h2",
+            "style": {
+              "textAlign": "center",
+              "fontSize": "48px",
+              "marginBottom": "60px"
+            },
+            "content": "Client Testimonials"
+          },
+          {
+            "id": "testimonials-slider",
+            "type": "jsxElement",
+            "elementType": "div",
+            "style": {
+              "maxWidth": "1200px",
+              "margin": "0 auto",
+              "position": "relative",
+              "height": "400px",
+              "overflow": "hidden"
+            },
+            "children": [
+              {
+                "id": "slider-container",
+                "type": "container3D",
+                "transform": {
+                  "position": [0, 0, 0],
+                  "rotation": [0, 0, 0],
+                  "scale": [1, 1, 1]
+                },
+                "settings": {
+                  "camera": {
+                    "position": [0, 0, 10],
+                    "fov": 45
+                  },
+                  "renderer": {
+                    "antialias": true,
+                    "alpha": true
+                  }
+                },
+                "children": [
+                  {
+                    "id": "testimonial-card-1",
+                    "type": "group",
+                    "transform": {
+                      "position": [-5, 0, 0],
+                      "rotation": [0, 0.2, 0],
+                      "scale": [1, 1, 1]
+                    },
+                    "children": [
+                      {
+                        "id": "card-1-bg",
+                        "type": "mesh",
+                        "geometry": {
+                          "type": "box",
+                          "args": [3, 2, 0.1]
+                        },
+                        "material": {
+                          "type": "MeshPhysicalMaterial",
+                          "params": {
+                            "color": "#ffffff",
+                            "metalness": 0.1,
+                            "roughness": 0.2,
+                            "transparent": true,
+                            "opacity": 0.9,
+                            "side": 2
+                          }
+                        }
+                      },
+                      {
+                        "id": "card-1-content",
+                        "type": "html3D",
+                        "transform": {
+                          "position": [0, 0, 0.06],
+                          "rotation": [0, 0, 0],
+                          "scale": [1, 1, 1]
+                        },
+                        "style": {
+                          "width": "280px",
+                          "padding": "20px",
+                          "textAlign": "center",
+                          "color": "#121212"
+                        },
+                        "children": [
+                          {
+                            "id": "testimonial-1-avatar",
+                            "type": "jsxElement",
+                            "elementType": "img",
+                            "style": {
+                              "width": "80px",
+                              "height": "80px",
+                              "borderRadius": "50%",
+                              "margin": "0 auto 20px"
+                            },
+                            "attributes": {
+                              "src": "/images/avatar-1.jpg",
+                              "alt": "Client 1"
+                            }
+                          },
+                          {
+                            "id": "testimonial-1-text",
+                            "type": "jsxElement",
+                            "elementType": "p",
+                            "style": {
+                              "fontSize": "16px",
+                              "lineHeight": "1.6",
+                              "fontStyle": "italic",
+                              "marginBottom": "20px"
+                            },
+                            "content": "\"This product has completely transformed our workflow. The 3D visualization tools are unmatched in the industry.\""
+                          },
+                          {
+                            "id": "testimonial-1-author",
+                            "type": "jsxElement",
+                            "elementType": "h4",
+                            "style": {
+                              "fontSize": "18px",
+                              "fontWeight": "bold",
+                              "marginBottom": "5px"
+                            },
+                            "content": "Sarah Johnson"
+                          },
+                          {
+                            "id": "testimonial-1-position",
+                            "type": "jsxElement",
+                            "elementType": "p",
+                            "style": {
+                              "fontSize": "14px",
+                              "color": "#666666"
+                            },
+                            "content": "CTO, TechVision Inc."
+                          }
+                        ]
+                      }
+                    ],
+                    "animations": [
+                      {
+                        "type": "float",
+                        "trigger": "time",
+                        "speed": 0.3,
+                        "amplitude": 0.1
+                      }
+                    ]
+                  },
+                  {
+                    "id": "testimonial-card-2",
+                    "type": "group",
+                    "transform": {
+                      "position": [0, 0, -1],
+                      "rotation": [0, 0, 0],
+                      "scale": [1.1, 1.1, 1.1]
+                    },
+                    "children": [
+                      {
+                        "id": "card-2-bg",
+                        "type": "mesh",
+                        "geometry": {
+                          "type": "box",
+                          "args": [3, 2, 0.1]
+                        },
+                        "material": {
+                          "type": "MeshPhysicalMaterial",
+                          "params": {
+                            "color": "#ffffff",
+                            "metalness": 0.1,
+                            "roughness": 0.2,
+                            "transparent": true,
+                            "opacity": 0.9,
+                            "side": 2
+                          }
+                        }
+                      },
+                      {
+                        "id": "card-2-content",
+                        "type": "html3D",
+                        "transform": {
+                          "position": [0, 0, 0.06],
+                          "rotation": [0, 0, 0],
+                          "scale": [1, 1, 1]
+                        },
+                        "style": {
+                          "width": "280px",
+                          "padding": "20px",
+                          "textAlign": "center",
+                          "color": "#121212"
+                        },
+                        "children": [
+                          {
+                            "id": "testimonial-2-avatar",
+                            "type": "jsxElement",
+                            "elementType": "img",
+                            "style": {
+                              "width": "80px",
+                              "height": "80px",
+                              "borderRadius": "50%",
+                              "margin": "0 auto 20px"
+                            },
+                            "attributes": {
+                              "src": "/images/avatar-2.jpg",
+                              "alt": "Client 2"
+                            }
+                          },
+                          {
+                            "id": "testimonial-2-text",
+                            "type": "jsxElement",
+                            "elementType": "p",
+                            "style": {
+                              "fontSize": "16px",
+                              "lineHeight": "1.6",
+                              "fontStyle": "italic",
+                              "marginBottom": "20px"
+                            },
+                            "content": "\"We've seen a 300% increase in customer engagement since implementing this solution. The results speak for themselves.\""
+                          },
+                          {
+                            "id": "testimonial-2-author",
+                            "type": "jsxElement",
+                            "elementType": "h4",
+                            "style": {
+                              "fontSize": "18px",
+                              "fontWeight": "bold",
+                              "marginBottom": "5px"
+                            },
+                            "content": "Michael Chen"
+                          },
+                          {
+                            "id": "testimonial-2-position",
+                            "type": "jsxElement",
+                            "elementType": "p",
+                            "style": {
+                              "fontSize": "14px",
+                              "color": "#666666"
+                            },
+                            "content": "Marketing Director, Global Solutions"
+                          }
+                        ]
+                      }
+                    ],
+                    "animations": [
+                      {
+                        "type": "float",
+                        "trigger": "time",
+                        "speed": 0.4,
+                        "amplitude": 0.12,
+                        "offset": 0.5
+                      }
+                    ]
+                  },
+                  {
+                    "id": "testimonial-card-3",
+                    "type": "group",
+                    "transform": {
+                      "position": [5, 0, 0],
+                      "rotation": [0, -0.2, 0],
+                      "scale": [1, 1, 1]
+                    },
+                    "children": [
+                      {
+                        "id": "card-3-bg",
+                        "type": "mesh",
+                        "geometry": {
+                          "type": "box",
+                          "args": [3, 2, 0.1]
+                        },
+                        "material": {
+                          "type": "MeshPhysicalMaterial",
+                          "params": {
+                            "color": "#ffffff",
+                            "metalness": 0.1,
+                            "roughness": 0.2,
+                            "transparent": true,
+                            "opacity": 0.9,
+                            "side": 2
+                          }
+                        }
+                      },
+                      {
+                        "id": "card-3-content",
+                        "type": "html3D",
+                        "transform": {
+                          "position": [0, 0, 0.06],
+                          "rotation": [0, 0, 0],
+                          "scale": [1, 1, 1]
+                        },
+                        "style": {
+                          "width": "280px",
+                          "padding": "20px",
+                          "textAlign": "center",
+                          "color": "#121212"
+                        },
+                        "children": [
+                          {
+                            "id": "testimonial-3-avatar",
+                            "type": "jsxElement",
+                            "elementType": "img",
+                            "style": {
+                              "width": "80px",
+                              "height": "80px",
+                              "borderRadius": "50%",
+                              "margin": "0 auto 20px"
+                            },
+                            "attributes": {
+                              "src": "/images/avatar-3.jpg",
+                              "alt": "Client 3"
+                            }
+                          },
+                          {
+                            "id": "testimonial-3-text",
+                            "type": "jsxElement",
+                            "elementType": "p",
+                            "style": {
+                              "fontSize": "16px",
+                              "lineHeight": "1.6",
+                              "fontStyle": "italic",
+                              "marginBottom": "20px"
+                            },
+                            "content": "\"The level of detail and interactivity provided by this platform has helped us communicate complex ideas to stakeholders with ease.\""
+                          },
+                          {
+                            "id": "testimonial-3-author",
+                            "type": "jsxElement",
+                            "elementType": "h4",
+                            "style": {
+                              "fontSize": "18px",
+                              "fontWeight": "bold",
+                              "marginBottom": "5px"
+                            },
+                            "content": "Elena Rodriguez"
+                          },
+                          {
+                            "id": "testimonial-3-position",
+                            "type": "jsxElement",
+                            "elementType": "p",
+                            "style": {
+                              "fontSize": "14px",
+                              "color": "#666666"
+                            },
+                            "content": "Product Lead, Innovative Labs"
+                          }
+                        ]
+                      }
+                    ],
+                    "animations": [
+                      {
+                        "type": "float",
+                        "trigger": "time",
+                        "speed": 0.35,
+                        "amplitude": 0.11,
+                        "offset": 0.25
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "contact-section",
+        "type": "jsxContainer",
+        "style": {
+          "padding": "100px 0",
+          "backgroundColor": "#121212",
+          "color": "#ffffff"
+        },
+        "children": [
+          {
+            "id": "contact-title",
+            "type": "jsxElement",
+            "elementType": "h2",
+            "style": {
+              "textAlign": "center",
+              "fontSize": "48px",
+              "marginBottom": "60px"
+            },
+            "content": "Get In Touch"
+          },
+          {
+            "id": "contact-content",
+            "type": "jsxElement",
+            "elementType": "div",
+            "style": {
+              "display": "flex",
+              "maxWidth": "1200px",
+              "margin": "0 auto",
+              "gap": "40px"
+            },
+            "children": [
+              {
+                "id": "contact-form-container",
+                "type": "jsxElement",
+                "elementType": "div",
+                "style": {
+                  "flex": "1",
+                  "padding": "20px"
+                },
+                "children": [
+                  {
+                    "id": "contact-form",
+                    "type": "jsxElement",
+                    "elementType": "form",
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column",
+                      "gap": "20px"
+                    },
+                    "children": [
+                      {
+                        "id": "name-field",
+                        "type": "jsxElement",
+                        "elementType": "input",
+                        "style": {
+                          "padding": "15px",
+                          "borderRadius": "4px",
+                          "border": "none",
+                          "fontSize": "16px"
+                        },
+                        "attributes": {
+                          "type": "text",
+                          "placeholder": "Your Name",
+                          "required": true
+                        }
+                      },
+                      {
+                        "id": "email-field",
+                        "type": "jsxElement",
+                        "elementType": "input",
+                        "style": {
+                          "padding": "15px",
+                          "borderRadius": "4px",
+                          "border": "none",
+                          "fontSize": "16px"
+                        },
+                        "attributes": {
+                          "type": "email",
+                          "placeholder": "Your Email",
+                          "required": true
+                        }
+                      },
+                      {
+                        "id": "message-field",
+                        "type": "jsxElement",
+                        "elementType": "textarea",
+                        "style": {
+                          "padding": "15px",
+                          "borderRadius": "4px",
+                          "border": "none",
+                          "fontSize": "16px",
+                          "minHeight": "150px",
+                          "resize": "vertical"
+                        },
+                        "attributes": {
+                          "placeholder": "Your Message",
+                          "required": true
+                        }
+                      },
+                      {
+                        "id": "submit-button",
+                        "type": "jsxElement",
+                        "elementType": "button",
+                        "style": {
+                          "padding": "15px",
+                          "backgroundColor": "#D4AF37",
+                          "color": "#000000",
+                          "border": "none",
+                          "borderRadius": "4px",
+                          "fontSize": "16px",
+                          "fontWeight": "bold",
+                          "cursor": "pointer"
+                        },
+                        "content": "Send Message",
+                        "attributes": {
+                          "type": "submit"
+                        },
+                        "events": {
+                          "onClick": "submitContactForm"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "contact-map-container",
+                "type": "jsxElement",
+                "elementType": "div",
+                "style": {
+                  "flex": "1",
+                  "position": "relative",
+                  "height": "400px"
+                },
+                "children": [
+                  {
+                    "id": "contact-globe",
+                    "type": "container3D",
+                    "transform": {
+                      "position": [0, 0, 0],
+                      "rotation": [0, 0, 0],
+                      "scale": [1, 1, 1]
+                    },
+                    "settings": {
+                      "camera": {
+                        "position": [0, 0, 10],
+                        "fov": 45
+                      },
+                      "renderer": {
+                        "antialias": true,
+                        "alpha": true
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "globe-mesh",
+                        "type": "mesh",
+                        "geometry": {
+                          "type": "sphere",
+                          "args": [2, 64, 64]
+                        },
+                        "material": {
+                          "type": "MeshPhysicalMaterial",
+                          "params": {
+                            "map": "/textures/earth_map.jpg",
+                            "bumpMap": "/textures/earth_bump.jpg",
+                            "bumpScale": 0.05,
+                            "specularMap": "/textures/earth_specular.jpg",
+                            "emissiveMap": "/textures/earth_lights.jpg",
+                            "emissive": "#ffffff",
+                            "emissiveIntensity": 0.2,
+                            "metalness": 0.1,
+                            "roughness": 0.7
+                          }
+                        },
+                        "transform": {
+                          "position": [0, 0, 0],
+                          "rotation": [0.1, 0, 0],
+                          "scale": [1, 1, 1]
+                        },
+                        "animations": [
+                          {
+                            "type": "rotation",
+                            "trigger": "time",
+                            "axis": "y",
+                            "from": 0,
+                            "to": 360,
+                            "duration": 60,
+                            "loop": true
+                          }
+                        ]
+                      },
+                      {
+                        "id": "office-marker",
+                        "type": "group",
+                        "transform": {
+                          "position": [0, 0, 2.1],
+                          "rotation": [0, 0, 0],
+                          "scale": [1, 1, 1]
+                        },
+                        "children": [
+                          {
+                            "id": "marker-pin",
+                            "type": "mesh",
+                            "geometry": {
+                              "type": "cone",
+                              "args": [0.05, 0.2, 16]
+                            },
+                            "material": {
+                              "type": "MeshBasicMaterial",
+                              "params": {
+                                "color": "#D4AF37"
+                              }
+                            },
+                            "transform": {
+                              "position": [0, 0.1, 0],
+                              "rotation": [Math.PI, 0, 0],
+                              "scale": [1, 1, 1]
+                            }
+                          },
+                          {
+                            "id": "marker-dot",
+                            "type": "mesh",
+                            "geometry": {
+                              "type": "sphere",
+                              "args": [0.05, 16, 16]
+                            },
+                            "material": {
+                              "type": "MeshBasicMaterial",
+                              "params": {
+                                "color": "#D4AF37"
+                              }
+                            },
+                            "transform": {
+                              "position": [0, 0, 0],
+                              "rotation": [0, 0, 0],
+                              "scale": [1, 1, 1]
+                            }
+                          }
+                        ],
+                        "animations": [
+                          {
+                            "type": "float",
+                            "trigger": "time",
+                            "speed": 1,
+                            "amplitude": 0.05
+                          }
+                        ]
+                      },
+                      {
+                        "id": "ambient-light",
+                        "type": "light",
+                        "lightType": "ambient",
+                        "color": "#404050",
+                        "intensity": 0.5
+                      },
+                      {
+                        "id": "directional-light",
+                        "type": "light",
+                        "lightType": "directional",
+                        "color": "#ffffff",
+                        "intensity": 1.0,
+                        "transform": {
+                          "position": [5, 3, 5]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "footer-section",
+        "type": "jsxContainer",
+        "style": {
+          "padding": "50px 0",
+          "backgroundColor": "#080808",
+          "color": "#ffffff"
+        },
+        "children": [
+          {
+            "id": "footer-content",
+            "type": "jsxElement",
+            "elementType": "div",
+            "style": {
+              "maxWidth": "1200px",
+              "margin": "0 auto",
+              "display": "flex",
+              "justifyContent": "space-between",
+              "flexWrap": "wrap",
+              "padding": "0 20px"
+            },
+            "children": [
+              {
+                "id": "footer-logo",
+                "type": "jsxElement",
+                "elementType": "div",
+                "style": {
+                  "marginBottom": "20px"
+                },
+                "content": "NEXUS"
+              },
+              {
+                "id": "footer-copyright",
+                "type": "jsxElement",
+                "elementType": "div",
+                "style": {
+                  "fontSize": "14px",
+                  "color": "#777777"
+                },
+                "content": "© 2025 NEXUS. All rights reserved."
+              },
+              {
+                "id": "footer-social",
+                "type": "jsxElement",
+                "elementType": "div",
+                "style": {
+                  "display": "flex",
+                  "gap": "15px"
+                },
+                "children": [
+                  {
+                    "id": "social-1",
+                    "type": "jsxElement",
+                    "elementType": "a",
+                    "style": {
+                      "color": "#ffffff",
+                      "fontSize": "18px"
+                    },
+                    "content": "Twitter"
+                  },
+                  {
+                    "id": "social-2",
+                    "type": "jsxElement",
+                    "elementType": "a",
+                    "style": {
+                      "color": "#ffffff",
+                      "fontSize": "18px"
+                    },
+                    "content": "LinkedIn"
+                  },
+                  {
+                    "id": "social-3",
+                    "type": "jsxElement",
+                    "elementType": "a",
+                    "style": {
+                      "color": "#ffffff",
+                      "fontSize": "18px"
+                    },
+                    "content": "Instagram"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

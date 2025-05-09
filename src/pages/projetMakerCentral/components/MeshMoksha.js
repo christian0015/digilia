@@ -338,7 +338,7 @@ const MeshMoksha = ({ template, onAddTemplate }) => {
                 borderRadius: "4px",
                 cursor: "pointer",
               }}
-              onClick={() => onAddTemplate(template.template)}
+              onClick={() => onAddContainer(template.template)}
             >
               Ajouter
             </button>
