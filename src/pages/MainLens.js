@@ -906,7 +906,8 @@ const ElementJSX = ({ element }) => {
             </div>
           </div>
           
-          <Rnd
+          <div
+          // <Rnd
             size={{ width: size.width, height: size.height }}
             position={{ x: position.x, y: position.y }}
             onDragStop={(e, d) => setPosition({ x: d.x, y: d.y })}
@@ -926,7 +927,8 @@ const ElementJSX = ({ element }) => {
           >
             <button onClick={toggleActiveComponent}>Close frame</button>
             {activeComponent}
-          </Rnd>
+          </div>
+          {/* </Rnd> */}
           
         </div>
         
