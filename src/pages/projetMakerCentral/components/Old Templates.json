@@ -1,0 +1,727 @@
+{
+  "container": {
+    "id": "jsx_nano1ABC23",
+    "type": "jsxElement",
+    "elementType": "div",
+    "name": "Main Container",
+    "style": {
+      "position": "relative",
+      "width": "100%"
+    },
+    "children": [
+      {
+        "id": "sec_nano2DEF45",
+        "type": "jsxElement",
+        "elementType": "section",
+        "name": "Landing Section",
+        "style": {
+          "height": "100vh",
+          "backgroundColor": "#121212",
+          "position": "relative",
+          "overflow": "hidden",
+          "color": "#ffffff"
+        },
+        "children": [
+          {
+            "id": "3d_nano3GHI67",
+            "type": "3DElement",
+            "elementType": "particleSystem",
+            "name": "Background Particles",
+            "transform": {
+              "position": [0, 0, -5]
+            },
+            "settings": {
+              "count": 2000,
+              "size": 0.03,
+              "color": "#D4AF37",
+              "spread": 10,
+              "blur": true
+            }
+          },
+          {
+            "id": "jsx_nano4JKL89",
+            "type": "jsxElement",
+            "elementType": "nav",
+            "name": "Navigation",
+            "style": {
+              "position": "absolute",
+              "top": "0",
+              "left": "0",
+              "right": "0",
+              "padding": "20px",
+              "display": "flex",
+              "justifyContent": "space-between",
+              "alignItems": "center",
+              "zIndex": 100
+            },
+            "children": [
+              {
+                "id": "3d_nano5MNO01",
+                "type": "3DElement",
+                "elementType": "text3D",
+                "name": "3D Logo",
+                "content": "NEXUS",
+                "transform": {
+                  "position": [0, 0, 0],
+                  "scale": [0.5, 0.5, 0.5]
+                },
+                "settings": {
+                  "font": "/fonts/3d/Roboto_Bold.json",
+                  "size": 1,
+                  "height": 0.2,
+                  "material": {
+                    "color": "#D4AF37",
+                    "metalness": 0.9
+                  }
+                }
+              },
+              {
+                "id": "jsx_nano6PQR23",
+                "type": "jsxElement",
+                "elementType": "div",
+                "name": "Menu Container",
+                "style": {
+                  "display": "flex",
+                  "gap": "20px"
+                },
+                "children": [
+                  {
+                    "id": "jsx_nano7STU45",
+                    "type": "jsxElement",
+                    "elementType": "a",
+                    "name": "Menu Item",
+                    "style": {
+                      "cursor": "pointer",
+                      "textDecoration": "none",
+                      "color": "#ffffff"
+                    },
+                    "content": "Home"
+                  },
+                  {
+                    "id": "jsx_nano8VWX67",
+                    "type": "jsxElement",
+                    "elementType": "a",
+                    "name": "Menu Item",
+                    "style": {
+                      "cursor": "pointer",
+                      "textDecoration": "none",
+                      "color": "#ffffff"
+                    },
+                    "content": "Products"
+                  },
+                  {
+                    "id": "jsx_nano9YZA89",
+                    "type": "jsxElement",
+                    "elementType": "a",
+                    "name": "Menu Item",
+                    "style": {
+                      "cursor": "pointer",
+                      "textDecoration": "none",
+                      "color": "#ffffff"
+                    },
+                    "content": "Contact"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "jsx_nano1BCD01",
+            "type": "jsxElement",
+            "elementType": "div",
+            "name": "Hero Content",
+            "style": {
+              "position": "relative",
+              "width": "100%",
+              "height": "100%",
+              "display": "flex",
+              "flexDirection": "column",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "textAlign": "center",
+              "zIndex": 10
+            },
+            "children": [
+              {
+                "id": "jsx_nano2EFG23",
+                "type": "jsxElement",
+                "elementType": "h1",
+                "name": "Hero Title",
+                "style": {
+                  "fontSize": "64px",
+                  "fontWeight": "bold",
+                  "marginBottom": "24px",
+                  "background": "linear-gradient(90deg, #D4AF37, #FFFFFF)",
+                  "WebkitBackgroundClip": "text",
+                  "WebkitTextFillColor": "transparent"
+                },
+                "content": "The Future Is Now"
+              },
+              {
+                "id": "jsx_nano3HIJ45",
+                "type": "jsxElement",
+                "elementType": "p",
+                "name": "Hero Subtitle",
+                "style": {
+                  "fontSize": "24px",
+                  "maxWidth": "600px",
+                  "marginBottom": "40px",
+                  "lineHeight": "1.5"
+                },
+                "content": "Experience the perfect blend of reality and digital innovation with our cutting-edge technology."
+              },
+              {
+                "id": "jsx_nano4KLM67",
+                "type": "jsxElement",
+                "elementType": "div",
+                "name": "Button Container",
+                "style": {
+                  "display": "flex",
+                  "gap": "16px"
+                },
+                "children": [
+                  {
+                    "id": "jsx_nano5NOP89",
+                    "type": "jsxElement",
+                    "elementType": "button",
+                    "name": "CTA Button",
+                    "style": {
+                      "padding": "12px 24px",
+                      "backgroundColor": "#D4AF37",
+                      "color": "#000000",
+                      "border": "none",
+                      "borderRadius": "4px",
+                      "fontSize": "16px",
+                      "fontWeight": "bold",
+                      "cursor": "pointer"
+                    },
+                    "content": "Explore Now",
+                    "events": {
+                      "onClick": "exploreNow"
+                    }
+                  },
+                  {
+                    "id": "jsx_nano6QRS01",
+                    "type": "jsxElement",
+                    "elementType": "button",
+                    "name": "Secondary Button",
+                    "style": {
+                      "padding": "12px 24px",
+                      "backgroundColor": "transparent",
+                      "color": "#ffffff",
+                      "border": "1px solid #ffffff",
+                      "borderRadius": "4px",
+                      "fontSize": "16px",
+                      "fontWeight": "bold",
+                      "cursor": "pointer"
+                    },
+                    "content": "Learn More",
+                    "events": {
+                      "onClick": "learnMore"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3d_nano7TUV23",
+            "type": "3DElement",
+            "elementType": "model",
+            "name": "Hero 3D Model",
+            "asset": "/models/product-showcase.glb",
+            "transform": {
+              "position": [0, 0, -3],
+              "rotation": [0, 0, 0],
+              "scale": [1, 1, 1]
+            },
+            "animations": [
+              {
+                "type": "rotation",
+                "axis": "y",
+                "speed": 0.3
+              },
+              {
+                "type": "hoverScale",
+                "from": 1,
+                "to": 1.1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sec_nano8WXY45",
+        "type": "jsxElement",
+        "elementType": "section",
+        "name": "Features Section",
+        "style": {
+          "padding": "100px 0",
+          "backgroundColor": "#ffffff",
+          "color": "#121212"
+        },
+        "children": [
+          {
+            "id": "jsx_nano9ZAB67",
+            "type": "jsxElement",
+            "elementType": "h2",
+            "name": "Section Title",
+            "style": {
+              "textAlign": "center",
+              "fontSize": "48px",
+              "marginBottom": "60px"
+            },
+            "content": "Key Features"
+          },
+          {
+            "id": "jsx_nano1CDE89",
+            "type": "jsxElement",
+            "elementType": "div",
+            "name": "Features Grid",
+            "style": {
+              "display": "grid",
+              "gridTemplateColumns": "repeat(3, 1fr)",
+              "gap": "40px",
+              "maxWidth": "1200px",
+              "margin": "0 auto",
+              "padding": "0 20px"
+            },
+            "children": [
+              {
+                "id": "jsx_nano2FGH01",
+                "type": "jsxElement",
+                "elementType": "div",
+                "name": "Feature Card",
+                "style": {
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "alignItems": "center",
+                  "textAlign": "center"
+                },
+                "children": [
+                  {
+                    "id": "3d_nano3IJK23",
+                    "type": "3DElement",
+                    "elementType": "interactiveMesh",
+                    "name": "Feature Icon",
+                    "geometry": {
+                      "type": "torusKnot",
+                      "args": [1, 0.4, 100, 16]
+                    },
+                    "material": {
+                      "color": "#D4AF37",
+                      "metalness": 0.7
+                    },
+                    "animations": [
+                      {
+                        "type": "hoverScale",
+                        "from": 1,
+                        "to": 1.2
+                      }
+                    ]
+                  },
+                  {
+                    "id": "jsx_nano4LMN45",
+                    "type": "jsxElement",
+                    "elementType": "h3",
+                    "name": "Feature Title",
+                    "style": {
+                      "fontSize": "24px",
+                      "marginBottom": "16px"
+                    },
+                    "content": "Immersive Experience"
+                  },
+                  {
+                    "id": "jsx_nano5OPQ67",
+                    "type": "jsxElement",
+                    "elementType": "p",
+                    "name": "Feature Description",
+                    "style": {
+                      "fontSize": "16px",
+                      "lineHeight": "1.6"
+                    },
+                    "content": "Dive into a fully immersive digital environment that responds to your every move and decision."
+                  }
+                ]
+              },
+              {
+                "id": "jsx_nano6RST89",
+                "type": "jsxElement",
+                "elementType": "div",
+                "name": "Feature Card",
+                "style": {
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "alignItems": "center",
+                  "textAlign": "center"
+                },
+                "children": [
+                  {
+                    "id": "3d_nano7UVW01",
+                    "type": "3DElement",
+                    "elementType": "model",
+                    "name": "Feature Icon",
+                    "asset": "/models/feature-2.glb",
+                    "transform": {
+                      "position": [0, 0, -5],
+                      "scale": [1, 1, 1]
+                    },
+                    "animations": [
+                      {
+                        "type": "rotation",
+                        "axis": "y",
+                        "speed": 0.5
+                      }
+                    ]
+                  },
+                  {
+                    "id": "jsx_nano8XYZ23",
+                    "type": "jsxElement",
+                    "elementType": "h3",
+                    "name": "Feature Title",
+                    "style": {
+                      "fontSize": "24px",
+                      "marginBottom": "16px"
+                    },
+                    "content": "Advanced Analytics"
+                  },
+                  {
+                    "id": "jsx_nano9ABC45",
+                    "type": "jsxElement",
+                    "elementType": "p",
+                    "name": "Feature Description",
+                    "style": {
+                      "fontSize": "16px",
+                      "lineHeight": "1.6"
+                    },
+                    "content": "Gain insights from powerful data visualization and analysis tools that reveal patterns and opportunities."
+                  }
+                ]
+              },
+              {
+                "id": "jsx_nano1DEF67",
+                "type": "jsxElement",
+                "elementType": "div",
+                "name": "Feature Card",
+                "style": {
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "alignItems": "center",
+                  "textAlign": "center"
+                },
+                "children": [
+                  {
+                    "id": "3d_nano2GHI89",
+                    "type": "3DElement",
+                    "elementType": "video3D",
+                    "name": "Feature Video",
+                    "src": "/videos/feature-demo.mp4",
+                    "transform": {
+                      "position": [0, 0, -5],
+                      "scale": [2, 1.12, 1]
+                    },
+                    "settings": {
+                      "autoplay": true,
+                      "loop": true,
+                      "muted": true
+                    }
+                  },
+                  {
+                    "id": "jsx_nano3JKL01",
+                    "type": "jsxElement",
+                    "elementType": "h3",
+                    "name": "Feature Title",
+                    "style": {
+                      "fontSize": "24px",
+                      "marginBottom": "16px"
+                    },
+                    "content": "Seamless Integration"
+                  },
+                  {
+                    "id": "jsx_nano4MNO23",
+                    "type": "jsxElement",
+                    "elementType": "p",
+                    "name": "Feature Description",
+                    "style": {
+                      "fontSize": "16px",
+                      "lineHeight": "1.6"
+                    },
+                    "content": "Connect with all your existing tools and platforms without missing a beat or losing data."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sec_nano5PQR45",
+        "type": "jsxElement",
+        "elementType": "section",
+        "name": "Showcase Section",
+        "style": {
+          "padding": "100px 0",
+          "backgroundColor": "#121212",
+          "color": "#ffffff"
+        },
+        "children": [
+          {
+            "id": "jsx_nano6STU67",
+            "type": "jsxElement",
+            "elementType": "h2",
+            "name": "Section Title",
+            "style": {
+              "textAlign": "center",
+              "fontSize": "48px",
+              "marginBottom": "60px"
+            },
+            "content": "Interactive Showcase"
+          },
+          {
+            "id": "3d_nano7VWX89",
+            "type": "3DElement",
+            "elementType": "showcase",
+            "name": "3D Showcase",
+            "settings": {
+              "camera": {
+                "position": [0, 2, 10],
+                "fov": 45
+              },
+              "orbitControls": true
+            },
+            "children": [
+              {
+                "id": "3d_nano8YZA01",
+                "type": "3DElement",
+                "elementType": "environment",
+                "name": "Showcase Environment",
+                "preset": "sunset"
+              },
+              {
+                "id": "3d_nano9BCD23",
+                "type": "3DElement",
+                "elementType": "model",
+                "name": "Product Model",
+                "asset": "/models/product-full.glb",
+                "animations": [
+                  {
+                    "type": "rotation",
+                    "axis": "y",
+                    "speed": 0.1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "jsx_nano1EFG45",
+            "type": "jsxElement",
+            "elementType": "div",
+            "name": "Showcase Controls",
+            "style": {
+              "display": "flex",
+              "justifyContent": "center",
+              "gap": "20px",
+              "marginTop": "40px"
+            },
+            "children": [
+              {
+                "id": "jsx_nano2HIJ67",
+                "type": "jsxElement",
+                "elementType": "button",
+                "name": "View Button",
+                "style": {
+                  "padding": "12px 24px",
+                  "backgroundColor": "#D4AF37",
+                  "color": "#000000",
+                  "border": "none",
+                  "borderRadius": "4px",
+                  "cursor": "pointer",
+                  "fontWeight": "bold"
+                },
+                "content": "View 1",
+                "events": {
+                  "onClick": "changeView1"
+                }
+              },
+              {
+                "id": "jsx_nano3KLM89",
+                "type": "jsxElement",
+                "elementType": "button",
+                "name": "View Button",
+                "style": {
+                  "padding": "12px 24px",
+                  "backgroundColor": "#1E90FF",
+                  "color": "#000000",
+                  "border": "none",
+                  "borderRadius": "4px",
+                  "cursor": "pointer",
+                  "fontWeight": "bold"
+                },
+                "content": "View 2",
+                "events": {
+                  "onClick": "changeView2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sec_nano4NOP01",
+        "type": "jsxElement",
+        "elementType": "section",
+        "name": "Contact Section",
+        "style": {
+          "padding": "100px 0",
+          "backgroundColor": "#121212",
+          "color": "#ffffff"
+        },
+        "children": [
+          {
+            "id": "jsx_nano5QRS23",
+            "type": "jsxElement",
+            "elementType": "h2",
+            "name": "Section Title",
+            "style": {
+              "textAlign": "center",
+              "fontSize": "48px",
+              "marginBottom": "60px"
+            },
+            "content": "Get In Touch"
+          },
+          {
+            "id": "jsx_nano6TUV45",
+            "type": "jsxElement",
+            "elementType": "div",
+            "name": "Contact Content",
+            "style": {
+              "display": "flex",
+              "maxWidth": "1200px",
+              "margin": "0 auto",
+              "gap": "40px"
+            },
+            "children": [
+              {
+                "id": "jsx_nano7WXY67",
+                "type": "jsxElement",
+                "elementType": "div",
+                "name": "Form Container",
+                "style": {
+                  "flex": "1",
+                  "padding": "20px"
+                },
+                "children": [
+                  {
+                    "id": "jsx_nano8ZAB89",
+                    "type": "jsxElement",
+                    "elementType": "form",
+                    "name": "Contact Form",
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column",
+                      "gap": "20px"
+                    },
+                    "children": [
+                      {
+                        "id": "jsx_nano9CDE01",
+                        "type": "jsxElement",
+                        "elementType": "input",
+                        "name": "Name Field",
+                        "style": {
+                          "padding": "15px",
+                          "borderRadius": "4px",
+                          "border": "none",
+                          "fontSize": "16px"
+                        },
+                        "attributes": {
+                          "type": "text",
+                          "placeholder": "Your Name",
+                          "required": true
+                        }
+                      },
+                      {
+                        "id": "jsx_nano1FGH23",
+                        "type": "jsxElement",
+                        "elementType": "input",
+                        "name": "Email Field",
+                        "style": {
+                          "padding": "15px",
+                          "borderRadius": "4px",
+                          "border": "none",
+                          "fontSize": "16px"
+                        },
+                        "attributes": {
+                          "type": "email",
+                          "placeholder": "Your Email",
+                          "required": true
+                        }
+                      },
+                      {
+                        "id": "jsx_nano2IJK45",
+                        "type": "jsxElement",
+                        "elementType": "textarea",
+                        "name": "Message Field",
+                        "style": {
+                          "padding": "15px",
+                          "borderRadius": "4px",
+                          "border": "none",
+                          "fontSize": "16px",
+                          "minHeight": "150px",
+                          "resize": "vertical"
+                        },
+                        "attributes": {
+                          "placeholder": "Your Message",
+                          "required": true
+                        }
+                      },
+                      {
+                        "id": "jsx_nano3LMN67",
+                        "type": "jsxElement",
+                        "elementType": "button",
+                        "name": "Submit Button",
+                        "style": {
+                          "padding": "15px",
+                          "backgroundColor": "#D4AF37",
+                          "color": "#000000",
+                          "border": "none",
+                          "borderRadius": "4px",
+                          "fontSize": "16px",
+                          "fontWeight": "bold",
+                          "cursor": "pointer"
+                        },
+                        "content": "Send Message",
+                        "attributes": {
+                          "type": "submit"
+                        },
+                        "events": {
+                          "onClick": "submitContactForm"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "3d_nano4OPQ89",
+                "type": "3DElement",
+                "elementType": "globe",
+                "name": "Interactive Globe",
+                "settings": {
+                  "texture": "/textures/earth.jpg",
+                  "markers": [
+                    {
+                      "lat": 48.8566,
+                      "lng": 2.3522,
+                      "color": "#D4AF37"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

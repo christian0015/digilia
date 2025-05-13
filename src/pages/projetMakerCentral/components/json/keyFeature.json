@@ -1,0 +1,220 @@
+{
+    "template": {
+        "id": "template-3d-jsx-hybrid",
+        "type": "template",
+        "name": "Hybrid Key Features -JSX Template",
+        "metadata": {
+            "created": "2025-05-08",
+            "author": "Designer Pro",
+            "version": "1.1.0"
+        },
+        "jsxComponents": [
+            {
+                "id": "landing-section",
+                "type": "jsxContainer",
+                "style": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "width": "100%",
+                    "height": "100vh",
+                    "backgroundColor": "#121212",
+                    "color": "#ffffff",
+                    "overflow": "hidden",
+                    "position": "relative"
+                },
+                "children": [
+                    {
+                        "id": "canvas-container",
+                        "type": "jsxElement",
+                        "elementType": "div",
+                        "style": {
+                            "position": "absolute",
+                            "top": "0",
+                            "left": "0",
+                            "width": "100%",
+                            "height": "100%",
+                            "zIndex": "5"
+                        },
+                        "canvasRef": "scene-3d"
+                    },
+                    {
+                        "id": "features-section",
+                        "type": "jsxContainer",
+                        "style": {
+                            "display": "flex",
+                            "flexDirection": "column",
+                            "padding": "100px 0",
+                            "backgroundColor": "#ffffff",
+                            "color": "#121212"
+                        },
+                        "children": [
+                            {
+                                "id": "features-title",
+                                "type": "jsxElement",
+                                "elementType": "h2",
+                                "style": {
+                                    "textAlign": "center",
+                                    "fontSize": "48px",
+                                    "marginBottom": "60px"
+                                },
+                                "content": "Key Features"
+                            },
+                            {
+                                "id": "features-grid",
+                                "type": "jsxElement",
+                                "elementType": "div",
+                                "style": {
+                                    "display": "grid",
+                                    "gridTemplateColumns": "repeat(3, 1fr)",
+                                    "gap": "40px",
+                                    "maxWidth": "1200px",
+                                    "margin": "0 auto",
+                                    "padding": "0 20px"
+                                },
+                                "children": [
+                                    {
+                                        "id": "feature-1",
+                                        "type": "jsxElement",
+                                        "elementType": "div",
+                                        "style": {
+                                            "display": "flex",
+                                            "flexDirection": "column",
+                                            "alignItems": "center",
+                                            "textAlign": "center"
+                                        },
+                                        "children": [
+                                            {
+                                                "id": "feature-1-icon-container",
+                                                "type": "jsxElement",
+                                                "elementType": "div",
+                                                "style": {
+                                                    "width": "300px",
+                                                    "height": "300px",
+                                                    "marginBottom": "24px",
+                                                    "position": "relative"
+                                                },
+                                                "canvasRef": "feature-1-3d"
+                                            },
+                                            {
+                                                "id": "feature-1-title",
+                                                "type": "jsxElement",
+                                                "elementType": "h3",
+                                                "style": {
+                                                    "fontSize": "24px",
+                                                    "marginBottom": "16px"
+                                                },
+                                                "content": "Immersive Experience"
+                                            },
+                                            {
+                                                "id": "feature-1-desc",
+                                                "type": "jsxElement",
+                                                "elementType": "p",
+                                                "style": {
+                                                    "fontSize": "16px",
+                                                    "lineHeight": "1.6"
+                                                },
+                                                "content": "Dive into a fully immersive digital environment that responds to your every move and decision."
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "feature-2",
+                                        "type": "jsxElement",
+                                        "elementType": "div",
+                                        "style": {
+                                            "display": "flex",
+                                            "flexDirection": "column",
+                                            "alignItems": "center",
+                                            "textAlign": "center"
+                                        },
+                                        "children": [
+                                            {
+                                                "id": "feature-2-icon-container",
+                                                "type": "jsxElement",
+                                                "elementType": "div",
+                                                "style": {
+                                                    "width": "300px",
+                                                    "height": "300px",
+                                                    "marginBottom": "24px",
+                                                    "position": "relative"
+                                                },
+                                                "canvasRef": "feature-2-3d"
+                                            },
+                                            {
+                                                "id": "feature-2-title",
+                                                "type": "jsxElement",
+                                                "elementType": "h3",
+                                                "style": {
+                                                    "fontSize": "24px",
+                                                    "marginBottom": "16px"
+                                                },
+                                                "content": "Advanced Analytics"
+                                            },
+                                            {
+                                                "id": "feature-2-desc",
+                                                "type": "jsxElement",
+                                                "elementType": "p",
+                                                "style": {
+                                                    "fontSize": "16px",
+                                                    "lineHeight": "1.6"
+                                                },
+                                                "content": "Gain insights from powerful data visualization and analysis tools that reveal patterns and opportunities."
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "feature-3",
+                                        "type": "jsxElement",
+                                        "elementType": "div",
+                                        "style": {
+                                            "display": "flex",
+                                            "flexDirection": "column",
+                                            "alignItems": "center",
+                                            "textAlign": "center"
+                                        },
+                                        "children": [
+                                            {
+                                                "id": "feature-3-icon-container",
+                                                "type": "jsxElement",
+                                                "elementType": "div",
+                                                "style": {
+                                                    "width": "300px",
+                                                    "height": "300px",
+                                                    "marginBottom": "24px",
+                                                    "position": "relative"
+                                                },
+                                                "canvasRef": "feature-3-3d"
+                                            },
+                                            {
+                                                "id": "feature-3-title",
+                                                "type": "jsxElement",
+                                                "elementType": "h3",
+                                                "style": {
+                                                    "fontSize": "24px",
+                                                    "marginBottom": "16px"
+                                                },
+                                                "content": "Seamless Integration"
+                                            },
+                                            {
+                                                "id": "feature-3-desc",
+                                                "type": "jsxElement",
+                                                "elementType": "p",
+                                                "style": {
+                                                    "fontSize": "16px",
+                                                    "lineHeight": "1.6"
+                                                },
+                                                "content": "Connect with all your existing tools and platforms without missing a beat or losing data."
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

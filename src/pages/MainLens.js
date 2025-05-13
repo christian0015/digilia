@@ -192,6 +192,14 @@ const Element3D = ({ element }) => {
   };
 
   switch(element?.type) {
+    case 'group':
+      return (
+        <group ref={ref}>
+          {element.children?.map((child) => (
+            <Element3D key={child.id} element={child} />
+          ))}
+        </group>
+      );
     case 'model3D':
       return (
         <group ref={ref} position={element.position}>
@@ -226,12 +234,13 @@ const Element3D = ({ element }) => {
       );
     case 'image3D':
       return (
-        <group ref={ref} position={element.position}>
+        <group ref={ref} position={element.position}
+        >
           <Suspense fallback={null}>
             <Image3D 
               src={element.src} 
               width={element.width || 1} 
-              height={element.height || 1} 
+              height={element.height || 1}
             />
           </Suspense>
         </group>
@@ -260,7 +269,7 @@ const Element3D = ({ element }) => {
 const ElementJSX = ({ element }) => {
   if (!element) return null;
   
-  const Tag = element.elementType || 'div';
+  const Tag = element.type || 'div';
   
   // Cas spécial pour les éléments void (input, textarea, etc.)
   if (Tag === 'input' || Tag === 'textarea' || Tag === 'img' || Tag === 'br' || Tag === 'hr') {
@@ -268,9 +277,20 @@ const ElementJSX = ({ element }) => {
       <Tag 
         style={element.style} 
         {...(element.attributes || {})}
-        onClick={() => element.events?.onClick && window.dispatchEvent(new CustomEvent(element.events.onClick))}
+        onClick={(e) => {
+          element.events?.onClick && window.dispatchEvent(new CustomEvent(element.events.onClick));
+
+          // Autre
+          setLocalProps({})
+          setSelectedComponent(element); // Sélectionner ce conteneur
+          e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
+          setMode(null);
+          console.log("On click sur id:", element.id);
+        }}
+          
         // Pour textarea, on utilise value au lieu de children
         value={Tag === 'textarea' ? element.content : undefined}
+        
       />
     );
   }
@@ -279,102 +299,25 @@ const ElementJSX = ({ element }) => {
     <Tag 
       style={element.style} 
       {...(element.attributes || {})}
-      onClick={() => element.events?.onClick && window.dispatchEvent(new CustomEvent(element.events.onClick))}
+      onClick={(e) => {
+          element.events?.onClick && window.dispatchEvent(new CustomEvent(element.events.onClick));
+
+          // Autre
+        setLocalProps({})
+        setSelectedComponent(element); // Sélectionner ce conteneur
+        e.stopPropagation(); // Empêche le clic d'atteindre les autres éléments parents
+        setMode(null);
+        console.log("On click sur id:", element.id);
+      }}
     >
       {element.content}
       {element.children?.map((child, i) => (
-        <ElementJSX key={child?.id || i} element={child} />
+        renderComponent(child)
       ))}
     </Tag>
   );
 };
-// Prévisualisation d'un template
-const TemplatePreview = ({ template }) => {
-  if (!template) return 0;
 
-  return (
-    <div style={{ 
-      // width: '300px', 
-      // height: '200px', 
-      position: 'relative',
-      border: '1px solid #ddd',
-      borderRadius: '8px',
-      overflow: 'hidden'
-    }}>
-      {/* Rendu JSX */}
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        {template.jsxComponents?.map((component, i) => (
-          <ElementJSX key={component?.id || i} element={component} />
-        ))}
-      </div>
-
-      {/* Rendu 3D */}
-      {template.canvas3DComponents?.map((canvas, i) => (
-        <Canvas
-          key={`${canvas?.id || i}`}
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            background: 'transparent'
-          }}
-        >
-          <Suspense fallback={null}>
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} />
-            {canvas?.children?.map((child, j) => (
-              <Element3D key={child?.id || j} element={child} />
-            ))}
-          </Suspense>
-        </Canvas>
-      ))}
-    </div>
-  );
-};
-
-// Composant principal
-const HybridTemplates = ({ onAddContainer, templates = templatesData }) => {
-  return (
-    <div style={{ 
-      display: 'flex', 
-      flexWrap: 'wrap', 
-      gap: '20px',
-      padding: '20px'
-    }}>
-      {(templates.length > 0 ? templates : []).map((template, i) => (
-        <div 
-          key={template?.id || i}
-          style={{ 
-            display: 'flex', 
-            flexDirection: 'column', 
-            alignItems: 'center',
-            width: '300px'
-          }}
-        >
-          <TemplatePreview template={template} />
-          <span style={{ margin: '8px 0', fontWeight: '500' }}>
-            {template?.name || 'Unnamed Template'}
-          </span>
-          <button
-            style={{
-              padding: '5px 10px',
-              backgroundColor: '#4a6fa5',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-            }}
-            onClick={() => onAddContainer(template)}
-          >
-            Ajouter
-          </button>
-        </div>
-      ))}
-    </div>
-  );
-};
 
   
   // ********************** Debut Route d"Affichage ********************** //
@@ -741,7 +684,36 @@ const HybridTemplates = ({ onAddContainer, templates = templatesData }) => {
     // Si le composant est un conteneur (vide ou parent)
     return (
       <div style={{  }}>
-         <TemplatePreview template={component} />
+       <>
+          {component.elementType === "jsxElement" && (
+            <ElementJSX element={component} />
+          )}
+        </>
+       
+        {/* Rendu 3D */}
+        {component.elementType === "3DElement" && (
+          <Canvas
+            style={{
+              // position: 'absolute',
+              // top: 0,
+              // left: 0,
+              width: '100%',
+              // width: '600px',
+              height: '450px',
+              // height: '400px',
+              zIndex: 10,
+              background: 'transparent'
+            }}
+            camera={{ position: [0, 0.8,4], fov: 50 }}
+          >
+            <Suspense fallback={null}>
+              <ambientLight intensity={1.8} />
+              <pointLight position={[10, 10, 10]} />
+              <Element3D element={component} /> {/* Rendre l'élément */}
+              <OrbitControls enableZoom={true} enablePan={true} enableRotate={false} />
+            </Suspense>
+            </Canvas>
+          )}
       </div>
     );
     
@@ -929,7 +901,7 @@ const HybridTemplates = ({ onAddContainer, templates = templatesData }) => {
             <div>
             {/* <Canvas> */}
               {components.map((component) => 
-               <TemplatePreview template={component} />)}
+               renderComponent(component))}
             {/* </Canvas> */}
             </div>
           </div>

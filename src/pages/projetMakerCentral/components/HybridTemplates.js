@@ -4,7 +4,7 @@ import { Html, useGLTF, Text3D, OrbitControls, useTexture } from '@react-three/d
 import * as THREE from 'three';
 import { damp } from 'maath/easing';
 
-import jsonData from './JsonOrdonneDebut.json';
+import jsonData from './json/luxusTemplate.json';
 
 // Extraction du template depuis le JSON
 const templateData = jsonData.template;
@@ -156,6 +156,20 @@ const Element3D = ({ element }) => {
   const ref = useRef();
   useAnimations(element, ref);
 
+  // Applique les transformations initiales
+  useEffect(() => {
+    if (!ref.current || !element?.transform) return;
+    
+    const { position, rotation, scale } = element.transform;
+    if (position) ref.current.position.set(...position);
+    if (rotation) ref.current.rotation.set(
+      THREE.MathUtils.degToRad(rotation[0]),
+      THREE.MathUtils.degToRad(rotation[1]),
+      THREE.MathUtils.degToRad(rotation[2])
+    );
+    if (scale) ref.current.scale.set(...scale);
+  }, [element?.transform]);
+
   // Gestion des géométries de manière sécurisée
   const getGeometry = () => {
     const geometryType = element.geometry?.type || 'BoxGeometry';
@@ -177,6 +191,14 @@ const Element3D = ({ element }) => {
   };
 
   switch(element?.type) {
+    case 'group':
+      return (
+        <group ref={ref}>
+          {element.children?.map((child) => (
+            <Element3D key={child.id} element={child} />
+          ))}
+        </group>
+      );
     case 'model3D':
       return (
         <group ref={ref} position={element.position}>
@@ -206,7 +228,8 @@ const Element3D = ({ element }) => {
           geometry={getGeometry()}
           position={element.position}
         >
-          <meshStandardMaterial {...(element.material || {})} />
+          {/* <meshStandardMaterial {...(element.material || {})} /> */}
+          <meshStandardMaterial {...(element.material.param || {})} />
         </mesh>
       );
     case 'image3D':
@@ -245,7 +268,7 @@ const Element3D = ({ element }) => {
 const ElementJSX = ({ element }) => {
   if (!element) return null;
   
-  const Tag = element.elementType || 'div';
+  const Tag = element.type || 'div';
   
   // Cas spécial pour les éléments void (input, textarea, etc.)
   if (Tag === 'input' || Tag === 'textarea' || Tag === 'img' || Tag === 'br' || Tag === 'hr') {
@@ -268,53 +291,55 @@ const ElementJSX = ({ element }) => {
     >
       {element.content}
       {element.children?.map((child, i) => (
-        <ElementJSX key={child?.id || i} element={child} />
+        <TemplatePreview component={child}/>
       ))}
     </Tag>
   );
 };
 // Prévisualisation d'un template
-const TemplatePreview = ({ template }) => {
-  if (!template) return null;
+const TemplatePreview = ({ component }) => {
+  if (!component) return null;
 
   return (
     <div style={{ 
       // width: '300px', 
       // height: '200px', 
-      position: 'relative',
-      border: '1px solid #ddd',
-      borderRadius: '8px',
+      // position: 'relative',
+      // border: '1px solid #ddd',
+      // borderRadius: '8px',
       // overflow: 'hidden'
     }}>
       {/* Rendu JSX */}
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        {template.jsxComponents?.map((component, i) => (
-          <ElementJSX key={component?.id || i} element={component} />
-        ))}
-      </div>
+      <>
+        {component.elementType === "jsxElement" && (
+          <ElementJSX element={component} />
+        )}
+      </>
 
       {/* Rendu 3D */}
-      {template.canvas3DComponents?.map((canvas, i) => (
+      {component.elementType === "3DElement" && (
         <Canvas
-          key={`${canvas?.id || i}`}
           style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
+            // position: 'absolute',
+            // top: 0,
+            // left: 0,
             width: '100%',
-            height: '100%',
+            // width: '600px',
+            height: '50svh',
+            // height: '400px',
+            zIndex: 1,
             background: 'transparent'
           }}
+          camera={{ position: [0, 0, 5], fov: 50 }}
         >
           <Suspense fallback={null}>
-            <ambientLight intensity={0.5} />
+            <ambientLight intensity={1.8} />
             <pointLight position={[10, 10, 10]} />
-            {canvas?.children?.map((child, j) => (
-              <Element3D key={child?.id || j} element={child} />
-            ))}
+            <Element3D element={component} /> {/* Rendre l'élément */}
+            <OrbitControls enableZoom={true} enablePan={true} enableRotate={false} />
           </Suspense>
         </Canvas>
-      ))}
+      )}
     </div>
   );
 };
@@ -335,10 +360,14 @@ const HybridTemplates = ({ onAddContainer, templates = templatesData }) => {
             display: 'flex', 
             flexDirection: 'column', 
             alignItems: 'center',
-            width: '300px'
+            // width: '300px'
           }}
         >
-          <TemplatePreview template={template} />
+          {/* Affiche tous les composants du template */}
+          {template.components?.map((component) => (
+            <TemplatePreview key={component.id} component={component} />
+          ))}
+          
           <span style={{ margin: '8px 0', fontWeight: '500' }}>
             {template?.name || 'Unnamed Template'}
           </span>
@@ -351,7 +380,10 @@ const HybridTemplates = ({ onAddContainer, templates = templatesData }) => {
               borderRadius: '4px',
               cursor: 'pointer',
             }}
-            onClick={() => onAddContainer(template)}
+            onClick={() => 
+              {template?.components.forEach((component) => onAddContainer(component))
+                // onAddContainer(template)
+              }}
           >
             Ajouter
           </button>

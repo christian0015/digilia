@@ -1,0 +1,129 @@
+{
+  "id": "scene-3d",
+  "elementType": "3DElement",
+  "name": "scene-3d",
+  "type": "group",
+  "transform": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "settings": {
+    "camera": {
+      "position": [0, 0, 10],
+      "fov": 45,
+      "near": 0.1,
+      "far": 1000
+    },
+    "renderer": {
+      "antialias": true,
+      "alpha": true
+    }
+  },
+  "children": [
+    {
+      "id": "ambient-light",
+      "elementType": "3DElement",
+      "name": "ambient-light",
+      "type": "light",
+      "lightType": "ambient",
+      "color": "#404040",
+      "intensity": 0.5
+    },
+    {
+      "id": "directional-light-1",
+      "elementType": "3DElement",
+      "name": "directional-light-1",
+      "type": "light",
+      "lightType": "directional",
+      "color": "#ffffff",
+      "intensity": 1.0,
+      "transform": {
+        "position": [5, 5, 5]
+      }
+    },
+    {
+      "id": "hero-model",
+      "elementType": "3DElement",
+      "name": "hero-model",
+      "type": "model3D",
+      "asset": "/models/product-showcase.glb",
+      "transform": {
+        "position": [0, 0, -3],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "animations": [
+        {
+          "type": "rotation",
+          "trigger": "time",
+          "axis": "y",
+          "from": 0,
+          "to": 360,
+          "duration": 15,
+          "loop": true
+        },
+        {
+          "type": "scale",
+          "trigger": "hover",
+          "from": [1, 1, 1],
+          "to": [1.1, 1.1, 1.1],
+          "duration": 0.3,
+          "easing": "easeOutElastic"
+        },
+        {
+          "type": "color",
+          "trigger": "click",
+          "from": "#D4AF37",
+          "to": "#00FF7F",
+          "duration": 1,
+          "loop": "pingPong"
+        }
+      ],
+      "children": [
+        {
+          "id": "model-hotspot-1",
+          "elementType": "3DElement",
+          "name": "model-hotspot-1",
+          "type": "hotspot",
+          "transform": {
+            "position": [0.5, 0.3, 0]
+          },
+          "events": {
+            "onClick": "showFeature1"
+          },
+          "children": [
+            {
+              "id": "hotspot-marker",
+              "elementType": "3DElement",
+              "name": "hotspot-marker",
+              "type": "mesh",
+              "geometry": {
+                "type": "sphere",
+                "args": [0.05, 16, 16]
+              },
+              "material": {
+                "type": "MeshBasicMaterial",
+                "params": {
+                  "color": "#D4AF37",
+                  "transparent": true,
+                  "opacity": 0.8
+                }
+              },
+              "animations": [
+                {
+                  "type": "scale",
+                  "trigger": "time",
+                  "from": [1, 1, 1],
+                  "to": [1.2, 1.2, 1.2],
+                  "duration": 1,
+                  "loop": "pingPong"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

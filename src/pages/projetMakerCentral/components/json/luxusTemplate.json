@@ -8,11 +8,11 @@
       "author": "Designer Pro",
       "version": "1.1.0"
     },
-    "jsxComponents": [
+    "components": [
       {
         "id": "landing-section",
         "name": "landing-section",
-        "elementType": "jsxContainer",
+        "elementType": "jsxElement",
         "type": "div",
         "style": {
           "display": "flex",
@@ -225,7 +225,7 @@
       {
         "id": "features-section",
         "name": "features-section",
-        "elementType": "jsxContainer",
+        "elementType": "jsxElement",
         "type": "div",
         "style": {
           "display": "flex",
@@ -263,28 +263,36 @@
             "children": [
               {
                 "id": "feature-1",
-                "name": "feature-1",
+                "name": "feature Card-1",
                 "elementType": "jsxElement",
                 "type": "div",
                 "style": {
                   "display": "flex",
                   "flexDirection": "column",
                   "alignItems": "center",
-                  "textAlign": "center"
+                  "textAlign": "stretch",
+                  "padding": "0 0 20px 0",
+                  "boxShadow": "1px 10px 12px #CCCCCC, 1px -8px 12px #ccc",
+                  "borderRadius": "100px 40px 5px 10px"
                 },
                 "children": [
                   {
                     "id": "feature-1-icon-container",
                     "name": "feature-1-icon-container",
                     "elementType": "jsxElement",
-                    "type": "div",
+                    "type": "img",
                     "style": {
-                      "width": "300px",
+                      "width": "100%",
                       "height": "300px",
+                      "objectFit": "cover",
                       "marginBottom": "24px",
+                      "borderRadius": "100px 40px 40px 10px",
                       "position": "relative"
                     },
-                    "canvasRef": "feature-1-3d"
+                    "attributes": {
+                      "src": "https://res.cqnews.net/url/1/2021/7/5/o9MfZqGkeG9Vsp3ss9LG0faH2dI4OEPwV6m.jpg",
+                      "alt": "Image 1"
+                    }
                   },
                   {
                     "id": "feature-1-title",
@@ -304,7 +312,8 @@
                     "type": "p",
                     "style": {
                       "fontSize": "16px",
-                      "lineHeight": "1.6"
+                      "lineHeight": "1.6",
+                      "padding": "0 10px 0px 10px"
                     },
                     "content": "Dive into a fully immersive digital environment that responds to your every move and decision."
                   }
@@ -319,21 +328,29 @@
                   "display": "flex",
                   "flexDirection": "column",
                   "alignItems": "center",
-                  "textAlign": "center"
+                  "textAlign": "center",
+                  "padding": "0 0 20px 0",
+                  "boxShadow": "1px 10px 12px #CCCCCC, 1px -8px 12px #ccc",
+                  "borderRadius": "100px 40px 105px 8px"
                 },
                 "children": [
                   {
                     "id": "feature-2-icon-container",
                     "name": "feature-2-icon-container",
                     "elementType": "jsxElement",
-                    "type": "div",
+                    "type": "img",
                     "style": {
-                      "width": "300px",
+                      "width": "100%",
                       "height": "300px",
+                      "objectFit": "cover",
                       "marginBottom": "24px",
-                      "position": "relative"
+                      "position": "relative",
+                      "borderRadius": "100px 40px 105px 8px"
                     },
-                    "canvasRef": "feature-2-3d"
+                    "attributes": {
+                      "src": "https://cdn.dealeraccelerate.com/rkm/1/3973/274598/1920x1440/1954-mercedes-benz-300-sl-gullwing",
+                      "alt": "Image 2"
+                    }
                   },
                   {
                     "id": "feature-2-title",
@@ -353,7 +370,8 @@
                     "type": "p",
                     "style": {
                       "fontSize": "16px",
-                      "lineHeight": "1.6"
+                      "lineHeight": "1.6",
+                      "padding": "0 10px 0 10px"
                     },
                     "content": "Gain insights from powerful data visualization and analysis tools that reveal patterns and opportunities."
                   }
@@ -368,19 +386,27 @@
                   "display": "flex",
                   "flexDirection": "column",
                   "alignItems": "center",
-                  "textAlign": "center"
+                  "textAlign": "center",
+                  "padding": "0 0 20px 0",
+                  "boxShadow": "1px 10px 12px #CCCCCC, 1px -8px 12px #ccc",
+                  "borderRadius": "40px  100px  8px 105px"
                 },
                 "children": [
                   {
                     "id": "feature-3-icon-container",
                     "name": "feature-3-icon-container",
                     "elementType": "jsxElement",
-                    "type": "div",
+                    "type": "img",
                     "style": {
-                      "width": "300px",
+                      "width": "100%",
                       "height": "300px",
+                      "objectFit": "cover",
                       "marginBottom": "24px",
-                      "position": "relative"
+                      "position": "relative",
+                      "borderRadius": "40px  100px  8px 105px"
+                    },"attributes": {
+                      "src": "https://cdn.classic-trader.com/I/images/1920_1920_inset/vehicle_ad_standard_image_e34a3fea0cbddb83a58b455f8693b352.jpg",
+                      "alt": "Image 3"
                     },
                     "canvasRef": "feature-3-3d"
                   },
@@ -402,7 +428,8 @@
                     "type": "p",
                     "style": {
                       "fontSize": "16px",
-                      "lineHeight": "1.6"
+                      "lineHeight": "1.6",
+                      "padding": "0px 18px 0px 18px"
                     },
                     "content": "Connect with all your existing tools and platforms without missing a beat or losing data."
                   }
@@ -415,7 +442,7 @@
       {
         "id": "showcase-section",
         "name": "showcase-section",
-        "elementType": "jsxContainer",
+        "elementType": "jsxElement",
         "type": "div",
         "style": {
           "padding": "100px 0",
@@ -442,10 +469,140 @@
             "type": "div",
             "style": {
               "width": "100%",
-              "height": "600px",
+              "height": "auto",
               "position": "relative"
             },
-            "canvasRef": "showcase-scene"
+            "children": [
+              {
+                "id": "scene-3d",
+                "elementType": "3DElement",
+                "name": "scene-3d",
+                "type": "group",
+                "transform": {
+                    "position": [0, 0, 0],
+                    "rotation": [0, 0, 0],
+                    "scale": [1, 1, 1]
+                },
+                "settings": {
+                    "camera": {
+                    "position": [0, 0, 10],
+                    "fov": 45,
+                    "near": 0.1,
+                    "far": 1000
+                    },
+                    "renderer": {
+                    "antialias": true,
+                    "alpha": true
+                    }
+                },
+                "children": [
+                    {
+                    "id": "ambient-light",
+                    "elementType": "3DElement",
+                    "name": "ambient-light",
+                    "type": "light",
+                    "lightType": "ambient",
+                    "color": "#404040",
+                    "intensity": 0.5
+                    },
+                    {
+                    "id": "directional-light-1",
+                    "elementType": "3DElement",
+                    "name": "directional-light-1",
+                    "type": "light",
+                    "lightType": "directional",
+                    "color": "#ffffff",
+                    "intensity": 1.0,
+                    "transform": {
+                        "position": [5, 5, 5]
+                    }
+                    },
+                    {
+                    "id": "hero-model",
+                    "elementType": "3DElement",
+                    "name": "hero-model",
+                    "type": "model3D",
+                    "asset": "/models/product-showcase.glb",
+                    "transform": {
+                        "position": [0, 0, -3],
+                        "rotation": [0, 0, 0],
+                        "scale": [1, 1, 1]
+                    },
+                    "animations": [
+                        {
+                        "type": "rotation",
+                        "trigger": "time",
+                        "axis": "y",
+                        "from": 0,
+                        "to": 360,
+                        "duration": 15,
+                        "loop": true
+                        },
+                        {
+                        "type": "scale",
+                        "trigger": "hover",
+                        "from": [1, 1, 1],
+                        "to": [1.1, 1.1, 1.1],
+                        "duration": 0.3,
+                        "easing": "easeOutElastic"
+                        },
+                        {
+                        "type": "color",
+                        "trigger": "click",
+                        "from": "#D4AF37",
+                        "to": "#00FF7F",
+                        "duration": 1,
+                        "loop": "pingPong"
+                        }
+                    ],
+                    "children": [
+                        {
+                        "id": "model-hotspot-1",
+                        "elementType": "3DElement",
+                        "name": "model-hotspot-1",
+                        "type": "hotspot",
+                        "transform": {
+                            "position": [0.5, 0.3, 0]
+                        },
+                        "events": {
+                            "onClick": "showFeature1"
+                        },
+                        "children": [
+                            {
+                            "id": "hotspot-marker",
+                            "elementType": "3DElement",
+                            "name": "hotspot-marker",
+                            "type": "mesh",
+                            "geometry": {
+                                "type": "sphere",
+                                "args": [0.05, 16, 16]
+                            },
+                            "material": {
+                                "type": "MeshBasicMaterial",
+                                "params": {
+                                "color": "#D4AF37",
+                                "transparent": true,
+                                "opacity": 0.8
+                                }
+                            },
+                            "animations": [
+                                {
+                                "type": "scale",
+                                "trigger": "time",
+                                "from": [1, 1, 1],
+                                "to": [1.2, 1.2, 1.2],
+                                "duration": 1,
+                                "loop": "pingPong"
+                                }
+                            ]
+                            }
+                        ]
+                        }
+                    ]
+                    }
+                ]
+                }
+            ]
           },
           {
             "id": "showcase-controls",
@@ -523,7 +680,7 @@
       {
         "id": "testimonials-section",
         "name": "testimonials-section",
-        "elementType": "jsxContainer",
+        "elementType": "jsxElement",
         "type": "div",
         "style": {
           "padding": "100px 0",
@@ -562,7 +719,7 @@
       {
         "id": "contact-section",
         "name": "contact-section",
-        "elementType": "jsxContainer",
+        "elementType": "jsxElement",
         "type": "div",
         "style": {
           "padding": "100px 0",
@@ -713,7 +870,7 @@
       {
         "id": "footer-section",
         "name": "footer-section",
-        "elementType": "jsxContainer",
+        "elementType": "jsxElement",
         "type": "div",
         "style": {
           "padding": "50px 0",
@@ -804,7 +961,136 @@
             ]
           }
         ]
-      }
+      },
+      {
+        "id": "scene-3d",
+        "elementType": "3DElement",
+        "name": "scene-3d",
+        "type": "group",
+        "transform": {
+            "position": [0, 0, 0],
+            "rotation": [0, 0, 0],
+            "scale": [1, 1, 1]
+        },
+        "settings": {
+            "camera": {
+            "position": [0, 0, 10],
+            "fov": 45,
+            "near": 0.1,
+            "far": 1000
+            },
+            "renderer": {
+            "antialias": true,
+            "alpha": true
+            }
+        },
+        "children": [
+            {
+            "id": "ambient-light",
+            "elementType": "3DElement",
+            "name": "ambient-light",
+            "type": "light",
+            "lightType": "ambient",
+            "color": "#404040",
+            "intensity": 0.5
+            },
+            {
+            "id": "directional-light-1",
+            "elementType": "3DElement",
+            "name": "directional-light-1",
+            "type": "light",
+            "lightType": "directional",
+            "color": "#ffffff",
+            "intensity": 1.0,
+            "transform": {
+                "position": [5, 5, 5]
+            }
+            },
+            {
+            "id": "hero-model",
+            "elementType": "3DElement",
+            "name": "hero-model",
+            "type": "model3D",
+            "asset": "/models/product-showcase.glb",
+            "transform": {
+                "position": [0, 0, -3],
+                "rotation": [0, 0, 0],
+                "scale": [1, 1, 1]
+            },
+            "animations": [
+                {
+                "type": "rotation",
+                "trigger": "time",
+                "axis": "y",
+                "from": 0,
+                "to": 360,
+                "duration": 15,
+                "loop": true
+                },
+                {
+                "type": "scale",
+                "trigger": "hover",
+                "from": [1, 1, 1],
+                "to": [1.1, 1.1, 1.1],
+                "duration": 0.3,
+                "easing": "easeOutElastic"
+                },
+                {
+                "type": "color",
+                "trigger": "click",
+                "from": "#D4AF37",
+                "to": "#00FF7F",
+                "duration": 1,
+                "loop": "pingPong"
+                }
+            ],
+            "children": [
+                {
+                "id": "model-hotspot-1",
+                "elementType": "3DElement",
+                "name": "model-hotspot-1",
+                "type": "hotspot",
+                "transform": {
+                    "position": [0.5, 0.3, 0]
+                },
+                "events": {
+                    "onClick": "showFeature1"
+                },
+                "children": [
+                    {
+                    "id": "hotspot-marker",
+                    "elementType": "3DElement",
+                    "name": "hotspot-marker",
+                    "type": "mesh",
+                    "geometry": {
+                        "type": "sphere",
+                        "args": [0.05, 16, 16]
+                    },
+                    "material": {
+                        "type": "MeshBasicMaterial",
+                        "params": {
+                        "color": "#D4AF37",
+                        "transparent": true,
+                        "opacity": 0.8
+                        }
+                    },
+                    "animations": [
+                        {
+                        "type": "scale",
+                        "trigger": "time",
+                        "from": [1, 1, 1],
+                        "to": [1.2, 1.2, 1.2],
+                        "duration": 1,
+                        "loop": "pingPong"
+                        }
+                    ]
+                    }
+                ]
+                }
+            ]
+            }
+        ]
+        }
     ]
   }
 }

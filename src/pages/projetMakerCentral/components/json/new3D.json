@@ -1,0 +1,1089 @@
+{
+  "template": {
+    "id": "template-3d-jsx-hybrid",
+    "type": "template",
+    "name": "Hybrid 3D-JSX Template",
+    "metadata": {
+      "created": "2025-05-08",
+      "author": "Designer Pro",
+      "version": "1.1.0"
+    },
+    "canvas3DComponents": [
+      {
+        "id": "scene-3d",
+        "elementType": "3DElement",
+        "name": "scene-3d",
+        "type": "container3D",
+        "transform": {
+          "position": [0, 0, 0],
+          "rotation": [0, 0, 0],
+          "scale": [1, 1, 1]
+        },
+        "settings": {
+          "camera": {
+            "position": [0, 0, 10],
+            "fov": 45,
+            "near": 0.1,
+            "far": 1000
+          },
+          "renderer": {
+            "antialias": true,
+            "alpha": true
+          }
+        },
+        "children": [
+          {
+            "id": "ambient-light",
+            "elementType": "3DElement",
+            "name": "ambient-light",
+            "type": "light",
+            "lightType": "ambient",
+            "color": "#404040",
+            "intensity": 0.5
+          },
+          {
+            "id": "directional-light-1",
+            "elementType": "3DElement",
+            "name": "directional-light-1",
+            "type": "light",
+            "lightType": "directional",
+            "color": "#ffffff",
+            "intensity": 1.0,
+            "transform": {
+              "position": [5, 5, 5]
+            }
+          },
+          {
+            "id": "hero-model",
+            "elementType": "3DElement",
+            "name": "hero-model",
+            "type": "model3D",
+            "asset": "/models/product-showcase.glb",
+            "transform": {
+              "position": [0, 0, -3],
+              "rotation": [0, 0, 0],
+              "scale": [1, 1, 1]
+            },
+            "animations": [
+              {
+                "type": "rotation",
+                "trigger": "time",
+                "axis": "y",
+                "from": 0,
+                "to": 360,
+                "duration": 15,
+                "loop": true
+              },
+              {
+                "type": "scale",
+                "trigger": "hover",
+                "from": [1, 1, 1],
+                "to": [1.1, 1.1, 1.1],
+                "duration": 0.3,
+                "easing": "easeOutElastic"
+              },
+              {
+                "type": "color",
+                "trigger": "click",
+                "from": "#D4AF37",
+                "to": "#00FF7F",
+                "duration": 1,
+                "loop": "pingPong"
+              }
+            ],
+            "children": [
+              {
+                "id": "model-hotspot-1",
+                "elementType": "3DElement",
+                "name": "model-hotspot-1",
+                "type": "hotspot",
+                "transform": {
+                  "position": [0.5, 0.3, 0]
+                },
+                "events": {
+                  "onClick": "showFeature1"
+                },
+                "children": [
+                  {
+                    "id": "hotspot-marker",
+                    "elementType": "3DElement",
+                    "name": "hotspot-marker",
+                    "type": "mesh",
+                    "geometry": {
+                      "type": "sphere",
+                      "args": [0.05, 16, 16]
+                    },
+                    "material": {
+                      "type": "MeshBasicMaterial",
+                      "params": {
+                        "color": "#D4AF37",
+                        "transparent": true,
+                        "opacity": 0.8
+                      }
+                    },
+                    "animations": [
+                      {
+                        "type": "scale",
+                        "trigger": "time",
+                        "from": [1, 1, 1],
+                        "to": [1.2, 1.2, 1.2],
+                        "duration": 1,
+                        "loop": "pingPong"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "feature-text",
+            "elementType": "3DElement",
+            "name": "feature-text",
+            "type": "text3D",
+            "content": "Premium Model",
+            "transform": {
+              "position": [0, 1.5, -2],
+              "rotation": [0, 0, 0],
+              "scale": [0.2, 0.2, 0.2]
+            },
+            "font": "/fonts/3d/Roboto_Bold.json",
+            "settings": {
+              "size": 1,
+              "height": 0.1,
+              "curveSegments": 12,
+              "bevelEnabled": true,
+              "bevelThickness": 0.02,
+              "bevelSize": 0.02,
+              "material": {
+                "type": "MeshPhysicalMaterial",
+                "params": {
+                  "color": "#D4AF37",
+                  "metalness": 0.8,
+                  "roughness": 0.2
+                }
+              }
+            },
+            "animations": [
+              {
+                "type": "float",
+                "trigger": "time",
+                "speed": 0.5,
+                "amplitude": 0.1
+              }
+            ]
+          },
+          {
+            "id": "video-screen",
+            "elementType": "3DElement",
+            "name": "video-screen",
+            "type": "video3D",
+            "src": "/videos/product-demo.mp4",
+            "transform": {
+              "position": [2, 0, -2],
+              "rotation": [0, -4, 0],
+              "scale": [1.5, 1, 1]
+            },
+            "settings": {
+              "autoplay": true,
+              "loop": true,
+              "muted": true,
+              "width": 2,
+              "height": 1.12
+            }
+          },
+          {
+            "id": "image-panel",
+            "elementType": "3DElement",
+            "name": "image-panel",
+            "type": "image3D",
+            "src": "https://th.bing.com/th/id/OIP.coRKLRBYg8QLApnXdf0dqQHaFA?w=252&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+            "transform": {
+              "position": [-2, 0, -2],
+              "rotation": [0, 4, 0],
+              "scale": [1, 1, 1]
+            },
+            "settings": {
+              "width": 2,
+              "height": 1.5
+            },
+            "animations": [
+              {
+                "type": "translation",
+                "trigger": "scroll",
+                "axis": "y",
+                "offset": 0.5,
+                "damping": 0.1
+              }
+            ]
+          },
+          {
+            "id": "particle-system",
+            "elementType": "3DElement",
+            "name": "particle-system",
+            "type": "particleSystem",
+            "transform": {
+              "position": [0, 0, -5]
+            },
+            "settings": {
+              "count": 1000,
+              "size": 0.02,
+              "color": "#ffffff",
+              "spread": 10,
+              "blur": true
+            },
+            "animations": [
+              {
+                "type": "custom",
+                "trigger": "time",
+                "function": "rotateParticles",
+                "speed": 0.1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "feature-1-3d",
+        "elementType": "3DElement",
+        "name": "feature-1-3d",
+        "type": "container3D",
+        "transform": {
+          "position": [0, 0, 0],
+          "rotation": [0, 0, 0],
+          "scale": [1, 1, 1]
+        },
+        "children": [
+          {
+            "id": "feature-1-model",
+            "elementType": "3DElement",
+            "name": "feature-1-model",
+            "type": "model3D",
+            "asset": "/models/feature-1.glb",
+            "transform": {
+              "position": [0, 0, -5],
+              "rotation": [0, 0, 0],
+              "scale": [1, 1, 1]
+            },
+            "animations": [
+              {
+                "type": "rotation",
+                "trigger": "time",
+                "axis": "y",
+                "from": 0,
+                "to": 360,
+                "duration": 10,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "id": "feature-1-light",
+            "elementType": "3DElement",
+            "name": "feature-1-light",
+            "type": "light",
+            "lightType": "point",
+            "color": "#ffffff",
+            "intensity": 1.0,
+            "transform": {
+              "position": [3, 3, 0]
+            }
+          }
+        ]
+      },
+      {
+        "id": "feature-2-3d",
+        "elementType": "3DElement",
+        "name": "feature-2-3d",
+        "type": "container3D",
+        "transform": {
+          "position": [0, 0, 0],
+          "rotation": [0, 0, 0],
+          "scale": [1, 1, 1]
+        },
+        "children": [
+          {
+            "id": "feature-2-mesh",
+            "elementType": "3DElement",
+            "name": "feature-2-mesh",
+            "type": "mesh",
+            "geometry": {
+              "type": "torusKnot",
+              "args": [1, 0.3, 128, 32, 2, 3]
+            },
+            "material": {
+              "type": "MeshPhysicalMaterial",
+              "params": {
+                "color": "#1E90FF",
+                "metalness": 0.8,
+                "roughness": 0.2,
+                "clearcoat": 1.0
+              }
+            },
+            "transform": {
+              "position": [0, 0, -5],
+              "rotation": [0, 0, 0],
+              "scale": [1, 1, 1]
+            },
+            "animations": [
+              {
+                "type": "rotation",
+                "trigger": "time",
+                "axis": "y",
+                "from": 0,
+                "to": 360,
+                "duration": 8,
+                "loop": true
+              },
+              {
+                "type": "rotation",
+                "trigger": "time",
+                "axis": "x",
+                "from": 0,
+                "to": 360,
+                "duration": 20,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "id": "feature-2-light",
+            "elementType": "3DElement",
+            "name": "feature-2-light",
+            "type": "light",
+            "lightType": "spot",
+            "color": "#ffffff",
+            "intensity": 1.5,
+            "transform": {
+              "position": [3, 3, 0]
+            },
+            "settings": {
+              "angle": 0.5,
+              "penumbra": 0.5,
+              "decay": 2
+            }
+          }
+        ]
+      },
+      {
+        "id": "feature-3-3d",
+        "elementType": "3DElement",
+        "name": "feature-3-3d",
+        "type": "container3D",
+        "transform": {
+          "position": [0, 0, 0],
+          "rotation": [0, 0, 0],
+          "scale": [1, 1, 1]
+        },
+        "children": [
+          {
+            "id": "feature-3-video",
+            "elementType": "3DElement",
+            "name": "feature-3-video",
+            "type": "video3D",
+            "src": "/videos/feature-demo.mp4",
+            "transform": {
+              "position": [0, 0, -5],
+              "rotation": [0, 0, 0],
+              "scale": [2, 1.12, 1]
+            },
+            "settings": {
+              "autoplay": true,
+              "loop": true,
+              "muted": true
+            }
+          },
+          {
+            "id": "feature-3-light",
+            "elementType": "3DElement",
+            "name": "feature-3-light",
+            "type": "light",
+            "lightType": "point",
+            "color": "#ffffff",
+            "intensity": 0.8,
+            "transform": {
+              "position": [3, 3, 0]
+            }
+          }
+        ]
+      },
+      {
+        "id": "showcase-scene",
+        "elementType": "3DElement",
+        "name": "showcase-scene",
+        "type": "container3D",
+        "transform": {
+          "position": [0, 0, 0],
+          "rotation": [0, 0, 0],
+          "scale": [1, 1, 1]
+        },
+        "settings": {
+          "camera": {
+            "position": [0, 2, 10],
+            "fov": 45,
+            "near": 0.1,
+            "far": 1000
+          },
+          "renderer": {
+            "antialias": true,
+            "alpha": true
+          },
+          "orbit": true
+        },
+        "children": [
+          {
+            "id": "showcase-environment",
+            "elementType": "3DElement",
+            "name": "showcase-environment",
+            "type": "environment",
+            "preset": "sunset",
+            "intensity": 1.0
+          },
+          {
+            "id": "showcase-floor",
+            "elementType": "3DElement",
+            "name": "showcase-floor",
+            "type": "mesh",
+            "geometry": {
+              "type": "plane",
+              "args": [100, 100]
+            },
+            "material": {
+              "type": "MeshStandardMaterial",
+              "params": {
+                "color": "#111111",
+                "metalness": 0.2,
+                "roughness": 0.8
+              }
+            },
+            "transform": {
+              "position": [0, -2, 0],
+              "rotation": [-4, 0, 0],
+              "scale": [1, 1, 1]
+            }
+          },
+          {
+            "id": "showcase-model",
+            "elementType": "3DElement",
+            "name": "showcase-model",
+            "type": "model3D",
+            "asset": "/models/product-full.glb",
+            "transform": {
+              "position": [0, 0, 0],
+              "rotation": [0, 0, 0],
+              "scale": [1, 1, 1]
+            },
+            "animations": [
+              {
+                "type": "rotation",
+                "trigger": "time",
+                "axis": "y",
+                "from": 0,
+                "to": 360,
+                "duration": 30,
+                "loop": true
+              }
+            ],
+            "children": [
+              {
+                "id": "hotspot-1",
+                "elementType": "3DElement",
+                "name": "hotspot-1",
+                "type": "hotspot",
+                "transform": {
+                  "position": [1, 1, 0.5]
+                },
+                "events": {
+                  "onClick": "showFeatureDetails"
+                },
+                "children": [
+                  {
+                    "id": "hotspot-1-marker",
+                    "elementType": "3DElement",
+                    "name": "hotspot-1-marker",
+                    "type": "mesh",
+                    "geometry": {
+                      "type": "sphere",
+                      "args": [0.1, 16, 16]
+                    },
+                    "material": {
+                      "type": "MeshBasicMaterial",
+                      "params": {
+                        "color": "#D4AF37",
+                        "transparent": true,
+                        "opacity": 0.8
+                      }
+                    },
+                    "animations": [
+                      {
+                        "type": "scale",
+                        "trigger": "time",
+                        "from": [1, 1, 1],
+                        "to": [1.3, 1.3, 1.3],
+                        "duration": 0.8,
+                        "loop": "pingPong"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "hotspot-2",
+                "elementType": "3DElement",
+                "name": "hotspot-2",
+                "type": "hotspot",
+                "transform": {
+                  "position": [-1, 0.5, 0.8]
+                },
+                "events": {
+                  "onClick": "showTechnicalSpecs"
+                },
+                "children": [
+                  {
+                    "id": "hotspot-2-marker",
+                    "elementType": "3DElement",
+                    "name": "hotspot-2-marker",
+                    "type": "mesh",
+                    "geometry": {
+                      "type": "sphere",
+                      "args": [0.1, 16, 16]
+                    },
+                    "material": {
+                      "type": "MeshBasicMaterial",
+                      "params": {
+                        "color": "#1E90FF",
+                        "transparent": true,
+                        "opacity": 0.8
+                      }
+                    },
+                    "animations": [
+                      {
+                        "type": "scale",
+                        "trigger": "time",
+                        "from": [1, 1, 1],
+                        "to": [1.3, 1.3, 1.3],
+                        "duration": 0.8,
+                        "loop": "pingPong"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "slider-container",
+        "elementType": "3DElement",
+        "name": "slider-container",
+        "type": "container3D",
+        "transform": {
+          "position": [0, 0, 0],
+          "rotation": [0, 0, 0],
+          "scale": [1, 1, 1]
+        },
+        "settings": {
+          "camera": {
+            "position": [0, 0, 10],
+            "fov": 45
+          },
+          "renderer": {
+            "antialias": true,
+            "alpha": true
+          }
+        },
+        "children": [
+          {
+            "id": "testimonial-card-1",
+            "elementType": "3DElement",
+            "name": "testimonial-card-1",
+            "type": "group",
+            "transform": {
+              "position": [-5, 0, 0],
+              "rotation": [0, 0.2, 0],
+              "scale": [1, 1, 1]
+            },
+            "children": [
+              {
+                "id": "card-1-bg",
+                "elementType": "3DElement",
+                "name": "card-1-bg",
+                "type": "mesh",
+                "geometry": {
+                  "type": "box",
+                  "args": [3, 2, 0.1]
+                },
+                "material": {
+                  "type": "MeshPhysicalMaterial",
+                  "params": {
+                    "color": "#ffffff",
+                    "metalness": 0.1,
+                    "roughness": 0.2,
+                    "transparent": true,
+                    "opacity": 0.9,
+                    "side": 2
+                  }
+                }
+              },
+              {
+                "id": "card-1-content",
+                "elementType": "3DElement",
+                "name": "card-1-content",
+                "type": "html3D",
+                "transform": {
+                  "position": [0, 0, 0.06],
+                  "rotation": [0, 0, 0],
+                  "scale": [1, 1, 1]
+                },
+                "style": {
+                  "width": "280px",
+                  "padding": "20px",
+                  "textAlign": "center",
+                  "color": "#121212"
+                },
+                "children": [
+                  {
+                    "id": "testimonial-1-avatar",
+                    "elementType": "jsxElement",
+                    "name": "testimonial-1-avatar",
+                    "type": "jsxElement",
+                    "style": {
+                      "width": "80px",
+                      "height": "80px",
+                      "borderRadius": "50%",
+                      "margin": "0 auto 20px"
+                    },
+                    "attributes": {
+                      "src": "https://th.bing.com/th/id/OIP.coRKLRBYg8QLApnXdf0dqQHaFA?w=252&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                      "alt": "Client 1"
+                    }
+                  },
+                  {
+                    "id": "testimonial-1-text",
+                    "elementType": "jsxElement",
+                    "name": "testimonial-1-text",
+                    "type": "jsxElement",
+                    "style": {
+                      "fontSize": "16px",
+                      "lineHeight": "1.6",
+                      "fontStyle": "italic",
+                      "marginBottom": "20px"
+                    },
+                    "content": "This product has completely transformed our workflow. The 3D visualization tools are unmatched in the industry."
+                  },
+                  {
+                    "id": "testimonial-1-author",
+                    "elementType": "jsxElement",
+                    "name": "testimonial-1-author",
+                    "type": "jsxElement",
+                    "style": {
+                      "fontSize": "18px",
+                      "fontWeight": "bold",
+                      "marginBottom": "5px"
+                    },
+                    "content": "Sarah Johnson"
+                  },
+                  {
+                    "id": "testimonial-1-position",
+                    "elementType": "jsxElement",
+                    "name": "testimonial-1-position",
+                    "type": "jsxElement",
+                    "style": {
+                      "fontSize": "14px",
+                      "color": "#666666"
+                    },
+                    "content": "CTO, TechVision Inc."
+                  }
+                ]
+              }
+            ],
+            "animations": [
+              {
+                "type": "float",
+                "trigger": "time",
+                "speed": 0.3,
+                "amplitude": 0.1
+              }
+            ]
+          },
+          {
+            "id": "testimonial-card-2",
+            "elementType": "3DElement",
+            "name": "testimonial-card-2",
+            "type": "group",
+            "transform": {
+              "position": [0, 0, -1],
+              "rotation": [0, 0, 0],
+              "scale": [1.1, 1.1, 1.1]
+            },
+            "children": [
+              {
+                "id": "card-2-bg",
+                "elementType": "3DElement",
+                "name": "card-2-bg",
+                "type": "mesh",
+                "geometry": {
+                  "type": "box",
+                  "args": [3, 2, 0.1]
+                },
+                "material": {
+                  "type": "MeshPhysicalMaterial",
+                  "params": {
+                    "color": "#ffffff",
+                    "metalness": 0.1,
+                    "roughness": 0.2,
+                    "transparent": true,
+                    "opacity": 0.9,
+                    "side": 2
+                  }
+                }
+              },
+              {
+                "id": "card-2-content",
+                "elementType": "3DElement",
+                "name": "card-2-content",
+                "type": "html3D",
+                "transform": {
+                  "position": [0, 0, 0.06],
+                  "rotation": [0, 0, 0],
+                  "scale": [1, 1, 1]
+                },
+                "style": {
+                  "width": "280px",
+                  "padding": "20px",
+                  "textAlign": "center",
+                  "color": "#121212"
+                },
+                "children": [
+                  {
+                    "id": "testimonial-2-avatar",
+                    "elementType": "jsxElement",
+                    "name": "testimonial-2-avatar",
+                    "type": "jsxElement",
+                    "style": {
+                      "width": "80px",
+                      "height": "80px",
+                      "borderRadius": "50%",
+                      "margin": "0 auto 20px"
+                    },
+                    "attributes": {
+                      "src": "https://th.bing.com/th/id/OIP.coRKLRBYg8QLApnXdf0dqQHaFA?w=252&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                      "alt": "Client 2"
+                    }
+                  },
+                  {
+                    "id": "testimonial-2-text",
+                    "elementType": "jsxElement",
+                    "name": "testimonial-2-text",
+                    "type": "jsxElement",
+                    "style": {
+                      "fontSize": "16px",
+                      "lineHeight": "1.6",
+                      "fontStyle": "italic",
+                      "marginBottom": "20px"
+                    },
+                    "content": "We've seen a 300% increase in customer engagement since implementing this solution. The results speak for themselves."
+                  },
+                  {
+                    "id": "testimonial-2-author",
+                    "elementType": "jsxElement",
+                    "name": "testimonial-2-author",
+                    "type": "jsxElement",
+                    "style": {
+                      "fontSize": "18px",
+                      "fontWeight": "bold",
+                      "marginBottom": "5px"
+                    },
+                    "content": "Michael Chen"
+                  },
+                  {
+                    "id": "testimonial-2-position",
+                    "elementType": "jsxElement",
+                    "name": "testimonial-2-position",
+                    "type": "jsxElement",
+                    "style": {
+                      "fontSize": "14px",
+                      "color": "#666666"
+                    },
+                    "content": "Marketing Director, Global Solutions"
+                  }
+                ]
+              }
+            ],
+            "animations": [
+              {
+                "type": "float",
+                "trigger": "time",
+                "speed": 0.4,
+                "amplitude": 0.12,
+                "offset": 0.5
+              }
+            ]
+          },
+          {
+            "id": "testimonial-card-3",
+            "elementType": "3DElement",
+            "name": "testimonial-card-3",
+            "type": "group",
+            "transform": {
+              "position": [5, 0, 0],
+              "rotation": [0, -0.2, 0],
+              "scale": [1, 1, 1]
+            },
+            "children": [
+              {
+                "id": "card-3-bg",
+                "elementType": "3DElement",
+                "name": "card-3-bg",
+                "type": "mesh",
+                "geometry": {
+                  "type": "box",
+                  "args": [3, 2, 0.1]
+                },
+                "material": {
+                  "type": "MeshPhysicalMaterial",
+                  "params": {
+                    "color": "#ffffff",
+                    "metalness": 0.1,
+                    "roughness": 0.2,
+                    "transparent": true,
+                    "opacity": 0.9,
+                    "side": 2
+                  }
+                }
+              },
+              {
+                "id": "card-3-content",
+                "elementType": "3DElement",
+                "name": "card-3-content",
+                "type": "html3D",
+                "transform": {
+                  "position": [0, 0, 0.06],
+                  "rotation": [0, 0, 0],
+                  "scale": [1, 1, 1]
+                },
+                "style": {
+                  "width": "280px",
+                  "padding": "20px",
+                  "textAlign": "center",
+                  "color": "#121212"
+                },
+                "children": [
+                  {
+                    "id": "testimonial-3-avatar",
+                    "elementType": "jsxElement",
+                    "name": "testimonial-3-avatar",
+                    "type": "jsxElement",
+                    "style": {
+                      "width": "80px",
+                      "height": "80px",
+                      "borderRadius": "50%",
+                      "margin": "0 auto 20px"
+                    },
+                    "attributes": {
+                      "src": "https://th.bing.com/th/id/OIP.coRKLRBYg8QLApnXdf0dqQHaFA?w=252&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                      "alt": "Client 3"
+                    }
+                  },
+                  {
+                    "id": "testimonial-3-text",
+                    "elementType": "jsxElement",
+                    "name": "testimonial-3-text",
+                    "type": "jsxElement",
+                    "style": {
+                      "fontSize": "16px",
+                      "lineHeight": "1.6",
+                      "fontStyle": "italic",
+                      "marginBottom": "20px"
+                    },
+                    "content": "The level of detail and interactivity provided by this platform has helped us communicate complex ideas to stakeholders with ease."
+                  },
+                  {
+                    "id": "testimonial-3-author",
+                    "elementType": "jsxElement",
+                    "name": "testimonial-3-author",
+                    "type": "jsxElement",
+                    "style": {
+                        "fontSize": "18px",
+                        "fontWeight": "bold",
+                        "marginBottom": "5px"
+                    },
+                    "content": "Elena Rodriguez"
+                  },
+                  {
+                    "id": "testimonial-3-position",
+                    "elementType": "jsxElement",
+                    "name": "testimonial-3-position",
+                    "type": "jsxElement",
+                    "style": {
+                        "fontSize": "14px",
+                        "color": "#666666"
+                    },
+                    "content": "Product Lead, Innovative Labs"
+                  }
+                ]
+              }
+            ],
+            "animations": [
+              {
+            "type": "float",
+            "trigger": "time",
+            "speed": 0.35,
+            "amplitude": 0.11,
+            "offset": 0.25
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "contact-globe",
+        "elementType": "3DElement",
+        "name": "contact-globe",
+        "type": "container3D",
+        "transform": {
+        "position": [0, 0, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+        },
+        "settings": {
+          "camera": {
+            "position": [0, 0, 10],
+            "fov": 45
+          },
+          "renderer": {
+            "antialias": true,
+            "alpha": true
+          }
+        },
+        "children": [
+          {
+            "id": "globe-mesh",
+            "elementType": "3DElement",
+            "name": "globe-mesh",
+            "type": "mesh",
+            "geometry": {
+              "type": "sphere",
+              "args": [2, 64, 64]
+            },
+            "material": {
+              "type": "MeshPhysicalMaterial",
+              "params": {
+                "map": "https://th.bing.com/th/id/OIP.coRKLRBYg8QLApnXdf0dqQHaFA?w=252&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                "bumpMap": "https://th.bing.com/th/id/OIP.coRKLRBYg8QLApnXdf0dqQHaFA?w=252&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                "bumpScale": 0.05,
+                "specularMap": "https://th.bing.com/th/id/OIP.coRKLRBYg8QLApnXdf0dqQHaFA?w=252&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                "emissiveMap": "https://th.bing.com/th/id/OIP.coRKLRBYg8QLApnXdf0dqQHaFA?w=252&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                "emissive": "#ffffff",
+                "emissiveIntensity": 0.2,
+                "metalness": 0.1,
+                "roughness": 0.7
+              }
+            },
+            "transform": {
+              "position": [0, 0, 0],
+              "rotation": [0.1, 0, 0],
+              "scale": [1, 1, 1]
+            },
+            "animations": [
+              {
+                "type": "rotation",
+                "trigger": "time",
+                "axis": "y",
+                "from": 0,
+                "to": 360,
+                "duration": 60,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "id": "office-marker",
+            "elementType": "3DElement",
+            "name": "office-marker",
+            "type": "group",
+            "transform": {
+              "position": [0, 0, 2.1],
+              "rotation": [0, 0, 0],
+              "scale": [1, 1, 1]
+            },
+            "children": [
+              {
+                "id": "marker-pin",
+                "elementType": "3DElement",
+                "name": "marker-pin",
+                "type": "mesh",
+                "geometry": {
+                  "type": "cone",
+                  "args": [0.05, 0.2, 16]
+                },
+                "material": {
+                  "type": "MeshBasicMaterial",
+                  "params": {
+                    "color": "#D4AF37"
+                  }
+                },
+                "transform": {
+                  "position": [0, 0.1, 0],
+                  "rotation": [3, 0, 0],
+                  "scale": [1, 1, 1]
+                }
+              },
+              {
+                "id": "marker-dot",
+                "elementType": "3DElement",
+                "name": "marker-dot",
+                "type": "mesh",
+                "geometry": {
+                "type": "sphere",
+                "args": [0.05, 16, 16]
+                },
+                "material": {
+                  "type": "MeshBasicMaterial",
+                  "params": {
+                    "color": "#D4AF37"
+                  }
+                },
+                "transform": {
+                  "position": [0, 0, 0],
+                  "rotation": [0, 0, 0],
+                  "scale": [1, 1, 1]
+                }
+              }
+            ],
+            "animations": [
+              {
+                "type": "float",
+                "trigger": "time",
+                "speed": 1,
+                "amplitude": 0.05
+              }
+            ]
+          },
+          {
+            "id": "ambient-light",
+            "elementType": "3DElement",
+            "name": "ambient-light",
+            "type": "light",
+            "lightType": "ambient",
+            "color": "#404050",
+            "intensity": 0.5
+          },
+          {
+            "id": "directional-light",
+            "elementType": "3DElement",
+            "name": "directional-light",
+            "type": "light",
+            "lightType": "directional",
+            "color": "#ffffff",
+            "intensity": 1.0,
+            "transform": {
+              "position": [5, 3, 5]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

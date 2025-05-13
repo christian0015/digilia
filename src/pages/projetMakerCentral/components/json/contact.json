@@ -1,0 +1,172 @@
+{
+  "template": {
+    "id": "template-3d-jsx-hybrid",
+    "type": "template",
+    "name": "Hybrid Key Features -JSX Template",
+    "metadata": {
+      "created": "2025-05-08",
+      "author": "Designer Pro",
+      "version": "1.1.0"
+    },
+    "jsxComponents": [
+      {
+        "id": "landing-section",
+        "type": "jsxContainer",
+        "style": {
+          "display": "flex",
+          "flexDirection": "column",
+          "alignItems": "center",
+          "justifyContent": "center",
+          "width": "100%",
+          "height": "100vh",
+          "backgroundColor": "#121212",
+          "color": "#ffffff",
+          "overflow": "hidden",
+          "position": "relative"
+        },
+        "children": [
+          {
+            "id": "contact-section",
+            "type": "jsxContainer",
+            "style": {
+              "padding": "100px 0",
+              "backgroundColor": "#121212",
+              "color": "#ffffff"
+            },
+            "children": [
+              {
+                "id": "contact-title",
+                "type": "jsxElement",
+                "elementType": "h2",
+                "style": {
+                  "textAlign": "center",
+                  "fontSize": "48px",
+                  "marginBottom": "60px"
+                },
+                "content": "Get In Touch"
+              },
+              {
+                "id": "contact-content",
+                "type": "jsxElement",
+                "elementType": "div",
+                "style": {
+                  "display": "flex",
+                  "maxWidth": "1200px",
+                  "margin": "0 auto",
+                  "gap": "40px"
+                },
+                "children": [
+                  {
+                    "id": "contact-form-container",
+                    "type": "jsxElement",
+                    "elementType": "div",
+                    "style": {
+                      "flex": "1",
+                      "padding": "20px"
+                    },
+                    "children": [
+                      {
+                        "id": "contact-form",
+                        "type": "jsxElement",
+                        "elementType": "form",
+                        "style": {
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "gap": "20px"
+                        },
+                        "children": [
+                          {
+                            "id": "name-field",
+                            "type": "jsxElement",
+                            "elementType": "input",
+                            "style": {
+                              "padding": "15px",
+                              "borderRadius": "4px",
+                              "border": "none",
+                              "fontSize": "16px"
+                            },
+                            "attributes": {
+                              "type": "text",
+                              "placeholder": "Your Name",
+                              "required": true
+                            }
+                          },
+                          {
+                            "id": "email-field",
+                            "type": "jsxElement",
+                            "elementType": "input",
+                            "style": {
+                              "padding": "15px",
+                              "borderRadius": "4px",
+                              "border": "none",
+                              "fontSize": "16px"
+                            },
+                            "attributes": {
+                              "type": "email",
+                              "placeholder": "Your Email",
+                              "required": true
+                            }
+                          },
+                          {
+                            "id": "message-field",
+                            "type": "jsxElement",
+                            "elementType": "textarea",
+                            "style": {
+                              "padding": "15px",
+                              "borderRadius": "4px",
+                              "border": "none",
+                              "fontSize": "16px",
+                              "minHeight": "150px",
+                              "resize": "vertical"
+                            },
+                            "attributes": {
+                              "placeholder": "Your Message",
+                              "required": true
+                            }
+                          },
+                          {
+                            "id": "submit-button",
+                            "type": "jsxElement",
+                            "elementType": "button",
+                            "style": {
+                              "padding": "15px",
+                              "backgroundColor": "#D4AF37",
+                              "color": "#000000",
+                              "border": "none",
+                              "borderRadius": "4px",
+                              "fontSize": "16px",
+                              "fontWeight": "bold",
+                              "cursor": "pointer"
+                            },
+                            "content": "Send Message",
+                            "attributes": {
+                              "type": "submit"
+                            },
+                            "events": {
+                              "onClick": "submitContactForm"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "contact-map-container",
+                    "type": "jsxElement",
+                    "elementType": "div",
+                    "style": {
+                      "flex": "1",
+                      "position": "relative",
+                      "height": "400px"
+                    },
+                    "canvasRef": "contact-globe"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

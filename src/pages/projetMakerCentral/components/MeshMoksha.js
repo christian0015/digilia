@@ -137,7 +137,7 @@ const EnergyParticles = ({ count = 100, color = '#88ccff', size = 0.1 }) => {
 };
 
 // Composant principal de rendu Moksha
-const MeshMoksha = ({ template, onAddTemplate }) => {
+const MeshMoksha = ({ template, onAddContainer }) => {
   const renderObject = (obj) => {
     switch(obj.type) {
       case MOKSHA_COMPONENTS.MEDITATION_SPHERE:
